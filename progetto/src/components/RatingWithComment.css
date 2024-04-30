@@ -120,7 +120,7 @@
   }
   
   
-  @media screen and (max-width:412px) {
+  @media screen and (max-width:480px) {
     .wrapper{
       width: 250px;
       height: 360px;

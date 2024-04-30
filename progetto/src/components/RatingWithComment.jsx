@@ -2,8 +2,8 @@ import './RatingWithComment.css'
 
 function RatingWithComment({ name, image, job, reviewsNumber, score }) {
   return (
-    <div className='flex justify-center flex-wrap mt-9'>
-      <div className="wrapper">
+    <div className='flex mt-9'>
+      <div className="wrapper mx-4">
         <div className="img-area">
           <div className="inner-area">
             <img src={image} alt="" />

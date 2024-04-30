@@ -26,71 +26,113 @@ import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-function Home() {
-  const professionals = [
-    { name: 'Paolo Sciuti', job: 'Imbianchino', image: profile1, reviewsNumber: 87, score: 4.76 },
-    { name: 'Lorenzo De Biase', job: 'Idraulico', image: profile2, reviewsNumber: 100, score: 4.55 },
-    { name: 'Alberto Pini', job: 'Elettricista', image: profile3, reviewsNumber: 45, score: 4.90 },
-    { name: 'Giuseppe Cordone', job: 'Serramentista', image: profile4, reviewsNumber: 67, score: 4.80 }
-  ];
 
-   // Configurazione per il carosello
-   const settings = {
+function Home() {
+  var settings = {
     dots: true,
-    infinite: true,
+    infinite: false,
     speed: 500,
-    slidesToShow: 3, // Numero di elementi da mostrare contemporaneamente
-    slidesToScroll: 1 // Numero di elementi da scorrere alla volta
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    initialSlide: 0,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: true
+        }
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          initialSlide: 1
+        }
+      },
+      {
+        breakpoint: 540,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
+      }
+    ]
   };
-  
+
   return (
     <div>
-        <Navbar/>
-        <Jumbotron/>
-        <h1 className='flex justify-center text-5xl text-customBlue font-bold my-10 sm:text-4xl'>Cerca il tuo pro</h1>
-        <div className="[@media(min-width:768px)]:hidden selectContainer">
-          <Select/>
-          </div>
-        <div className="flex flex-wrap justify-center bg [@media(max-width:767px)]:hidden">
-          <Card image={idraulico} title="Idraulico" description="Scegli l'idraulico adatto alle tue esigenze"/>
-          <Card image={elettricista} title="Elettricista" description="Scegli l'elettricista adatto alle tue esigenze"/>
-          <Card image={imbianchino} title="Imbianchino" description="Scegli l'imbianchino adatto alle tue esigenze"/>
-          <Card image={giardiniere} title="Giardiniere" description="Scegli il giardiniere adatto alle tue esigenze"/>
-          <Card image={traslocatore} title="Traslocatore" description="Devi traslocare ? Scegli il traslocatore adatto alle tue esigenze"/>
-          <Card image={pavimentista} title="Pavimentista" description="Devi rifare il pavimento ? Scegli il pavimentista adatto alle tue esigenze"/>
-          <Card image={serramentista} title="Serramentista" description="Devi rifare le finestre ? Scegli il serramentista adatto alle tue esigenze"/>
-          <Card image={interiorDesigner} title="Interior Designer" description="Ti serve una mano a decorare la casa ? Scegli l'interior designer adatto a te"/>
-          <Card image={falegname} title="Falegname" description="Ti serve una mano a decorare la casa ? Scegli l'interior designer adatto a te"/>
-          <div className='[@media(min-width:769px)]:hidden '>
-          <Card image={tuttofare} title="Tuttofare" description="Ti serve una mano a decorare la casa ? Scegli l'interior designer adatto a te"/>
-          </div>
-        </div>
-        <div className="[@media(min-width:767px)]:hidden">
-        <Bottone text={'Cerca pro'}/>
-        </div>
-        <div className='[@media(max-width:767px)]:hidden'>
-        <Bottone text={'Vedi altro'}/>
-        </div>
-        <h1 className='flex justify-center text-5xl text-customBlue font-bold mt-20 sm:text-4xl'>Come funziona</h1>
-        <Steps/>
-        <h1 className='flex justify-center text-5xl text-customBlue font-bold my-10 sm:text-2xl'>Professionisti nella tua zona</h1>
-       <div className='w-11/12 pl-36 lg:pl-12'>
-        <Slider {...settings}>
-        {professionals.map((professional, index) => (
-          <div key={index} className='py-4'>
-            <RatingWithComment {...professional} />
-          </div>
-        ))}
-      </Slider>
+      <Navbar />
+      <Jumbotron />
+      <h1 className='flex justify-center text-5xl text-customBlue font-bold my-10 sm:text-4xl'>Cerca il tuo pro</h1>
+      <div className="[@media(min-width:768px)]:hidden selectContainer">
+        <Select />
       </div>
-        <div className='my-14'>
-        <Bottone text={'Cerca altri pro'}/>
+      <div className="flex flex-wrap justify-center bg [@media(max-width:767px)]:hidden">
+        <Card image={idraulico} title="Idraulico" description="Affidati alla cura dei tuoi impianti con un servizio idraulico su cui puoi contare." />
+        <Card image={elettricista} title="Elettricista" description="Trova l'elettricista adatto a te. Illumina la tua casa con soluzioni affidabili e sicure." />
+        <Card image={imbianchino} title="Imbianchino" description="Trova l'imbianchino perfetto per trasformare i tuoi ambienti. Regala alla tua casa un tocco di freschezza e stile." />
+        <Card image={giardiniere} title="Giardiniere" description="Trova il giardiniere perfetto per trasformare il tuo spazio verde. Dona nuova vita al tuo giardino e crea un'oasi di tranquillità." />
+        <Card image={traslocatore} title="Traslocatore" description="Rendi il tuo trasloco un'esperienza senza stress! Affronta il cambiamento con serenità e affidabilità." />
+        <Card image={pavimentista} title="Pavimentista" description="Dai vita al tuo spazio con stile e qualità insuperabili, inizia oggi stesso a realizzare il pavimento dei tuoi sogni." />
+        <Card image={serramentista} title="Serramentista" description="Rendi la tua casa un luogo sicuro e confortevole. Proteggi il tuo ambiente con soluzioni affidabili e di alta qualità." />
+        <Card image={interiorDesigner} title="Interior Designer" description="Dona personalità e stile unico alla tua casa, inizia oggi stesso a creare un ambiente che rifletta davvero te stesso." />
+        <Card image={falegname} title="Falegname" description="Dai vita ai tuoi spazi con mobili su misura e dettagli impeccabili, inizia oggi stesso a creare un ambiente unico e accogliente." />
+        <div className='[@media(min-width:769px)]:hidden '>
+          <Card image={tuttofare} title="Tuttofare" description="Dalla manutenzione alla riparazione, siamo pronti a darti una mano! Inizia oggi stesso a risolvere ogni problema." />
         </div>
-        <Reviews/>
-        <div className='mb-12'>
-          <Bottone text='Leggi altre recensioni'/>
+      </div>
+      <div className="[@media(min-width:767px)]:hidden">
+        <Bottone text={'Cerca pro'} />
+      </div>
+      <div className='[@media(max-width:767px)]:hidden'>
+        <Bottone text={'Vedi altro'} />
+      </div>
+      <h1 className='flex justify-center text-5xl text-customBlue font-bold mt-20 sm:text-4xl'>Come funziona</h1>
+      <Steps />
+      <h1 className='flex justify-center text-5xl text-customBlue font-bold my-10 sm:text-2xl'>Professionisti nella tua zona</h1>
+      <div className='w-11/12 pl-36 lg:pl-12'>
+        <div className=''>
+          <Slider {...settings}>
+            <div className='py-8'>
+              <RatingWithComment name="Paolo Sciuti" image={profile1} job="Elettricista" reviewsNumber={89} score={4.80} />
+            </div>
+            <div className='py-8'>
+              <RatingWithComment name="Paolo Sciuti" image={profile1} job="Elettricista" reviewsNumber={89} score={4.80} />
+            </div>
+            <div className='py-8'>
+              <RatingWithComment name="Paolo Sciuti" image={profile1} job="Elettricista" reviewsNumber={89} score={4.80} />
+            </div>
+            <div className='py-8'>
+              <RatingWithComment name="Paolo Sciuti" image={profile1} job="Elettricista" reviewsNumber={89} score={4.80} />
+            </div>
+            <div className='py-8'>
+              <RatingWithComment name="Paolo Sciuti" image={profile1} job="Elettricista" reviewsNumber={89} score={4.80} />
+            </div>
+            <div className='py-8'>
+              <RatingWithComment name="Paolo Sciuti" image={profile1} job="Elettricista" reviewsNumber={89} score={4.80} />
+            </div>
+            <div className='py-8'>
+              <RatingWithComment name="Paolo Sciuti" image={profile1} job="Elettricista" reviewsNumber={89} score={4.80} />
+            </div>
+            <div className='py-8'>
+              <RatingWithComment name="Paolo Sciuti" image={profile1} job="Elettricista" reviewsNumber={89} score={4.80} />
+            </div>
+          </Slider>
         </div>
-        <Footer/>
+
+      </div>
+      <div className='my-14'>
+        <Bottone text={'Cerca altri pro'} />
+      </div>
+      <Reviews />
+      <div className='mb-12 sm:mt-0'>
+        <Bottone text='Leggi altre recensioni' />
+      </div>
+      <Footer />
     </div>
   )
 }
