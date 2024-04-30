@@ -21,6 +21,10 @@ import profile1 from '../images/profile1.jpeg'
 import profile2 from '../images/profile2.webp'
 import profile3 from '../images/profile3.webp'
 import profile4 from '../images/profile4.webp'
+import profile5 from '../images/profile5.webp'
+import profile6 from '../images/profile6.webp'
+import profile7 from '../images/profile7.webp'
+import profile8 from '../images/profile8.webp'
 import Select from '../components/Select'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css';
@@ -101,25 +105,25 @@ function Home() {
               <RatingWithComment name="Paolo Sciuti" image={profile1} job="Elettricista" reviewsNumber={89} score={4.80} />
             </div>
             <div className='py-8'>
-              <RatingWithComment name="Paolo Sciuti" image={profile1} job="Elettricista" reviewsNumber={89} score={4.80} />
+              <RatingWithComment name="Riccardo Rossi" image={profile2} job="Imbianchino" reviewsNumber={57} score={4.95} />
             </div>
             <div className='py-8'>
-              <RatingWithComment name="Paolo Sciuti" image={profile1} job="Elettricista" reviewsNumber={89} score={4.80} />
+              <RatingWithComment name="Paolo Corsi" image={profile3} job="Serramentista" reviewsNumber={95} score={4.70} />
             </div>
             <div className='py-8'>
-              <RatingWithComment name="Paolo Sciuti" image={profile1} job="Elettricista" reviewsNumber={89} score={4.80} />
+              <RatingWithComment name="Umberto Del Capo" image={profile4} job="Serramentista" reviewsNumber={45} score={4.80} />
             </div>
             <div className='py-8'>
-              <RatingWithComment name="Paolo Sciuti" image={profile1} job="Elettricista" reviewsNumber={89} score={4.80} />
+              <RatingWithComment name="Paolo Sciuti" image={profile5} job="Elettricista" reviewsNumber={89} score={4.80} />
             </div>
             <div className='py-8'>
-              <RatingWithComment name="Paolo Sciuti" image={profile1} job="Elettricista" reviewsNumber={89} score={4.80} />
+              <RatingWithComment name="Michele Dellapiazza" image={profile6} job="Interior Designer" reviewsNumber={140} score={4.75} />
             </div>
             <div className='py-8'>
-              <RatingWithComment name="Paolo Sciuti" image={profile1} job="Elettricista" reviewsNumber={89} score={4.80} />
+              <RatingWithComment name="Giovanni Federici" image={profile7} job="Falegname" reviewsNumber={98} score={4.97} />
             </div>
             <div className='py-8'>
-              <RatingWithComment name="Paolo Sciuti" image={profile1} job="Elettricista" reviewsNumber={89} score={4.80} />
+              <RatingWithComment name="Alberto Vallesi" image={profile8} job="Interior Designer" reviewsNumber={120} score={4.85} />
             </div>
           </Slider>
         </div>
