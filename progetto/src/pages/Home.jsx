@@ -85,7 +85,7 @@ function Home() {
         <Card image={serramentista} title="Serramentista" description="Rendi la tua casa un luogo sicuro e confortevole. Proteggi il tuo ambiente con soluzioni affidabili e di alta qualità." />
         <Card image={interiorDesigner} title="Interior Designer" description="Dona personalità e stile unico alla tua casa, inizia oggi stesso a creare un ambiente che rifletta davvero te stesso." />
         <Card image={falegname} title="Falegname" description="Dai vita ai tuoi spazi con mobili su misura e dettagli impeccabili, inizia oggi stesso a creare un ambiente unico e accogliente." />
-        <div className='[@media(min-width:769px)]:hidden '>
+        <div className=''>
           <Card image={tuttofare} title="Tuttofare" description="Dalla manutenzione alla riparazione, siamo pronti a darti una mano! Inizia oggi stesso a risolvere ogni problema." />
         </div>
       </div>
@@ -97,7 +97,7 @@ function Home() {
       </div>
       <h1 className='flex justify-center text-5xl text-customBlue font-bold mt-20 sm:text-4xl'>Come funziona</h1>
       <Steps />
-      <h1 className='flex justify-center text-5xl text-customBlue font-bold my-10 sm:text-2xl'>Professionisti nella tua zona</h1>
+      <h1 className='flex justify-center text-5xl text-customBlue font-bold my-10 sm:text-2xl md:text-4xl'>Professionisti nella tua zona</h1>
       <div className='w-11/12 pl-36 lg:pl-12'>
         <div className=''>
           <Slider {...settings}>
