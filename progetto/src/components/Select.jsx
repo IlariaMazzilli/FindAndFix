@@ -18,43 +18,43 @@ const Select = () => {
       </div>
 
       <ul className="options">
-        <li className="option" onClick={() => handleOptionClick('Instagram')}>
+        <li className="option" onClick={() => handleOptionClick('Idraulico')}>
           <i className="bx bxl-instagram-alt" style={{ color: '#E1306C' }}></i>
           <span className="option-text">Idraulico</span>
         </li>
-        <li className="option" onClick={() => handleOptionClick('Linkedin')}>
+        <li className="option" onClick={() => handleOptionClick('Imbianchino')}>
           <i className="bx bxl-linkedin-square" style={{ color: '#0E76A8' }}></i>
           <span className="option-text">Imbianchino</span>
         </li>
-        <li className="option" onClick={() => handleOptionClick('Facebook')}>
+        <li className="option" onClick={() => handleOptionClick('Elettricista')}>
           <i className="bx bxl-facebook-circle" style={{ color: '#4267B2' }}></i>
           <span className="option-text">Elettricista</span>
         </li>
-        <li className="option" onClick={() => handleOptionClick('Twitter')}>
+        <li className="option" onClick={() => handleOptionClick('Giardiniere')}>
           <i className="bx bxl-twitter" style={{ color: '#1DA1F2' }}></i>
           <span className="option-text">Giardiniere</span>
         </li>
-        <li className="option" onClick={() => handleOptionClick('Twitter')}>
+        <li className="option" onClick={() => handleOptionClick('Traslocatore')}>
           <i className="bx bxl-twitter" style={{ color: '#1DA1F2' }}></i>
           <span className="option-text">Traslocatore</span>
         </li>
-        <li className="option" onClick={() => handleOptionClick('Twitter')}>
+        <li className="option" onClick={() => handleOptionClick('Pavimentista')}>
           <i className="bx bxl-twitter" style={{ color: '#1DA1F2' }}></i>
           <span className="option-text">Pavimentista</span>
         </li>
-        <li className="option" onClick={() => handleOptionClick('Twitter')}>
+        <li className="option" onClick={() => handleOptionClick('Serramentista')}>
           <i className="bx bxl-twitter" style={{ color: '#1DA1F2' }}></i>
           <span className="option-text">Serramentista</span>
         </li>
-        <li className="option" onClick={() => handleOptionClick('Twitter')}>
+        <li className="option" onClick={() => handleOptionClick('Interior designer')}>
           <i className="bx bxl-twitter" style={{ color: '#1DA1F2' }}></i>
           <span className="option-text">Interior designer</span>
         </li>
-        <li className="option" onClick={() => handleOptionClick('Twitter')}>
+        <li className="option" onClick={() => handleOptionClick('Falegname')}>
           <i className="bx bxl-twitter" style={{ color: '#1DA1F2' }}></i>
           <span className="option-text">Falegname</span>
         </li>
-        <li className="option" onClick={() => handleOptionClick('Twitter')}>
+        <li className="option" onClick={() => handleOptionClick('Tuttofare')}>
           <i className="bx bxl-twitter" style={{ color: '#1DA1F2' }}></i>
           <span className="option-text">Tuttofare</span>
         </li>
