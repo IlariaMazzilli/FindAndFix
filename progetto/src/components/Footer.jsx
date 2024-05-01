@@ -179,39 +179,20 @@ function Footer() {
                             <p className="text-lg font-extrabold text-customBlue">Contattaci</p>
 
                             <ul className="mt-8 space-y-4 text-sm">
-                                <li>
-                                    <a
-                                        className="flex items-center justify-center gap-1.5 ltr:sm:justify-start rtl:sm:justify-end"
+                            
+                                <li
+                                    
+                                >
+                                      <a
+                                        className="flex items-center justify-center gap-1.5 "
                                         href="#"
                                     >
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            className="size-5 shrink-0 text-gray-900"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke="currentColor"
-                                            strokeWidth="2"
-                                        >
-                                            <path
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                                            />
-                                        </svg>
-
-                                        <span className="flex-1 text-customGreen font-bold">findandfix@info.com</span>
-                                    </a>
-                                </li>
-
-                                <li
-                                    className="flex items-start justify-center gap-1.5 ltr:sm:justify-start rtl:sm:justify-end"
-                                >
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
-                                        className="size-5 shrink-0 text-customGreen font-bold"
+                                        className="size-5 shrink-0 text-customGreen "
                                         fill="none"
                                         viewBox="0 0 24 24"
-                                        stroke="currentColor"
+                                        stroke="black"
                                         strokeWidth="2"
                                     >
                                         <path
@@ -229,7 +210,34 @@ function Footer() {
                                     <address className="-mt-0.5 flex-1 not-italic text-customGreen font-bold">
                                         Piazza della Luna, 14, Domodossola, 28845
                                     </address>
+                                    </a>
                                 </li>
+
+                                <li >
+                                    <a
+                                        className="flex items-center justify-center gap-1.5 ltr:sm:justify-start rtl:sm:justify-end"
+                                        href="#"
+                                    >
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            className="size-5 shrink-0 text-gray-900 "
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke="currentColor"
+                                            strokeWidth="2"
+                                        >
+                                            <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                                            />
+                                        </svg>
+
+                                        <span className="flex-1 text-customGreen font-bold">findandfix@info.com</span>
+                                    </a>
+
+                                </li>
+
                             </ul>
                         </div>
                     </div>
@@ -237,10 +245,10 @@ function Footer() {
 
                 <div className="mt-12 border-t border-gray-100 pt-6">
                     <div className="text-center sm:flex sm:justify-between sm:text-left">
-                        <p className="text-sm text-customGreen font-bold">
+                        <p className="text-sm text-customGreen font-bold [@media(min-width:540px)]:flex [@media(min-width:540px)]:justify-around  ">
 
                             <a
-                                className="inline-block text-customGreen transition "
+                                className=" text-customGreen transition  "
                                 href="#"
                             >
                                 Termini e condizioni
@@ -249,14 +257,14 @@ function Footer() {
                             <span>&middot;</span>
 
                             <a
-                                className="inline-block text-customGreen  transition "
+                                className="sm:flex text-customGreen  transition "
                                 href="#"
                             >
                                 Privacy Policy
                             </a>
                         </p>
 
-                        <p className="mt-4 text-sm text-gray-500 sm:order-first sm:mt-0">&copy; {year} Find & Fix</p>
+                        <p className="mt-4 text-sm text-gray-500 sm:order-first sm:mt-0 sm:whitespace-nowrap">&copy; {year} Find & Fix</p>
                     </div>
                 </div>
             </div>
