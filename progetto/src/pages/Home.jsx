@@ -1,4 +1,6 @@
 import '../index.css'
+import { Fade } from "react-awesome-reveal";
+import { Slide } from "react-awesome-reveal";
 import Jumbotron from "../components/Jumbotron"
 import Navbar from "../components/Navbar"
 import Card from "../components/Card"
@@ -70,25 +72,55 @@ function Home() {
   return (
     <div>
       <Navbar />
-      <Jumbotron />
-      <h1 className='flex justify-center text-5xl text-customBlue font-bold my-10 sm:text-4xl'>Cerca il tuo pro</h1>
-      <div className="[@media(min-width:768px)]:hidden selectContainer">
-        <Select />
-      </div>
-      <div className="flex flex-wrap justify-center bg [@media(max-width:767px)]:hidden">
-        <Card image={idraulico} title="Idraulico" description="Affidati alla cura dei tuoi impianti con un servizio idraulico su cui puoi contare." />
-        <Card image={elettricista} title="Elettricista" description="Trova l'elettricista adatto a te. Illumina la tua casa con soluzioni affidabili e sicure." />
-        <Card image={imbianchino} title="Imbianchino" description="Trova l'imbianchino perfetto per trasformare i tuoi ambienti. Regala alla tua casa un tocco di freschezza e stile." />
-        <Card image={giardiniere} title="Giardiniere" description="Trova il giardiniere perfetto per trasformare il tuo spazio verde. Dona nuova vita al tuo giardino e crea un'oasi di tranquillità." />
-        <Card image={traslocatore} title="Traslocatore" description="Rendi il tuo trasloco un'esperienza senza stress! Affronta il cambiamento con serenità e affidabilità." />
-        <Card image={pavimentista} title="Pavimentista" description="Dai vita al tuo spazio con stile e qualità insuperabili, inizia oggi stesso a realizzare il pavimento dei tuoi sogni." />
-        <Card image={serramentista} title="Serramentista" description="Rendi la tua casa un luogo sicuro e confortevole. Proteggi il tuo ambiente con soluzioni affidabili e di alta qualità." />
-        <Card image={interiorDesigner} title="Interior Designer" description="Dona personalità e stile unico alla tua casa, inizia oggi stesso a creare un ambiente che rifletta davvero te stesso." />
-        <Card image={falegname} title="Falegname" description="Dai vita ai tuoi spazi con mobili su misura e dettagli impeccabili, inizia oggi stesso a creare un ambiente unico e accogliente." />
-        <div className=''>
-          <Card image={tuttofare} title="Tuttofare" description="Dalla manutenzione alla riparazione, siamo pronti a darti una mano! Inizia oggi stesso a risolvere ogni problema." />
+      <Fade cascade={true} direction={"down"} triggerOnce={true} duration={2500}>
+        <Jumbotron />
+      </Fade>
+      <Slide direction={"up"} triggerOnce={true} duration={2500}>
+        <h1 className='flex justify-center text-5xl text-customBlue font-bold my-10 sm:text-4xl'>Cerca il tuo pro</h1>
+      </Slide>
+      <Fade triggerOnce={true} duration={2500}>
+        <div className="[@media(min-width:768px)]:hidden selectContainer">
+          <Select />
         </div>
+      </Fade>
+
+
+      <div className="flex flex-wrap justify-center bg [@media(max-width:767px)]:hidden">
+        <Slide direction={"right"} triggerOnce={true} duration={2500}>
+          <Card image={idraulico} title="Idraulico" description="Affidati alla cura dei tuoi impianti con un servizio idraulico su cui puoi contare." />
+        </Slide>
+        <Slide direction={"left"} triggerOnce={true} duration={2500}>
+          <Card image={elettricista} title="Elettricista" description="Trova l'elettricista adatto a te. Illumina la tua casa con soluzioni affidabili e sicure." />
+        </Slide>
+        <Slide direction={"right"} triggerOnce={true} duration={2500}>
+          <Card image={imbianchino} title="Imbianchino" description="Trova l'imbianchino perfetto per trasformare i tuoi ambienti. Regala alla tua casa un tocco di freschezza e stile." />
+        </Slide>
+        <Slide direction={"left"} triggerOnce={true} duration={2500}>
+          <Card image={giardiniere} title="Giardiniere" description="Trova il giardiniere perfetto per trasformare il tuo spazio verde. Dona nuova vita al tuo giardino e crea un'oasi di tranquillità." />
+        </Slide>
+        <Slide direction={"right"} triggerOnce={true} duration={2500}>
+          <Card image={traslocatore} title="Traslocatore" description="Rendi il tuo trasloco un'esperienza senza stress! Affronta il cambiamento con serenità e affidabilità." />
+        </Slide>
+        <Slide direction={"left"} triggerOnce={true} duration={2500}>
+          <Card image={pavimentista} title="Pavimentista" description="Dai vita al tuo spazio con stile e qualità insuperabili, inizia oggi stesso a realizzare il pavimento dei tuoi sogni." />
+        </Slide>
+        <Slide direction={"right"} triggerOnce={true} duration={2500}>
+          <Card image={serramentista} title="Serramentista" description="Rendi la tua casa un luogo sicuro e confortevole. Proteggi il tuo ambiente con soluzioni affidabili e di alta qualità." />
+        </Slide>
+        <Slide direction={"left"} triggerOnce={true} duration={2500}>
+          <Card image={interiorDesigner} title="Interior Designer" description="Dona personalità e stile unico alla tua casa, inizia oggi stesso a creare un ambiente che rifletta davvero te stesso." />
+        </Slide>
+        <Slide direction={"right"} triggerOnce={true} duration={2500}>
+          <Card image={falegname} title="Falegname" description="Dai vita ai tuoi spazi con mobili su misura e dettagli impeccabili, inizia oggi stesso a creare un ambiente unico e accogliente." />
+        </Slide>
+        <Slide direction={"left"} triggerOnce={true} duration={2500}>
+          <div className=''>
+            <Card image={tuttofare} title="Tuttofare" description="Dalla manutenzione alla riparazione, siamo pronti a darti una mano! Inizia oggi stesso a risolvere ogni problema." />
+          </div>
+        </Slide>
       </div>
+
+
       <div className="[@media(min-width:767px)]:hidden">
         <Bottone text={'Cerca pro'} />
       </div>
@@ -96,46 +128,59 @@ function Home() {
         <Bottone text={'Vedi altro'} />
       </div>
       <h1 className='flex justify-center text-5xl text-customBlue font-bold mt-20 sm:text-4xl'>Come funziona</h1>
-      <Steps />
-      <h1 className='flex justify-center text-5xl text-customBlue font-bold my-10 sm:text-2xl md:text-4xl'>Professionisti nella tua zona</h1>
+      <Fade triggerOnce={true}>
+        <Slide direction={'left'} triggerOnce={true} duration={2500}>
+          <Steps />
+        </Slide>
+      </Fade>
+      <Fade triggerOnce={true} duration={2500}>
+        <h1 className='flex justify-center text-5xl text-customBlue font-bold my-10 sm:text-2xl md:text-4xl'>Professionisti nella tua zona</h1>
+      </Fade>
       <div className='w-11/12 pl-36 lg:pl-12'>
-        <div className=''>
-          <Slider {...settings}>
-            <div className='py-8'>
-              <RatingWithComment name="Paolo Sciuti" image={profile1} job="Elettricista" reviewsNumber={89} score={4.80} />
+        <Fade triggerOnce={true}>
+          <Slide direction={'right'} triggerOnce={true} duration={2500}>
+            <div>
+              <Slider {...settings}>
+                <div className='py-8'>
+                  <RatingWithComment name="Paolo Sciuti" image={profile1} job="Elettricista" reviewsNumber={89} score={4.80} />
+                </div>
+                <div className='py-8'>
+                  <RatingWithComment name="Riccardo Rossi" image={profile2} job="Imbianchino" reviewsNumber={57} score={4.95} />
+                </div>
+                <div className='py-8'>
+                  <RatingWithComment name="Paolo Corsi" image={profile3} job="Serramentista" reviewsNumber={95} score={4.70} />
+                </div>
+                <div className='py-8'>
+                  <RatingWithComment name="Umberto Del Capo" image={profile4} job="Serramentista" reviewsNumber={45} score={4.80} />
+                </div>
+                <div className='py-8'>
+                  <RatingWithComment name="Paolo Sciuti" image={profile5} job="Elettricista" reviewsNumber={89} score={4.80} />
+                </div>
+                <div className='py-8'>
+                  <RatingWithComment name="Michele Dellapiazza" image={profile6} job="Interior Designer" reviewsNumber={140} score={4.75} />
+                </div>
+                <div className='py-8'>
+                  <RatingWithComment name="Giovanni Federici" image={profile7} job="Falegname" reviewsNumber={98} score={4.97} />
+                </div>
+                <div className='py-8'>
+                  <RatingWithComment name="Alberto Vallesi" image={profile8} job="Interior Designer" reviewsNumber={120} score={4.85} />
+                </div>
+              </Slider>
             </div>
-            <div className='py-8'>
-              <RatingWithComment name="Riccardo Rossi" image={profile2} job="Imbianchino" reviewsNumber={57} score={4.95} />
-            </div>
-            <div className='py-8'>
-              <RatingWithComment name="Paolo Corsi" image={profile3} job="Serramentista" reviewsNumber={95} score={4.70} />
-            </div>
-            <div className='py-8'>
-              <RatingWithComment name="Umberto Del Capo" image={profile4} job="Serramentista" reviewsNumber={45} score={4.80} />
-            </div>
-            <div className='py-8'>
-              <RatingWithComment name="Paolo Sciuti" image={profile5} job="Elettricista" reviewsNumber={89} score={4.80} />
-            </div>
-            <div className='py-8'>
-              <RatingWithComment name="Michele Dellapiazza" image={profile6} job="Interior Designer" reviewsNumber={140} score={4.75} />
-            </div>
-            <div className='py-8'>
-              <RatingWithComment name="Giovanni Federici" image={profile7} job="Falegname" reviewsNumber={98} score={4.97} />
-            </div>
-            <div className='py-8'>
-              <RatingWithComment name="Alberto Vallesi" image={profile8} job="Interior Designer" reviewsNumber={120} score={4.85} />
-            </div>
-          </Slider>
-        </div>
-
+          </Slide>
+        </Fade>
       </div>
       <div className='my-14'>
         <Bottone text={'Cerca altri pro'} />
       </div>
-      <Reviews />
-      <div className='mb-12 sm:mt-0'>
-        <Bottone text='Leggi altre recensioni' />
-      </div>
+      <Fade triggerOnce={true} duration={2500}>
+        <Slide direction={'left'} triggerOnce={true} duration={2500}>
+          <Reviews />
+          <div className='mb-12 sm:mt-0'>
+            <Bottone text='Leggi altre recensioni' />
+          </div>
+        </Slide>
+      </Fade>
       <Footer />
     </div>
   )

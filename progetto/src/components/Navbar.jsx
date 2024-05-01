@@ -1,5 +1,6 @@
 import logo from '../images/logo.svg'
 import { useState } from 'react';
+import { Fade } from 'react-awesome-reveal';
 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -72,6 +73,7 @@ function Navbar() {
                 </button>
 
                 {isMenuOpen && (
+                  <Fade triggerOnce={false} duration={2500}>
                   <div className="absolute right-0 mt-2 bg-white rounded-md shadow-lg flex flex-col items-end p-4 w-fit">
                     <a
                       className="rounded-md mx-4 bg-customBlue  py-2.5 text-sm font-medium text-white shadow hover:bg-customGreen w-14 mb-4 flex justify-center"
@@ -88,6 +90,7 @@ function Navbar() {
                       Registrati
                     </a>
                   </div>
+                  </Fade>
                 )}
               </div>
             </div>
