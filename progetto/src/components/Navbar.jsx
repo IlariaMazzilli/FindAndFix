@@ -32,26 +32,25 @@ function Navbar() {
         </nav>
       </div>
 
-      <div className="flex items-center gap-4">
-        <div className="sm:flex ">
+      <div className="flex justify-around w-56 sm:w-10 md:w-10">
+        <div className="sm:hidden md:hidden">
           <a
-            className="rounded-md bg-customBlue px-5 py-2.5 text-sm font-medium text-white shadow hover:bg-customGreen sm:p-2"
+            className="rounded-md mx-4 bg-customBlue px-5 py-2.5 text-sm font-medium text-white shadow hover:bg-customGreen sm:p-2"
             href="#"
           >
             Login
           </a>
 
-          <div className="hidden sm:flex">
+        
             <a
-              className="rounded-md bg-customBlue px-5 py-2.5 text-sm font-medium text-white hover:bg-customGreen sm:hidden"
+              className="rounded-md bg-customBlue px-5 py-2.5 text-sm font-medium text-white hover:bg-customGreen "
               href="#"
             >
               Registrati
             </a>
-          </div>
         </div>
 
-        <div className="block md:hidden">
+        <div className="hidden sm:block md:block">
           <button className="rounded bg-gray-100 p-2 text-gray-600 transition hover:text-gray-600/75">
             <svg
               xmlns="http://www.w3.org/2000/svg"
