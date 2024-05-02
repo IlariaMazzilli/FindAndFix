@@ -72,14 +72,15 @@ function Home() {
   return (
     <div>
       <Navbar />
-      <Fade cascade={true} direction={"down"} triggerOnce={true} duration={2500}>
+      <Fade cascade={true} triggerOnce={true} duration={2500}>
         <Jumbotron />
       </Fade>
       <Slide direction={"up"} triggerOnce={true} duration={2500}>
         <h1 className='flex justify-center text-5xl text-customBlue font-bold my-10 sm:text-4xl'>Cerca il tuo pro</h1>
       </Slide>
       <Fade triggerOnce={true} duration={2500}>
-        <div className="[@media(min-width:768px)]:hidden selectContainer">
+        {/* select in versione mobile */}
+        <div className="[@media(min-width:768px)]:hidden z-20">
           <Select />
         </div>
       </Fade>
@@ -120,25 +121,28 @@ function Home() {
         </Slide>
       </div>
 
-
+      <Fade triggerOnce={true} duration={4500}>
       <div className="[@media(min-width:767px)]:hidden">
         <Bottone text={'Cerca pro'} />
       </div>
+      </Fade>
       <div className='[@media(max-width:767px)]:hidden'>
         <Bottone text={'Vedi altro'} />
       </div>
-      <h1 className='flex justify-center text-5xl text-customBlue font-bold mt-20 sm:text-4xl'>Come funziona</h1>
       <Fade triggerOnce={true}>
-        <Slide direction={'left'} triggerOnce={true} duration={2500}>
+      <h1 className='flex justify-center text-5xl text-customBlue font-bold mt-20 sm:text-4xl'>Come funziona</h1>
+      </Fade>
+      <Fade triggerOnce={true}>
+        
           <Steps />
-        </Slide>
+       
       </Fade>
       <Fade triggerOnce={true} duration={2500}>
         <h1 className='flex justify-center text-5xl text-customBlue font-bold my-10 sm:text-2xl md:text-4xl'>Professionisti nella tua zona</h1>
       </Fade>
       <div className='w-11/12 pl-36 lg:pl-12'>
         <Fade triggerOnce={true}>
-          <Slide direction={'right'} triggerOnce={true} duration={2500}>
+         
             <div>
               <Slider {...settings}>
                 <div className='py-8'>
@@ -167,19 +171,26 @@ function Home() {
                 </div>
               </Slider>
             </div>
-          </Slide>
+         
         </Fade>
       </div>
+      <Fade triggerOnce={true} duration={3500}>
       <div className='my-14'>
         <Bottone text={'Cerca altri pro'} />
       </div>
+      </Fade>
       <Fade triggerOnce={true} duration={2500}>
+      <h2 className="text-4xl font-bold tracking-tight text-customBlue sm:text-3xl flex justify-center w-full">
+        Recensioni degli utenti
+      </h2>
+      </Fade>
+      <Fade triggerOnce={true} duration={4500}>
         <Slide direction={'left'} triggerOnce={true} duration={2500}>
           <Reviews />
-          <div className='mb-12 sm:mt-0'>
+        </Slide>
+        <div className='mb-12 sm:mt-0'>
             <Bottone text='Leggi altre recensioni' />
           </div>
-        </Slide>
       </Fade>
       <Footer />
     </div>

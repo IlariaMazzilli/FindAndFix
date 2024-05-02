@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Select.css'; // Importa il file CSS che hai fornito
+import './Select.css'; 
 
 const Select = () => {
   const [selectedOption, setSelectedOption] = useState('Seleziona il tuo pro');
@@ -17,7 +17,7 @@ const Select = () => {
         <i className="bx bx-chevron-down"></i>
       </div>
 
-      <ul className="options">
+      <ul className="options z-50">
         <li className="option" onClick={() => handleOptionClick('Idraulico')}>
           <i className="bx bxl-instagram-alt" style={{ color: '#E1306C' }}></i>
           <span className="option-text">Idraulico</span>

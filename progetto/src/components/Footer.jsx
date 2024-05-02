@@ -118,16 +118,11 @@ function Footer() {
                         </ul>
                     </div>
 
-                    <div className="grid grid-cols-3 gap-8 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-3">
+                    <div className="grid grid-cols-3 gap-8 sm:grid-cols-1 md:grid-cols-3 xl:grid-cols-3">
                         <div className="text-center sm:text-left">
                             <p className="text-lg  text-customBlue font-extrabold ">Chi siamo</p>
 
                             <ul className="mt-8 space-y-4 text-sm">
-                                <li>
-                                    <a className="text-customGreen font-bold transition hover:text-gray-700/75" href="#">
-                                        La nostra storia
-                                    </a>
-                                </li>
 
                                 <li>
                                     <a className="text-customGreen font-bold transition hover:text-gray-700/75" href="#">
@@ -135,9 +130,6 @@ function Footer() {
                                     </a>
                                 </li>
 
-                                <li>
-                                    <a className="text-customGreen font-bold transition hover:text-gray-700/75" href="#"> Carriere </a>
-                                </li>
                             </ul>
                         </div>
 
@@ -160,15 +152,10 @@ function Footer() {
                                         className="group flex justify-center gap-1.5 ltr:sm:justify-start rtl:sm:justify-end"
                                         href="#"
                                     >
-                                        <span className="text-customGreen font-bold transition group-hover:text-gray-700/75">
-                                            Live Chat
-                                        </span>
 
                                         <span className="relative flex h-2 w-2">
-                                            <span
-                                                className="absolute inline-flex h-full w-full animate-ping rounded-full bg-teal-400 opacity-75"
-                                            ></span>
-                                            <span className="relative inline-flex size-2 rounded-full bg-teal-500"></span>
+                                           
+                                           
                                         </span>
                                     </a>
                                 </li>
