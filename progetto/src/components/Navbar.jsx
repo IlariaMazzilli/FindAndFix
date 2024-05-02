@@ -1,6 +1,7 @@
 import logo from '../images/logo.svg'
 import { useState } from 'react';
 import { Fade } from 'react-awesome-reveal';
+import DarkModeButton from './DarkModeButton.jsx';
 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -8,6 +9,8 @@ function Navbar() {
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
+ 
 
   return (
     <div>
@@ -40,13 +43,13 @@ function Navbar() {
               </nav>
             </div>
 
-            <div className="flex justify-around w-56 sm:w-10 md:w-10">
+            <div className="flex justify-around w-70 sm:w-10 md:w-10">
               <div className="sm:hidden md:hidden">
                 <a
                   className="rounded-md mx-4 bg-customBlue px-5 py-2.5 text-sm font-medium text-white shadow hover:bg-customGreen sm:p-2"
                   href="#"
                 >
-                  Login
+                  LOGIN
                 </a>
 
 
@@ -54,8 +57,16 @@ function Navbar() {
                   className="rounded-md bg-customBlue px-5 py-2.5 text-sm font-medium text-white hover:bg-customGreen "
                   href="#"
                 >
-                  Registrati
+                  REGISTRATI
                 </a>
+
+                <a
+                  className="rounded-md ml-4 bg-customBlue px-5 py-2.5 text-sm font-medium text-white hover:bg-customGreen "
+                  href="#"
+                >
+                  REGISTRATI COME PRO
+                </a>
+                <DarkModeButton/>
               </div>
 
               <div className="hidden sm:block md:block">
@@ -74,22 +85,29 @@ function Navbar() {
 
                 {isMenuOpen && (
                   <Fade triggerOnce={false} duration={2500}>
-                  <div className="absolute right-0 mt-2 bg-white rounded-md shadow-lg flex flex-col items-end p-4 w-fit">
-                    <a
-                      className="rounded-md mx-4 bg-customBlue  py-2.5 text-sm font-medium text-white shadow hover:bg-customGreen w-14 mb-4 flex justify-center"
-                      href="#"
-                    >
-                      Login
-                    </a>
+                    <div className="absolute right-0 mt-2 bg-white rounded-md shadow-lg flex flex-col items-center p-4 w-fit">
+                      <a
+                        className=" mx-4  py-2.5 text-sm font-medium text-customBlue hover:bg-customGreen w-14  flex justify-center"
+                        href="#"
+                      >
+                        LOGIN
+                      </a>
 
 
-                    <a
-                      className="rounded-md bg-customBlue px-5 py-2.5 text-sm font-medium text-white hover:bg-customGreen w-20 flex justify-center"
-                      href="#"
-                    >
-                      Registrati
-                    </a>
-                  </div>
+                      <a
+                        className="mx-4  py-2.5 text-sm font-medium text-customBlue hover:bg-customGreen w-14  flex justify-center"
+                        href="#"
+                      >
+                        REGISTRATI
+                      </a>
+
+                      <a
+                        className="mx-4  py-2.5 text-sm font-medium text-customBlue hover:bg-customGreen w-14  flex justify-center"
+                        href="#"
+                      >
+                        REGISTRATI COME PRO
+                      </a>
+                    </div>
                   </Fade>
                 )}
               </div>
