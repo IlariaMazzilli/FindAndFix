@@ -76,7 +76,7 @@ function Home() {
         <Jumbotron />
       </Fade>
       <Slide direction={"up"} triggerOnce={true} duration={2500}>
-        <h1 className='flex justify-center text-5xl text-customBlue font-bold my-10 sm:text-4xl'>Cerca il tuo pro</h1>
+        <h1 className='flex justify-center text-5xl text-customBlue font-bold my-10 mobile:text-4xl'>Cerca il tuo pro</h1>
       </Slide>
       <Fade triggerOnce={true} duration={2500}>
         {/* select in versione mobile */}
@@ -130,7 +130,7 @@ function Home() {
         <Bottone text={'Vedi altro'} />
       </div>
       <Fade triggerOnce={true}>
-      <h1 className='flex justify-center text-5xl text-customBlue font-bold mt-20 sm:text-4xl'>Come funziona</h1>
+      <h1 className='flex justify-center text-5xl text-customBlue font-bold mt-20 mobile:text-4xl'>Come funziona</h1>
       </Fade>
       <Fade triggerOnce={true}>
         
@@ -138,9 +138,9 @@ function Home() {
        
       </Fade>
       <Fade triggerOnce={true} duration={2500}>
-        <h1 className='flex justify-center text-5xl text-customBlue font-bold my-10 sm:text-2xl md:text-4xl'>Professionisti nella tua zona</h1>
+        <h1 className='flex justify-center text-5xl text-customBlue font-bold my-10 mobile:text-2xl medium:text-4xl'>Professionisti nella tua zona</h1>
       </Fade>
-      <div className='w-11/12 pl-36 lg:pl-12'>
+      <div className='w-11/12 pl-36 large:pl-12'>
         <Fade triggerOnce={true}>
          
             <div>
@@ -180,7 +180,7 @@ function Home() {
       </div>
       </Fade>
       <Fade triggerOnce={true} duration={2500}>
-      <h2 className="text-4xl font-bold tracking-tight text-customBlue sm:text-3xl flex justify-center w-full">
+      <h2 className="text-4xl font-bold tracking-tight text-customBlue mobile:text-3xl flex justify-center w-full">
         Recensioni degli utenti
       </h2>
       </Fade>
@@ -188,7 +188,7 @@ function Home() {
         <Slide direction={'left'} triggerOnce={true} duration={2500}>
           <Reviews />
         </Slide>
-        <div className='mb-12 sm:mt-0'>
+        <div className='mb-12 mobile:mt-0'>
             <Bottone text='Leggi altre recensioni' />
           </div>
       </Fade>

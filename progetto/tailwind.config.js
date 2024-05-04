@@ -7,19 +7,19 @@ export default {
   ],
   theme: {
       screens: {
-        '2xl': {'max': '1535px'},
+        '2xlarge': {'max': '1535px'},
         // => @media (max-width: 1535px) { ... }
   
-        'xl': {'max': '1279px'},
+        'xlarge': {'max': '1279px'},
         // => @media (max-width: 1279px) { ... }
   
-        'lg': {'max': '1024px'},
+        'large': {'max': '1024px'},
         // => @media (max-width: 1024px) { ... }
   
-        'md': {'max': '768px'},
+        'medium': {'max': '768px'},
         // => @media (max-width: 768px) { ... }
   
-        'sm': {'max': '431px'},
+        'mobile': {'max': '431px'},
         // => @media (max-width: 431px) { ... }
       },
     extend: {
