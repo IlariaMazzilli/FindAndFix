@@ -43,14 +43,14 @@ function Reviews() {
         <div className=" flex justify-center">
         </div>
 
-        <div className="slider-container overflow-hidden h-full">
+        <div className="slider-container overflow-hidden h-full ">
           <Slider {...settings}>
             <div>
-              <blockquote className="flex h-full flex-col justify-between bg-white pl-4  mobile:p-8">
+              <blockquote className="flex h-full flex-col justify-between  pl-4  mobile:p-8 dark:bg-black dark:text-white ">
                 <div className=' p-4 rounded-3xl '>
                   <div className="flex gap-0.5 text-green-500 ">
                     <svg
-                      className="h-5 w-5"
+                      className="h-5 w-5 dark:text-customBlue"
                       fill="currentColor"
                       viewBox="0 0 20 20"
                       xmlns="http://www.w3.org/2000/svg"
@@ -61,7 +61,7 @@ function Reviews() {
                     </svg>
 
                     <svg
-                      className="h-5 w-5"
+                      className="h-5 w-5 "
                       fill="currentColor"
                       viewBox="0 0 20 20"
                       xmlns="http://www.w3.org/2000/svg"
@@ -126,7 +126,7 @@ function Reviews() {
               </blockquote>
             </div>
             <div>
-              <blockquote className="flex h-full flex-col justify-between bg-white pl-4  mobile:p-8">
+              <blockquote className="flex h-full flex-col justify-between pl-4  mobile:p-8">
                 <div className=' p-4 rounded-3xl'>
                   <div className="flex gap-0.5 text-green-500">
                     <svg
@@ -207,7 +207,7 @@ function Reviews() {
               </blockquote>
             </div>
             <div>
-              <blockquote className="flex h-full flex-col justify-between bg-white pl-4  mobile:p-8">
+              <blockquote className="flex h-full flex-col justify-between  pl-4  mobile:p-8">
                 <div className=' p-4 rounded-3xl'>
                   <div className="flex gap-0.5 text-green-500">
                     <svg

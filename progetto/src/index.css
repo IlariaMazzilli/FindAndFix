@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.slick-prev:before,
+    .slick-next:before {
+        color: #0F5DA6 !important;
+    }

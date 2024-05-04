@@ -176,11 +176,11 @@ function Footer() {
                                     >
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
-                                        className="size-5 shrink-0 text-customGreen "
-                                        fill="none"
+                                        className="size-5 shrink-0 text-customGreen footerSvg"
+                                        fill="currentColor"
                                         viewBox="0 0 24 24"
-                                        stroke="black"
-                                        strokeWidth="2"
+                                        stroke="currentColor"
+                                        strokeWidth="1"
                                     >
                                         <path
                                             strokeLinecap="round"
@@ -194,9 +194,9 @@ function Footer() {
                                         />
                                     </svg>
 
-                                    <address className="-mt-0.5 flex-1 not-italic text-customGreen font-bold">
+                                    <span className="-mt-0.5 flex-1 not-italic text-customGreen font-bold">
                                         Piazza della Luna, 14, Domodossola, 28845
-                                    </address>
+                                    </span>
                                     </a>
                                 </li>
 
@@ -207,7 +207,7 @@ function Footer() {
                                     >
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
-                                            className="size-5 shrink-0 text-gray-900 "
+                                            className="size-5 shrink-0 text-gray-900 footerSvg "
                                             fill="none"
                                             viewBox="0 0 24 24"
                                             stroke="currentColor"

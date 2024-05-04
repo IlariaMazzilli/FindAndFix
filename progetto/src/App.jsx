@@ -1,13 +1,12 @@
-import React from 'react'
-import Bottone from './components/Bottone'
-import Navbar from './components/Navbar'
-import Footer from './components/Footer'
 import Home from './pages/Home'
+import DarkModeProvider from './DarkMode'; // Importa il provider correttamente
 
 function App() {
   return (
     <div>
-      <Home/>
+      <DarkModeProvider>
+        <Home />
+      </DarkModeProvider>
     </div>
   )
 }

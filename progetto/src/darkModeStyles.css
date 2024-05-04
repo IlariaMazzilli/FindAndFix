@@ -1,0 +1,76 @@
+.dark-mode {
+    background-color: #063766;
+    /* Un colore scuro per lo sfondo */
+    color: white;
+    /* Colore del testo per contrastare lo sfondo */
+}
+
+.dark-mode .button {
+    background-color: #0F5DA6;
+    /* Pulsanti scuri in modalità dark */
+    color: white;
+    /* Testo chiaro sui pulsanti scuri */
+}
+
+.dark-mode a {
+    color: white;
+    /* Link con colore più chiaro in modalità dark */
+}
+
+.dark-mode .profile {
+    background-color: #222;
+    /* Profilo con sfondo scuro in modalità dark */
+}
+
+.dark-mode .profile-default .profile__image img {
+    border-bottom: 7px solid #65bc46d4;
+    background-color: #f5f5f5;
+}
+
+.dark-mode .navbar {
+    background-color: #063766;
+}
+
+.dark-mode .logo {
+    background-color: #063766;
+}
+
+.dark-mode p ,
+.dark-mode .footerSvg{
+    color: white !important;
+}
+
+.dark-mode span,
+.dark-mode{
+    color: white;
+}
+
+.dark-mode footer {
+    background-color: #094782;
+}
+
+.dark-mode .slick-prev:before,
+.dark-mode .slick-next:before,
+.dark-mode .cardName,
+.dark-mode .cardAbout,
+.dark-mode .slick-dots li.slick-active button:before,
+.dark-mode .maintitle,
+.dark-mode a:hover,
+.dark-mode footer p {
+    color: #66BC46 !important;
+}
+
+.dark-mode .wrapper{
+    box-shadow: 
+                 5px 5px 5px 5px #66BC46 !important;
+  }
+
+.dark-mode .sBtn-text{
+    color:black;
+}
+
+.dark-mode .hamburgerNavbar,
+.dark-mode .hamburgerNavbar a{
+    color:#66BC46;
+    background-color: #063766;
+}

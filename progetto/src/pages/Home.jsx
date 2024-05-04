@@ -1,3 +1,4 @@
+import { useContext } from 'react';
 import '../index.css'
 import { Fade } from "react-awesome-reveal";
 import { Slide } from "react-awesome-reveal";
@@ -31,9 +32,12 @@ import Select from '../components/Select'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import { DarkModeContext } from '../DarkMode'; // Assicurati che l'importazione sia corretta
 
 
 function Home() {
+  const { toggleDarkMode } = useContext(DarkModeContext);
+
   var settings = {
     dots: true,
     infinite: false,
@@ -70,13 +74,14 @@ function Home() {
   };
 
   return (
-    <div>
+
+    <div className='dark:bg-black dark:text-white'>
       <Navbar />
       <Fade cascade={true} triggerOnce={true} duration={2500}>
         <Jumbotron />
       </Fade>
       <Slide direction={"up"} triggerOnce={true} duration={2500}>
-        <h1 className='flex justify-center text-5xl text-customBlue font-bold my-10 mobile:text-4xl'>Cerca il tuo pro</h1>
+        <h1 className='flex maintitle justify-center text-5xl text-customBlue font-bold my-10 mobile:text-4xl'>Cerca il tuo pro</h1>
       </Slide>
       <Fade triggerOnce={true} duration={2500}>
         {/* select in versione mobile */}
@@ -84,8 +89,6 @@ function Home() {
           <Select />
         </div>
       </Fade>
-
-
       <div className="flex flex-wrap justify-center bg [@media(max-width:767px)]:hidden">
         <Slide direction={"right"} triggerOnce={true} duration={2500}>
           <Card image={idraulico} title="Idraulico" description="Affidati alla cura dei tuoi impianti con un servizio idraulico su cui puoi contare." />
@@ -122,75 +125,75 @@ function Home() {
       </div>
 
       <Fade triggerOnce={true} duration={4500}>
-      <div className="[@media(min-width:767px)]:hidden">
-        <Bottone text={'Cerca pro'} />
-      </div>
+        <div className="[@media(min-width:767px)]:hidden">
+          <Bottone text={'Cerca pro'} />
+        </div>
       </Fade>
       <div className='[@media(max-width:767px)]:hidden'>
         <Bottone text={'Vedi altro'} />
       </div>
       <Fade triggerOnce={true}>
-      <h1 className='flex justify-center text-5xl text-customBlue font-bold mt-20 mobile:text-4xl'>Come funziona</h1>
+        <h1 className='flex maintitle justify-center text-5xl text-customBlue font-bold mt-20 mobile:text-4xl'>Come funziona</h1>
       </Fade>
       <Fade triggerOnce={true}>
-        
-          <Steps />
-       
+
+        <Steps />
+
       </Fade>
       <Fade triggerOnce={true} duration={2500}>
-        <h1 className='flex justify-center text-5xl text-customBlue font-bold my-10 mobile:text-2xl medium:text-4xl'>Professionisti nella tua zona</h1>
+        <h1 className='flex maintitle justify-center text-5xl text-customBlue font-bold my-10 mobile:text-2xl medium:text-4xl'>Professionisti nella tua zona</h1>
       </Fade>
       <div className='w-11/12 pl-36 large:pl-12'>
         <Fade triggerOnce={true}>
-         
-            <div>
-              <Slider {...settings}>
-                <div className='py-8'>
-                  <RatingWithComment name="Paolo Sciuti" image={profile1} job="Elettricista" reviewsNumber={89} score={4.80} />
-                </div>
-                <div className='py-8'>
-                  <RatingWithComment name="Riccardo Rossi" image={profile2} job="Imbianchino" reviewsNumber={57} score={4.95} />
-                </div>
-                <div className='py-8'>
-                  <RatingWithComment name="Paolo Corsi" image={profile3} job="Serramentista" reviewsNumber={95} score={4.70} />
-                </div>
-                <div className='py-8'>
-                  <RatingWithComment name="Umberto Del Capo" image={profile4} job="Serramentista" reviewsNumber={45} score={4.80} />
-                </div>
-                <div className='py-8'>
-                  <RatingWithComment name="Paolo Sciuti" image={profile5} job="Elettricista" reviewsNumber={89} score={4.80} />
-                </div>
-                <div className='py-8'>
-                  <RatingWithComment name="Michele Dellapiazza" image={profile6} job="Interior Designer" reviewsNumber={140} score={4.75} />
-                </div>
-                <div className='py-8'>
-                  <RatingWithComment name="Giovanni Federici" image={profile7} job="Falegname" reviewsNumber={98} score={4.97} />
-                </div>
-                <div className='py-8'>
-                  <RatingWithComment name="Alberto Vallesi" image={profile8} job="Interior Designer" reviewsNumber={120} score={4.85} />
-                </div>
-              </Slider>
-            </div>
-         
+
+          <div>
+            <Slider {...settings}>
+              <div className='py-8'>
+                <RatingWithComment name="Paolo Sciuti" image={profile1} job="Elettricista" reviewsNumber={89} score={4.80} />
+              </div>
+              <div className='py-8'>
+                <RatingWithComment name="Riccardo Rossi" image={profile2} job="Imbianchino" reviewsNumber={57} score={4.95} />
+              </div>
+              <div className='py-8'>
+                <RatingWithComment name="Paolo Corsi" image={profile3} job="Serramentista" reviewsNumber={95} score={4.70} />
+              </div>
+              <div className='py-8'>
+                <RatingWithComment name="Umberto Del Capo" image={profile4} job="Serramentista" reviewsNumber={45} score={4.80} />
+              </div>
+              <div className='py-8'>
+                <RatingWithComment name="Paolo Sciuti" image={profile5} job="Elettricista" reviewsNumber={89} score={4.80} />
+              </div>
+              <div className='py-8'>
+                <RatingWithComment name="Michele Dellapiazza" image={profile6} job="Interior Designer" reviewsNumber={140} score={4.75} />
+              </div>
+              <div className='py-8'>
+                <RatingWithComment name="Giovanni Federici" image={profile7} job="Falegname" reviewsNumber={98} score={4.97} />
+              </div>
+              <div className='py-8'>
+                <RatingWithComment name="Alberto Vallesi" image={profile8} job="Interior Designer" reviewsNumber={120} score={4.85} />
+              </div>
+            </Slider>
+          </div>
+
         </Fade>
       </div>
       <Fade triggerOnce={true} duration={3500}>
-      <div className='my-14'>
-        <Bottone text={'Cerca altri pro'} />
-      </div>
+        <div className='my-14'>
+          <Bottone text={'Cerca altri pro'} />
+        </div>
       </Fade>
       <Fade triggerOnce={true} duration={2500}>
-      <h2 className="text-4xl font-bold tracking-tight text-customBlue mobile:text-3xl flex justify-center w-full">
-        Recensioni degli utenti
-      </h2>
+        <h2 className="text-4xl maintitle font-bold tracking-tight text-customBlue mobile:text-3xl flex justify-center w-full">
+          Recensioni degli utenti
+        </h2>
       </Fade>
       <Fade triggerOnce={true} duration={4500}>
         <Slide direction={'left'} triggerOnce={true} duration={2500}>
           <Reviews />
         </Slide>
         <div className='mb-12 mobile:mt-0'>
-            <Bottone text='Leggi altre recensioni' />
-          </div>
+          <Bottone text='Leggi altre recensioni' />
+        </div>
       </Fade>
       <Footer />
     </div>
