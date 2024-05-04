@@ -6,13 +6,14 @@ import ChiSiamo from './pages/ChiSiamo'
 import Faqs from './pages/Faqs'
 import ProRegister from './pages/ProRegister'
 import Register from './pages/Register'
+import SingIn from './components/SingIn'
 
 
 function App() {
   return (
     <div>
-      <Navbar />
-   <Register />
+     
+   <SingIn />
     </div>
   )
 }
