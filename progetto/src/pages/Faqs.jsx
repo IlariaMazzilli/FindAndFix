@@ -1,29 +1,26 @@
 import FotoFaqs from '../images/foto_faqs.png'
 import Bannerfaqs from '../images/bannerfaqs.png'
 import Footer from '../components/Footer'
+import Navbar from '../components/Navbar'
 
 function Faqs(){
     return(
         <>
-        <section className="bg-gray-50">
+        <Navbar />
+    
+        <div>
+            <section className="bg-gray-50">
   <div className="mx-auto max-w-screen-xl px-4 py-10 lg:flex lg:h-50px lg:items-center">
     <div className="mx-auto max-w-xl text-center">
       <h1 className="text-3xl font-extrabold text-customBlue sm:text-5xl">
-        FIND & FIX
-        <strong className="font-extrabold text-customGreen sm:block"> FAQs </strong>
+        FAQs
+        <strong className="text-2xl font-extrabold text-customGreen sm:block">Domande frequenti  </strong>
       </h1>
-      <div className="mt-2 flex flex-wrap justify-center gap-4">
-        <a href="#"
-         className="mt-2 inline-block rounded bg-customBlue px-12 py-3 text-sm font-medium text-white transition hover:bg-customGreen focus:outline-none focus:ring"
-         >
-    SCOPRI DI PIU'
-        </a>
-
-    
-      </div>
+     
     </div>
   </div>
 </section>
+    </div>
 
 
         <div className="divide-y divide-gray-100 rounded-xl border border-gray-100 bg-white">
@@ -308,6 +305,7 @@ function Faqs(){
     </div>
   </div>
 </section>
+
 <Footer/>
 
 

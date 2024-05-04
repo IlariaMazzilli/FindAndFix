@@ -1,6 +1,6 @@
 import React from 'react'
-import LogoCompleto from '../assets/LogoCompleto.jpeg'
-import RegistrationBanner from '../assets/Registrazione-Banner.png'
+import LogoCompleto from '../images/LogoCompleto.jpeg'
+import RegistrationBanner from '../images/Registrazione-Banner.png'
 
 function Register() {
   return (
