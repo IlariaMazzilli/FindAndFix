@@ -1,0 +1,213 @@
+
+
+body {
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+    text-align: center;
+    transition: all .3s ease;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.jumbotron {
+    background-image: url('jumbotronSfocato.png');
+    /* Immagine di sfondo del jumbotron */
+    background-size: cover;
+    /* L'immagine copre l'intero jumbotron */
+    background-position: center;
+    /* Posizionamento dell'immagine */
+    height: 300px;
+    /* Altezza del jumbotron */
+    position: relative;
+    /* Per posizionare il pulsante */
+    /* Spazio interno del jumbotron */
+}
+
+/* Pulsante all'interno del Jumbotron */
+.jumbotron .button {
+    background-color: #007bff;
+    /* Colore del pulsante */
+    color: white;
+    /* Testo del pulsante */
+    /* Padding */
+    text-decoration: none;
+    /* Rimuovi la sottolineatura */
+    border-radius: 5px;
+    /* Angoli arrotondati */
+    position: absolute;
+    /* Posizionamento assoluto */
+    left: 20px;
+    /* Posizione a sinistra */
+    bottom: 150px;
+    /* Posizione in basso */
+}
+
+/* Stile per la sidebar */
+.sidebar {
+    height: 100%;
+    /* Altezza totale */
+    width: 0;
+    /* La larghezza iniziale è zero */
+    position: fixed;
+    /* Fissa in alto a sinistra */
+    top: 0;
+    left: 0;
+    background: linear-gradient(to bottom, #0f5da6, #65bc46);
+    overflow-x: hidden;
+    /* Niente overflow orizzontale */
+    transition: 0.5s;
+    /* Animazione di transizione */
+    padding-top: 60px;
+    /* Spazio nella parte superiore */
+    z-index: 2;
+    /* Più alto rispetto all'overlay */
+
+}
+
+.sidebar .button {
+    position: absolute;
+    /* Posizionamento del pulsante di chiusura */
+    top: 10px;
+    right: 10px;
+}
+
+/* Stile per l'overlay */
+.overlay {
+    background-color: rgba(0, 0, 0, 0.922);
+    position: fixed;
+    /* Fissa l'overlay in tutta la pagina */
+    top: 0;
+    left: 0;
+    width: 100%;
+    /* Copre l'intera pagina */
+    height: 100%;
+    /* Copre tutta l'altezza */
+    z-index: 1;
+    /* Sotto la sidebar */
+    transition: 0.5s;
+    /* Animazione di transizione */
+    display: none;
+}
+
+
+.container {
+    display: grid;
+    /* Attiva la griglia */
+    grid-template-columns: repeat(3, 1fr);
+    /* 3 colonne uguali */
+    grid-template-rows: repeat(4, auto);
+    /* 4 righe, altezza automatica */
+    gap: 20px;
+    /* Spazio tra gli elementi della griglia */
+    padding: 20px;
+    /* Aggiungi padding al container */
+}
+
+.profile-default {
+    background-color: #f5f5f5;
+    box-shadow: #6e7070 0 3px 15px;
+    color: black;
+    width: 100%;
+    /* max-width: 450px; */
+    height: 100%;
+    margin: auto;
+    overflow: hidden;
+    display: grid;
+    grid: 340px auto auto / repeat(3, minmax(80px, 1fr));
+    grid-gap: 10px;
+    border-radius: 10px;
+
+    .profile__image {
+        grid-column: span 3;
+
+        img {
+            width: 100%;
+            border-bottom: 7px solid var(--secondaryColor);
+        }
+    }
+
+    .profile__info {
+        grid-column: span 3;
+        margin: 20px 25px 0;
+    }
+
+    .profile__stats {
+        margin: 5px 25px;
+    }
+
+    .profile__cta {
+        grid-column: span 3;
+        margin: 0 25px 25px;
+    }
+}
+
+.profile-default .profile__image img {
+    border-bottom: 7px solid #0F5DA6;
+}
+
+.profile__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+    height: auto;
+    background-color: #1E3A8A; /* BG blu personalizzato */
+    padding-left: 2.5rem; /* 10 */
+    padding-right: 2.5rem; /* 10 */
+    padding-top: 1rem; /* 4 */
+    padding-bottom: 1rem; /* 4 */
+    font-size: 0.875rem; /* Text size */
+    font-weight: 500; /* Medium weight */
+    color: white; /* Text color */
+    border-radius: 0.25rem; /* Rounded corners */
+    transition: all 0.2s ease; /* Smooth transitions */
+    text-decoration: none; /* No underline for links */
+  }
+  
+  .button:hover {
+    transform: scale(1.10); /* Scaling on hover */
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+               0 10px 10px -5px rgba(0, 0, 0, 0.04); /* Shadow effect */
+    background-color: #10B981; /* BG green on hover */
+  }
+  
+  .button:focus {
+    outline: none; /* No outline */
+    box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5); /* Ring on focus */
+  }
+  
+  .button:active {
+    background-color: #6366F1; /* BG indigo on active */
+  }
+  
+
+.sidebar-link {
+    color: rgb(255, 255, 255);
+    /* Cambia il colore del link */
+    text-decoration: none;
+    /* Rimuove la sottolineatura */
+    padding: 10px;
+    /* Aggiunge spazio intorno al link */
+    display: block;
+    /* Per garantire che il link occupi l'intera larghezza */
+    transition: 0.3s;
+    /* Aggiunge un'animazione di transizione */
+}
+
+.sidebar-link:hover {
+    background-color: lightgray;
+    /* Cambia lo sfondo al passaggio del mouse */
+    color: black;
+    /* Cambia il colore del testo al passaggio del mouse */
+}
+
+.dark {
+    z-index: 2;
+}

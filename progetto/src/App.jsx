@@ -1,14 +1,16 @@
-import React from 'react'
-import Bottone from './components/Bottone'
-import Navbar from './components/Navbar'
-import Footer from './components/Footer'
 
-function App() {
+import './App.css'
+import Servizi from './Servizi'
+import DarkModeProvider from './DarkMode'; // Importa il provider correttamente
+
+
+const App = () => {
   return (
     <div>
-      <Navbar/>
-      <Bottone text="ciao"/>
-      <Footer/>
+        <DarkModeProvider>
+      <Servizi />
+      </DarkModeProvider>,
+
     </div>
   )
 }
