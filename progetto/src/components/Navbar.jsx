@@ -1,9 +1,9 @@
 import logo from '../images/logo.svg'
 
-function Navbar() {
+function Navbar( ) {
   return (
     <div>
-        <header className="bg-white p-4 sm:p-2">
+        <header className="bg-white p-4 sm:p-2 z-index:200">
   <div className="mx-auto max-w-screen-xl px-4  lg:px-8 sm:px-0">
     <div className="flex h-16 items-center justify-between">
       <div className="md:flex md:items-center md:gap-12">
@@ -52,7 +52,8 @@ function Navbar() {
         </div>
 
         <div className="block md:hidden">
-          <button className="rounded bg-gray-100 p-2 text-gray-600 transition hover:text-gray-600/75">
+          <button className="rounded bg-gray-100 p-2 text-gray-600 transition hover:text-gray-600/75"           
+>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"

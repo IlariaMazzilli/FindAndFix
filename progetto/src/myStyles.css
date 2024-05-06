@@ -2,8 +2,7 @@
 
 body {
     font-family: "Poppins", sans-serif;
-    font-weight: 300;
-    font-size: 16px;
+    font-weight: 500;
     text-align: center;
     transition: all .3s ease;
 }
@@ -12,6 +11,9 @@ body {
     box-sizing: border-box;
 }
 
+.container h2 {
+    font-size: 30px;
+}
 .jumbotron {
     background-image: url('jumbotronSfocato.png');
     /* Immagine di sfondo del jumbotron */
@@ -27,70 +29,10 @@ body {
 }
 
 /* Pulsante all'interno del Jumbotron */
-.jumbotron .button {
-    background-color: #007bff;
-    /* Colore del pulsante */
-    color: white;
-    /* Testo del pulsante */
-    /* Padding */
-    text-decoration: none;
-    /* Rimuovi la sottolineatura */
-    border-radius: 5px;
-    /* Angoli arrotondati */
-    position: absolute;
-    /* Posizionamento assoluto */
-    left: 20px;
-    /* Posizione a sinistra */
-    bottom: 150px;
-    /* Posizione in basso */
-}
+
 
 /* Stile per la sidebar */
-.sidebar {
-    height: 100%;
-    /* Altezza totale */
-    width: 0;
-    /* La larghezza iniziale è zero */
-    position: fixed;
-    /* Fissa in alto a sinistra */
-    top: 0;
-    left: 0;
-    background: linear-gradient(to bottom, #0f5da6, #65bc46);
-    overflow-x: hidden;
-    /* Niente overflow orizzontale */
-    transition: 0.5s;
-    /* Animazione di transizione */
-    padding-top: 60px;
-    /* Spazio nella parte superiore */
-    z-index: 2;
-    /* Più alto rispetto all'overlay */
 
-}
-
-.sidebar .button {
-    position: absolute;
-    /* Posizionamento del pulsante di chiusura */
-    top: 10px;
-    right: 10px;
-}
-
-/* Stile per l'overlay */
-.overlay {
-    background-color: rgba(0, 0, 0, 0.922);
-    position: fixed;
-    /* Fissa l'overlay in tutta la pagina */
-    top: 0;
-    left: 0;
-    width: 100%;
-    /* Copre l'intera pagina */
-    height: 100%;
-    /* Copre tutta l'altezza */
-    z-index: 1;
-    /* Sotto la sidebar */
-    transition: 0.5s;
-    /* Animazione di transizione */
-    display: none;
-}
 
 
 .container {
@@ -100,10 +42,12 @@ body {
     /* 3 colonne uguali */
     grid-template-rows: repeat(4, auto);
     /* 4 righe, altezza automatica */
-    gap: 20px;
+    gap: 25px;
     /* Spazio tra gli elementi della griglia */
     padding: 20px;
     /* Aggiungi padding al container */
+    justify-content: center; /* Centra orizzontalmente */
+  align-content: center; /* Centra verticalmente */
 }
 
 .profile-default {
@@ -112,7 +56,7 @@ body {
     color: black;
     width: 100%;
     /* max-width: 450px; */
-    height: 100%;
+    height: 770px;
     margin: auto;
     overflow: hidden;
     display: grid;
@@ -134,18 +78,25 @@ body {
         margin: 20px 25px 0;
     }
 
-    .profile__stats {
-        margin: 5px 25px;
+    
+
+    .profile__stats, .profile__stats2 {
+        margin-right: -180px;
     }
 
     .profile__cta {
         grid-column: span 3;
         margin: 0 25px 25px;
+        display:flex;
+        justify-content: center;
+        height: 50px;
     }
+    
 }
 
+
 .profile-default .profile__image img {
-    border-bottom: 7px solid #0F5DA6;
+    border-bottom: 7px solid #66BC46;
 }
 
 .profile__image img {
@@ -158,7 +109,7 @@ body {
     display: flex;
     justify-content: center;
     height: auto;
-    background-color: #1E3A8A; /* BG blu personalizzato */
+    background-color: #0F5DA6; /* BG blu personalizzato */
     padding-left: 2.5rem; /* 10 */
     padding-right: 2.5rem; /* 10 */
     padding-top: 1rem; /* 4 */
@@ -175,7 +126,7 @@ body {
     transform: scale(1.10); /* Scaling on hover */
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
                0 10px 10px -5px rgba(0, 0, 0, 0.04); /* Shadow effect */
-    background-color: #10B981; /* BG green on hover */
+    background-color: #66BC46; /* BG green on hover */
   }
   
   .button:focus {
@@ -210,4 +161,48 @@ body {
 
 .dark {
     z-index: 2;
+}
+
+.profile__stats__stars {
+    display: flex;
+    justify-content: center;
+padding: 5px;
+}
+
+.profile__description-wrapper {
+  position: relative; /* Permette di posizionare il gradiente */
+}
+
+.profile__description {
+  max-height: 85px; /* Limita l'altezza per troncamento */
+  overflow: hidden; /* Nasconde il testo in eccesso */
+  transition: max-height 0.3s ease; /* Aggiunge una transizione fluida */
+  
+}
+
+.profile__description__fade {
+  position: absolute; /* Posiziona il gradiente */
+  bottom: 0; /* Gradiente alla base della descrizione */
+  left: 0;
+  right: 0;
+  height: 30px; /* Altezza del gradiente */
+  background: linear-gradient(to bottom, transparent, #00000027); 
+  filter: blur(9px);
+}
+
+.profile__description.expanded {
+  max-height: 200px; 
+}
+
+.profile__description__toggle {
+  background: none;
+  border: none;
+  color: #0F5DA6;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+}
+
+.profile__description__toggle img {
+height: 40px;
 }

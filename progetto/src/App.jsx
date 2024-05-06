@@ -1,16 +1,13 @@
-
-import './App.css'
+import React from 'react'
 import Servizi from './Servizi'
-import DarkModeProvider from './DarkMode'; // Importa il provider correttamente
+import './App.css'
 
 
-const App = () => {
+
+function App() {
   return (
     <div>
-        <DarkModeProvider>
-      <Servizi />
-      </DarkModeProvider>,
-
+      <Servizi />      
     </div>
   )
 }
