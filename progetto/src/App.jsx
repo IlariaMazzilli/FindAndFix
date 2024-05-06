@@ -6,7 +6,7 @@ import ChiSiamo from './pages/ChiSiamo'
 import Faqs from './pages/Faqs'
 import ProRegister from './pages/ProRegister'
 import Register from './pages/Register'
-import SingIn from './components/SingIn'
+import SingIn from './pages/SingIn'
 
 
 function App() {
