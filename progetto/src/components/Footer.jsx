@@ -176,11 +176,11 @@ function Footer() {
                                     >
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
-                                        className="size-5 shrink-0 text-customGreen footerSvg"
-                                        fill="currentColor"
+                                        className="size-5 shrink-0  footerSvg"
+                                        fill="none"
                                         viewBox="0 0 24 24"
-                                        stroke="currentColor"
-                                        strokeWidth="1"
+                                        stroke="currentcolor"
+                                        strokeWidth="2"
                                     >
                                         <path
                                             strokeLinecap="round"

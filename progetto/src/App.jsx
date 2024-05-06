@@ -5,7 +5,7 @@ function App() {
   return (
     <div>
       <DarkModeProvider>
-        <Home />
+        <Home/>
       </DarkModeProvider>
     </div>
   )
