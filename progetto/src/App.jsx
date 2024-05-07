@@ -1,7 +1,7 @@
+import React from 'react';
 import Home from './pages/Home'
 import DarkModeProvider from './DarkMode'; // Importa il provider correttamente
-import ChiSiamo from './pages/ChiSiamo'
-import Faqs from './pages/Faqs'
+
 
 
 
