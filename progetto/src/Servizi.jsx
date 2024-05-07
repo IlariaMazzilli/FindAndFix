@@ -1,73 +1,73 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import './myStyles.css'; // Importa il file CSS
 
-import chatIcon from './images/logo.svg'; // Icona della chat
+// import chatIcon from './images/logo.svg'; // Icona della chat
 import ProfileList from './components/ProfileList';
 
 
 const MyComponent = () => {
 
 
-    const [isChatOpen, setChatOpen] = useState(false);
-    const [chatMessages, setChatMessages] = useState([]);
-    const [userInput, setUserInput] = useState('');
-    const [isLoading, setIsLoading] = useState(false);
+    // const [isChatOpen, setChatOpen] = useState(false);
+    // const [chatMessages, setChatMessages] = useState([]);
+    // const [userInput, setUserInput] = useState('');
+    // const [isLoading, setIsLoading] = useState(false);
   
 
-    const toggleChatBox = () => {
-      setChatOpen(!isChatOpen);
-    };
+    // const toggleChatBox = () => {
+    //   setChatOpen(!isChatOpen);
+    // };
   
-    const handleSendMessage = async () => {
-      if (userInput.trim() === '') {
-        return;
-      }
+    // const handleSendMessage = async () => {
+    //   if (userInput.trim() === '') {
+    //     return;
+    //   }
   
-      const newMessage = {
-        type: 'user',
-        text: userInput.trim(),
-      };
+    //   const newMessage = {
+    //     type: 'user',
+    //     text: userInput.trim(),
+    //   };
   
-      setChatMessages([...chatMessages, newMessage]); 
-      setUserInput(''); 
-      setIsLoading(true);
+    //   setChatMessages([...chatMessages, newMessage]); 
+    //   setUserInput(''); 
+    //   setIsLoading(true);
   
-      try {
-        const response = await fetch('https://api.chatbot.com/v2/chats', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer &{59EhGp2_83uMyEW6r4qvmNysdNrsEaOH}',
-          },
-          body: JSON.stringify({
+    //   try {
+    //     const response = await fetch('https://api.chatbot.com/v2/chats', {
+    //       method: 'POST',
+    //       headers: {
+    //         'Content-Type': 'application/json',
+    //         'Authorization': 'Bearer &{59EhGp2_83uMyEW6r4qvmNysdNrsEaOH}',
+    //       },
+    //       body: JSON.stringify({
             
-                "timestamp": "2017-04-12T13:30:07.445Z",
-                "status": {
-                    "code": 200,
-                    "type": "success"
-                }
+    //             "timestamp": "2017-04-12T13:30:07.445Z",
+    //             "status": {
+    //                 "code": 200,
+    //                 "type": "success"
+    //             }
                        
-          }),
-        });
+    //       }),
+    //     });
   
-        const data = await response.json(); 
-        const aiResponse = {
-          type: 'ai',
-          text: data.choices[0].message.content,
-        };
+    //     const data = await response.json(); 
+    //     const aiResponse = {
+    //       type: 'ai',
+    //       text: data.choices[0].message.content,
+    //     };
   
-        setChatMessages([...chatMessages, aiResponse]);
-      } catch (error) {
-        console.error("Errore nell'invio del messaggio:", error);
-        const errorMessage = {
-          type: 'ai',
-          text: "C'è stato un problema con la richiesta. Riprova più tardi.",
-        };
-        setChatMessages([...chatMessages, errorMessage]);
-      } finally {
-        setIsLoading(false);
-      }
-    };
+    //     setChatMessages([...chatMessages, aiResponse]);
+    //   } catch (error) {
+    //     console.error("Errore nell'invio del messaggio:", error);
+    //     const errorMessage = {
+    //       type: 'ai',
+    //       text: "C'è stato un problema con la richiesta. Riprova più tardi.",
+    //     };
+    //     setChatMessages([...chatMessages, errorMessage]);
+    //   } finally {
+    //     setIsLoading(false);
+    //   }
+    // };
 
   return (
         <div>
@@ -81,7 +81,7 @@ const MyComponent = () => {
 
       </div>
 
-      <div className="chat-icon" onClick={toggleChatBox} style={{ position: 'fixed', bottom: '20px', right: '20px', cursor: 'pointer' }}>
+      {/* <div className="chat-icon" onClick={toggleChatBox} style={{ position: 'fixed', bottom: '20px', right: '20px', cursor: 'pointer' }}>
         <img src={chatIcon} alt="Chat Icon" style={{ width: '40px', height: '40px' }} />
       </div>
 
@@ -119,8 +119,8 @@ const MyComponent = () => {
             </button>
             {isLoading && <span>Caricamento...</span>}
           </div>
-        </div>
-      )}
+        </div> */}
+      {/* )} */}
     </div>
   );
 
