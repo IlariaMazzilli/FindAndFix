@@ -1,10 +1,13 @@
 .dark-mode {
-    background-color: #063766;
+    background-color: rgba(0, 0, 0, 0.816);
     /* Un colore scuro per lo sfondo */
     color: white;
     /* Colore del testo per contrastare lo sfondo */
 }
 
+.dark-mode .cercaProTitle{
+color:white;
+}
 .dark-mode .button {
     background-color: #0F5DA6;
     /* Pulsanti scuri in modalità dark */
@@ -12,7 +15,7 @@
     /* Testo chiaro sui pulsanti scuri */
 }
 
-.dark-mode a {
+.dark-mode a{
     color: white;
     /* Link con colore più chiaro in modalità dark */
 }
@@ -28,11 +31,12 @@
 }
 
 .dark-mode .navbar {
-    background-color: #063766;
+    background-color: #2F2F2F;
+    border-bottom:6px solid #0F5DA6;
 }
 
 .dark-mode .logo {
-    background-color: #063766;
+    background-color: #2F2F2F;
 }
 
 .dark-mode p ,
@@ -54,15 +58,18 @@
 .dark-mode .cardName,
 .dark-mode .cardAbout,
 .dark-mode .slick-dots li.slick-active button:before,
-.dark-mode .maintitle,
 .dark-mode a:hover,
 .dark-mode footer p {
-    color: #66BC46 !important;
+    color: white ;
 }
+
+/* .dark-mode .mainTitle{
+    color: white;
+} */
 
 .dark-mode .wrapper{
     box-shadow: 
-                 5px 5px 5px 5px #66BC46 !important;
+                 5px 5px 5px 5px white !important;
   }
 
 .dark-mode .sBtn-text{
