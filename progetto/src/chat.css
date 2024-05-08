@@ -1,0 +1,20 @@
+.logo {
+    height: 6em;
+    padding: 1.5em;
+    will-change: filter;
+    transition: filter 300ms;
+    margin-left:-600px;
+    margin-bottom: 0;
+    position: absolute;
+    right: 20px; /* Posiziona a destra */
+    bottom: 0; /* Inizia dal basso */
+  }
+
+  .bot {
+    margin-left:-570px;
+    margin-bottom: 0;
+    position: fixed;
+    right: 70px; /* Posiziona a destra */
+    bottom: 80px; /* Inizia dal basso */
+  }
+
