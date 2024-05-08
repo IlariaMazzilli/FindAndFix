@@ -50,7 +50,8 @@ color:white;
 }
 
 .dark-mode footer {
-    background-color: #094782;
+    background-color: #2F2F2F;
+    border-top:6px solid #0F5DA6;
 }
 
 .dark-mode .slick-prev:before,
@@ -79,5 +80,5 @@ color:white;
 .dark-mode .hamburgerNavbar,
 .dark-mode .hamburgerNavbar a{
     color:#66BC46;
-    background-color: #063766;
+    background-color: #2F2F2F;
 }
