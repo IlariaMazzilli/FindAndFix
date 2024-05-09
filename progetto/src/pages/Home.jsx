@@ -82,7 +82,7 @@ function Home() {
         <Jumbotron />
       </Fade>
       <Slide direction={"up"} triggerOnce={true} duration={2500}>
-        <h1 className='flex maintitle justify-center text-5xl text-customBlue font-bold my-10 mobile:text-4xl dark:text-white'>Cerca il tuo pro</h1>
+        <h1 className='flex maintitle justify-center text-5xl text-customBlue font-bold my-10 mobile:text-4xl dark:text-white'>CERCA IL TUO PRO</h1>
       </Slide>
       <Fade triggerOnce={true} duration={2500}>
         {/* select in versione mobile */}
@@ -134,7 +134,7 @@ function Home() {
         <Bottone text={'Vedi altro'} />
       </div>
       <Fade triggerOnce={true}>
-        <h1 className='flex maintitle justify-center text-5xl text-customBlue font-bold mt-20 mobile:text-4xl'>Come funziona</h1>
+        <h1 className='flex maintitle justify-center text-5xl text-customBlue font-bold mt-20 mobile:text-4xl'>COME FUNZIONA</h1>
       </Fade>
       <Fade triggerOnce={true}>
 
@@ -142,7 +142,7 @@ function Home() {
 
       </Fade>
       <Fade triggerOnce={true} duration={2500}>
-        <h1 className='flex maintitle justify-center text-5xl text-customBlue font-bold my-10 mobile:text-2xl medium:text-4xl'>Professionisti nella tua zona</h1>
+        <h1 className='flex maintitle justify-center text-5xl text-customBlue font-bold my-10 mobile:text-2xl medium:text-4xl'>PROFESSIONISTI NELLA TUA ZONA</h1>
       </Fade>
       <div className='w-11/12 pl-36 large:pl-12'>
         <Fade triggerOnce={true}>
