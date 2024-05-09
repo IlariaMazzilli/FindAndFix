@@ -32,12 +32,12 @@ import Select from '../components/Select'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { DarkModeContext } from '../DarkMode'; // Assicurati che l'importazione sia corretta
-import '../darkModeStyles.css'
+// import { DarkModeContext } from '../DarkMode'; // Assicurati che l'importazione sia corretta
+// import '../darkModeStyles.css'
 
 
 function Home() {
-  const { toggleDarkMode } = useContext(DarkModeContext);
+  // const { toggleDarkMode } = useContext(DarkModeContext);
 
   var settings = {
     dots: true,

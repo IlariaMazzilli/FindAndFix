@@ -1,13 +1,13 @@
 import logoNoBg from '../images/logoNoBg.svg'
 import { useState, useContext } from 'react';
 import { Fade } from 'react-awesome-reveal';
-import DarkModeButton from '../DarkMode.jsx';
-import { DarkModeContext } from '../DarkMode';
-import '../darkModeStyles.css'
+// import DarkModeButton from '../DarkMode.jsx';
+// import { DarkModeContext } from '../DarkMode';
+// import '../darkModeStyles.css'
 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { toggleDarkMode } = useContext(DarkModeContext);
+  // const { toggleDarkMode } = useContext(DarkModeContext);
   // Funzione per gestire il click sul bottone del menu
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -47,11 +47,11 @@ function Navbar() {
 
             <div className="flex justify-space-between w-70 mobile:w-10 md:w-10">
               <div className="mobile:hidden medium:hidden flex items-center">
-                <div className='mr-4'>
+                {/* <div className='mr-4'>
                   <DarkModeButton />
-                </div>
+                </div> */}
                 {/* bottone darkmode */}
-                <label
+                {/* <label
                   htmlFor="toggleDarkMode"
                   className="relative h-8 w-12 cursor-pointer [-webkit-tap-highlight-color:_transparent] mb-70"
                 >
@@ -65,7 +65,7 @@ function Navbar() {
                   >
                     <span className="absolute inset-0 m-auto size-4 rounded-full bg-gray-200 transition"> </span>
                   </span>
-                </label>
+                </label> */}
                 <a
                   className="button rounded-md mx-4 bg-customBlue px-5 py-2.5 text-mobile font-medium text-white shadow hover:bg-customGreen mobile:p-2"
                   href="#"
@@ -129,7 +129,7 @@ function Navbar() {
                         REGISTRATI COME PRO
                       </a>
 
-                      <label
+                      {/* <label
                         htmlFor="toggleDarkMode"
                         className="relative h-8 w-12 cursor-pointer [-webkit-tap-highlight-color:_transparent] mb-70"
                       >
@@ -143,7 +143,7 @@ function Navbar() {
                         >
                           <span className="absolute inset-0 m-auto size-4 rounded-full bg-gray-200 transition"> </span>
                         </span>
-                      </label>
+                      </label> */}
                     </div>
                   </Fade>
                 )}
