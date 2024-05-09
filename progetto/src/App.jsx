@@ -7,13 +7,14 @@ import Faqs from './pages/Faqs'
 import ProRegister from './pages/ProRegister'
 import Register from './pages/Register'
 import SingIn from './pages/SingIn'
+import ProRegister2 from './pages/ProRegister2'
 
 
 function App() {
   return (
     <div>
      
-   <SingIn />
+   <ProRegister2 />
     </div>
   )
 }
