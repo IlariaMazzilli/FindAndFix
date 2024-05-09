@@ -1,16 +1,13 @@
-import React from 'react';
-import Home from './pages/Home'
-import DarkModeProvider from './DarkMode'; // Importa il provider correttamente
-
+import React from 'react'
+import './App.css'
+import ChatBotComponent from './ChatBotComponent';
 
 
 
 function App() {
   return (
     <div>
-      <DarkModeProvider>
-        <Home/>
-      </DarkModeProvider>
+      <ChatBotComponent />
     </div>
   )
 }
