@@ -11,11 +11,11 @@ import Footer from './components/Footer';
 function App() {
   return (
     <div>
-      <DarkModeProvider>
-        <Navbar/>
+      
+        
         <ChiSiamo/>
-        <Footer/>
-      </DarkModeProvider>
+        
+      
     </div>
   )
 }
