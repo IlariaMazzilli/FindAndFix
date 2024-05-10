@@ -17,36 +17,36 @@ function Navbar() {
 
   return (
     <div>
-      <header className="bg-white p-4 mobile:p-2 fixed w-full z-10 navbar">
-        <div className="mx-auto max-w-screen-xl px-4  large:px-8 mobile:px-0">
+      <header className="bg-white p-4 max-[768px]:p-2 fixed w-full z-10 navbar">
+        <div className="mx-auto max-w-screen-xl px-4  lg:px-8 max-[768px]:px-0">
           <div className="flex h-16 items-center justify-between">
             <div className="md:flex md:items-center md:gap-12">
               <a className="block text-teal-600" href="#">
                 <span className="sr-only">Home</span>
-                <img src={logoNoBg} className='w-20 h-16 mobile:w-10 mobile:h-8 logo' alt='Find & Fix' />
+                <img src={logoNoBg} className='w-20 h-16 max-[768px]:w-10 max-[768px]:h-8 logo' alt='Find & Fix' />
               </a>
             </div>
 
             <div className="md:block">
               <nav aria-label="Global">
-                <ul className="flex items-center gap-6  mobile:whitespace-nowrap">
+                <ul className="flex items-center gap-6  max-[768px]:whitespace-nowrap">
                   <li>
-                    <a className=" text-customBlue transition hover:text-customGreen text-xl mobile:text-base" href="#"> Chi siamo </a>
+                    <a className=" text-customBlue transition hover:text-customGreen text-xl max-[768px]:text-base" href="#"> Chi siamo </a>
                   </li>
 
                   <li>
-                    <a className="text-customBlue transition hover:text-customGreen text-xl mobile:text-base" href="#"> Servizi </a>
+                    <a className="text-customBlue transition hover:text-customGreen text-xl max-[768px]:text-base" href="#"> Servizi </a>
                   </li>
 
                   <li>
-                    <a className=" text-customBlue transition hover:text-customGreen text-xl mobile:text-base" href="#"> Contatti </a>
+                    <a className=" text-customBlue transition hover:text-customGreen text-xl max-[768px]:text-base" href="#"> Contatti </a>
                   </li>
                 </ul>
               </nav>
             </div>
 
-            <div className="flex justify-space-between w-70 mobile:w-10 md:w-10">
-              <div className="mobile:hidden medium:hidden flex items-center">
+            <div className="flex justify-space-between w-70 max-[768px]:w-10 md:w-10">
+              <div className="max-[768px]:hidden flex items-center">
                 {/* <div className='mr-4'>
                   <DarkModeButton />
                 </div> */}
@@ -67,7 +67,7 @@ function Navbar() {
                   </span>
                 </label> */}
                 <a
-                  className="button rounded-md mx-4 bg-customBlue px-5 py-2.5 text-mobile font-medium text-white shadow hover:bg-customGreen mobile:p-2"
+                  className="button rounded-md mx-4 bg-customBlue px-5 py-2.5 text-mobile font-medium text-white shadow hover:bg-customGreen max-[768px]:p-2"
                   href="#"
                 >
                   LOGIN
@@ -90,7 +90,7 @@ function Navbar() {
 
               </div>
 
-              <div className="hidden mobile:block md:block">
+              <div className="hidden max-[768px]:block md:block">
                 <button className="rounded bg-gray-100 p-2 text-gray-600 transition hover:text-gray-600/75" onClick={toggleMenu}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

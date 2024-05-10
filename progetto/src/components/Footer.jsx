@@ -14,20 +14,20 @@ function Footer() {
 
     return (
         <footer className='bg-customGrey'>
-            <div className="mx-auto max-w-screen-xl px-4 pb-6 pt-16 mobile:px-6 large:px-8 large:pt-24 mobile:pt-8">
-                <div className="grid grid-cols-1 gap-8 large:grid-cols-1 mobile:grid-cols-1 medium:grid-cols-1">
+            <div className="mx-auto max-w-screen-xl px-4 pb-6 pt-16 sm:px-6 lg:px-8 lg:pt-24 sm:pt-8">
+                <div className="grid grid-cols-1 gap-8 lg:grid-cols-1 sm:grid-cols-1 md:grid-cols-1">
                     <div>
-                        <div className="flex justify-center mobile:justify-center">
+                        <div className="flex justify-center sm:justify-center">
                             <img src={logoNoBg} alt="logo find and fix" className='w-20 h-16' />
                         </div>
                             <div className='flex justify-center'>
-                                <p className="mt-6 max-w-md text-center leading-relaxed text-customGreen font-bold mobile:max-w-xs mobile:text-left ">
+                                <p className="mt-6 max-w-md text-center leading-relaxed text-customGreen font-bold sm:max-w-xs sm:text-left ">
                             Seguici sui nostri social
                         </p>
                             </div>
                         
 
-                        <ul className="mt-8 flex justify-center gap-6 mobile:justify-center medium:gap-8">
+                        <ul className="mt-8 flex justify-center gap-6 sm:justify-center md:gap-8">
                             <li>
                                 <a
                                     href="#"
@@ -118,8 +118,8 @@ function Footer() {
                         </ul>
                     </div>
 
-                    <div className="grid grid-cols-3 gap-8 mobile:grid-cols-1 medium:grid-cols-3 xl:grid-cols-3">
-                        <div className="text-center mobile:text-left">
+                    <div className="grid grid-cols-3 max-[430px]:grid-cols-1 gap-8 ">
+                        <div className="text-center sm:text-left">
                             <p className="text-lg  text-customBlue font-extrabold ">Chi siamo</p>
 
                             <ul className="mt-8 space-y-4 text-sm">
@@ -135,7 +135,7 @@ function Footer() {
 
                    
 
-                        <div className="text-center mobile:text-left">
+                        <div className="text-center sm:text-left">
                             <p className="text-lg font-extrabold text-customBlue">Link utili</p>
 
                             <ul className="mt-8 space-y-4 text-sm">
@@ -149,7 +149,7 @@ function Footer() {
 
                                 <li>
                                     <a
-                                        className="group flex justify-center gap-1.5 ltr:mobile:justify-start rtl:mobile:justify-end"
+                                        className="group flex justify-center gap-1.5 ltr:sm:justify-start rtl:sm:justify-end"
                                         href="#"
                                     >
 
@@ -162,7 +162,7 @@ function Footer() {
                             </ul>
                         </div>
 
-                        <div className="text-center mobile:text-left">
+                        <div className="text-center sm:text-left">
                             <p className="text-lg font-extrabold text-customBlue">Contattaci</p>
 
                             <ul className="mt-8 space-y-4 text-sm">
@@ -171,7 +171,7 @@ function Footer() {
                                     
                                 >
                                       <a
-                                        className="flex items-center justify-center gap-1.5 "
+                                        className="flex items-center justify-center gap-1.5 max-[600px]:flex-col"
                                         href="#"
                                     >
                                     <svg
@@ -194,7 +194,7 @@ function Footer() {
                                         />
                                     </svg>
 
-                                    <span className="-mt-0.5 flex-1 not-italic text-customGreen font-bold">
+                                    <span className="-mt-0.5 flex-1 not-italic text-customGreen font-bold max-[600px]:text-xs">
                                         Piazza della Luna, 14, Domodossola, 28845
                                     </span>
                                     </a>
@@ -202,7 +202,7 @@ function Footer() {
 
                                 <li >
                                     <a
-                                        className="flex items-center justify-center gap-1.5 ltr:mobile:justify-start rtl:mobile:justify-end"
+                                        className="flex items-center justify-center gap-1.5 ltr:sm:justify-start rtl:sm:justify-end max-[600px]:flex-col"
                                         href="#"
                                     >
                                         <svg
@@ -220,7 +220,7 @@ function Footer() {
                                             />
                                         </svg>
 
-                                        <span className="flex-1 text-customGreen font-bold">findandfix@info.com</span>
+                                        <span className="flex-1 text-customGreen font-bold max-[600px]:text-xs">findandfix@info.com</span>
                                     </a>
 
                                 </li>
@@ -231,7 +231,7 @@ function Footer() {
                 </div>
 
                 <div className="mt-12 border-t border-gray-100 pt-6">
-                    <div className="text-center mobile:flex mobile:justify-between mobile:text-left">
+                    <div className="text-center sm:flex sm:justify-between sm:text-left">
                         <p className="text-sm text-customGreen font-bold [@media(min-width:540px)]:flex [@media(min-width:540px)]:justify-around  ">
 
                             <a
@@ -244,14 +244,14 @@ function Footer() {
                             <span>&middot;</span>
 
                             <a
-                                className="mobile:flex text-customGreen  transition "
+                                className="sm:flex text-customGreen  transition "
                                 href="#"
                             >
                                 Privacy Policy
                             </a>
                         </p>
 
-                        <p className="mt-4 text-sm text-gray-500 mobile:order-first mobile:mt-0 mobile:whitespace-nowrap">&copy; {year} Find & Fix</p>
+                        <p className="mt-4 text-sm text-gray-500 sm:order-first sm:mt-0 sm:whitespace-nowrap">&copy; {year} Find & Fix</p>
                     </div>
                 </div>
             </div>

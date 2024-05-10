@@ -1,19 +1,24 @@
 .carousel-team-card {
-    margin-top: 50px;
+  margin-top: 50px;
+}
+
+.carousel-team-card .flickity-prev-next-button.previous {
+  left: -50px;
+}
+
+.carousel-team-card .flickity-prev-next-button.next {
+  right: -50px;
+}
+
+@media screen and (max-width: 1023px) {
+  .jobCardsContainer>.jobCardsContainer-wrapper>.jobCardsContainer-item:nth-child(10) {
+    display: none;
   }
-  
-  .carousel-team-card .flickity-prev-next-button.previous {
-    left: -50px;
+}
+
+
+@media screen and (max-width:639px) {
+  .mainTitle {
+    font-size: medium !important;
   }
-  
-  .carousel-team-card .flickity-prev-next-button.next {
-    right: -50px;
-  }
-  
-  @media screen and (max-width: 1023px) {
-      .jobCardsContainer > .jobCardsContainer-wrapper > .jobCardsContainer-item:nth-child(10) {
-        display: none;
-      }
-    }
-  
-  
+}
