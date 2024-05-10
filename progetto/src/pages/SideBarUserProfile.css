@@ -1,0 +1,22 @@
+.nome-pagina-sidebar {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 200px;
+  height: 20px;
+  padding-left: 20px;
+}
+
+.container {
+  display: flex; /* Utilizza il layout flexbox */
+}
+
+.sideBar {
+  width: 250px; /* Larghezza della sidebar */
+  /* Altri stili della sidebar */
+}
+
+.userPage {
+  flex: 1; /* Fai espandere UserPage per occupare lo spazio rimanente */
+  /* Altri stili della userpage */
+}

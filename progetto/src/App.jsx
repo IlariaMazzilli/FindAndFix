@@ -1,6 +1,8 @@
 import React from 'react';
 import Home from './pages/Home'
 import DarkModeProvider from './DarkMode'; // Importa il provider correttamente
+import UserPage from './pages/UserPage';
+import SideBarUserProfile from './pages/SideBarUserProfile';
 
 
 
@@ -8,9 +10,7 @@ import DarkModeProvider from './DarkMode'; // Importa il provider correttamente
 function App() {
   return (
     <div>
-      <DarkModeProvider>
-        <Home/>
-      </DarkModeProvider>
+      <SideBarUserProfile />
     </div>
   )
 }
