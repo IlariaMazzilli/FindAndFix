@@ -1,22 +1,18 @@
-.nome-pagina-sidebar {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  width: 200px;
-  height: 20px;
-  padding-left: 20px;
-}
-
 .container {
-  display: flex; /* Utilizza il layout flexbox */
+  display: flex;
+  height: 100vh;
 }
 
-.sideBar {
-  width: 250px; /* Larghezza della sidebar */
-  /* Altri stili della sidebar */
+.side-bar {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 300px;
+  background-color: white;
+  border-right: 1px solid black;
+  justify-content: space-between;
 }
 
-.userPage {
-  flex: 1; /* Fai espandere UserPage per occupare lo spazio rimanente */
-  /* Altri stili della userpage */
+.Page {
+  width: 100%;
 }

@@ -2,7 +2,7 @@ import "./UserPage.css";
 
 function UserPage() {
   return (
-    <>
+    <div className="container-user">
       <div className="user-info">
         <div className="logo">
           <button className="button-change-img">
@@ -109,11 +109,11 @@ function UserPage() {
             type="text"
             id="Description"
             placeholder=""
-            className="mt-1 w-full py-20 rounded-md border-gray-200 shadow-md sm:text-sm"
+            className="w-full py-10 px-1 rounded-md border-gray-200 shadow-md sm:text-sm"
           />
         </div>
         </div>
-    </>
+    </div>
   );
 }
 
