@@ -7,9 +7,9 @@ import Faqs from './pages/Faqs'
 import ProRegister from './pages/ProRegister'
 import Register from './pages/Register'
 import SingIn from './pages/SingIn'
-import ProRegister2 from './pages/ProRegister2'
 import Stepper from './pages/Stepper'
 import { SignIn } from './pages/SignIn'
+import Abbonamenti from './pages/Abbonamenti'
 
 
 function App() {

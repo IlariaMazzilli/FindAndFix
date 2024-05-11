@@ -1,4 +1,4 @@
-function ProRegister2() {
+function Abbonamenti() {
   return (
     <>
       <div className="bg-white py-24 sm:py-32">
@@ -203,5 +203,5 @@ function ProRegister2() {
     </>
   );
 }
+export default Abbonamenti;
 
-export default ProRegister2;
