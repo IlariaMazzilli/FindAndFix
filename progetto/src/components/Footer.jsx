@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { useState } from 'react'
 import logoNoBg from '../images/logoNoBg.svg'
+import { Link } from 'react-router-dom'
 
 
 function Footer() {
@@ -125,9 +126,9 @@ function Footer() {
                             <ul className="mt-8 space-y-4 text-sm">
 
                                 <li>
-                                    <a className="text-customGreen font-bold transition hover:text-gray-700/75" href="#">
+                                    <Link to="/chiSiamo" className="text-customGreen font-bold transition hover:text-gray-700/75" href="#">
                                         Il team di Find & Fix
-                                    </a>
+                                    </Link>
                                 </li>
 
                             </ul>
@@ -140,12 +141,9 @@ function Footer() {
 
                             <ul className="mt-8 space-y-4 text-sm">
                                 <li>
-                                    <a className="text-customGreen font-bold transition hover:text-gray-700/75" href="#"> FAQs </a>
+                                    <Link to="/faqs" className="text-customGreen font-bold transition hover:text-gray-700/75" href="#"> FAQs </Link>
                                 </li>
 
-                                <li>
-                                    <a className="text-customGreen font-bold transition hover:text-gray-700/75" href="#"> Supporto </a>
-                                </li>
 
                                 <li>
                                     <a
@@ -203,7 +201,7 @@ function Footer() {
                                 <li >
                                     <a
                                         className="flex items-center justify-center gap-1.5 ltr:sm:justify-start rtl:sm:justify-end max-[600px]:flex-col"
-                                        href="#"
+                                        href="mailto:findandfix@info.com"
                                     >
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"

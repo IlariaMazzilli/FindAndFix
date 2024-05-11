@@ -7,9 +7,12 @@ import AboutNumbers from "../components/AboutNumbers"
 function ChiSiamo() {
     return (
         <div>
+            <Navbar/>
+            <br />
             <AboutUsFirstPart/>
             <Team/>
             <AboutNumbers/>
+            <Footer/>
         </div>
     )
 }

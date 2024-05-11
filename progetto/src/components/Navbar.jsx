@@ -1,6 +1,7 @@
 import logoNoBg from '../images/logoNoBg.svg'
 import { useState, useContext } from 'react';
 import { Fade } from 'react-awesome-reveal';
+import { Link } from 'react-router-dom';
 // import DarkModeButton from '../DarkMode.jsx';
 // import { DarkModeContext } from '../DarkMode';
 // import '../darkModeStyles.css'
@@ -31,14 +32,15 @@ function Navbar() {
               <nav aria-label="Global">
                 <ul className="flex items-center gap-6  max-[768px]:whitespace-nowrap">
                   <li>
-                    <a className=" text-customBlue transition hover:text-customGreen text-xl max-[768px]:text-base" href="#"> Chi siamo </a>
+                    <Link to="/chiSiamo" className=" text-customBlue transition hover:text-customGreen text-xl max-[768px]:text-base" href="#"> Chi siamo </Link>
                   </li>
 
                   <li>
-                    <a className="text-customBlue transition hover:text-customGreen text-xl max-[768px]:text-base" href="#"> Servizi </a>
+                    <Link to="/servizi" className="text-customBlue transition hover:text-customGreen text-xl max-[768px]:text-base" href="#"> Servizi </Link>
                   </li>
 
                   <li>
+                    {/* controllare come fare per riportare alla sezione contattaci del footer */}
                     <a className=" text-customBlue transition hover:text-customGreen text-xl max-[768px]:text-base" href="#"> Contatti </a>
                   </li>
                 </ul>
@@ -66,27 +68,27 @@ function Navbar() {
                     <span className="absolute inset-0 m-auto size-4 rounded-full bg-gray-200 transition"> </span>
                   </span>
                 </label> */}
-                <a
+                <Link to="/signIn"
                   className="button rounded-md mx-4 bg-customBlue px-5 py-2.5 text-mobile font-medium text-white shadow hover:bg-customGreen max-[768px]:p-2"
                   href="#"
                 >
                   LOGIN
-                </a>
+                </Link>
 
 
-                <a
+                <Link to="/registrati"
                   className="button rounded-md bg-customBlue px-5  py-2.5 text-mobile font-medium text-white hover:bg-customGreen "
                   href="#"
                 >
                   REGISTRATI
-                </a>
+                </Link>
 
-                <a
+                <Link to="/proRegistrati"
                   className="button rounded-md ml-4 bg-customBlue px-5 py-2.5 text-mobile font-medium text-white hover:bg-customGreen "
                   href="#"
                 >
                   REGISTRATI COME PRO
-                </a>
+                </Link>
 
               </div>
 
@@ -107,27 +109,27 @@ function Navbar() {
                 {isMenuOpen && (
                   <Fade triggerOnce={false} duration={1500}>
                     <div className="absolute right-0 mt-2 bg-white rounded-md shadow-lg flex flex-col items-center p-4 w-fit hamburgerNavbar">
-                      <a
+                      <Link to="/signIn"
                         className=" mx-4  py-2.5 text-mobile font-medium text-customBlue hover:bg-customGreen w-14  flex justify-center"
                         href="#"
                       >
                         LOGIN
-                      </a>
+                      </Link>
 
 
-                      <a
+                      <Link to="/registrati"
                         className="mx-4 py-2.5 text-mobile font-medium text-customBlue hover:bg-customGreen w-14  flex justify-center"
                         href="#"
                       >
                         REGISTRATI
-                      </a>
+                      </Link>
 
-                      <a
+                      <Link to="/proRegistrati"
                         className="mx-4 py-2.5 text-mobile font-medium text-customBlue hover:bg-customGreen w-14  flex justify-center"
                         href="#"
                       >
                         REGISTRATI COME PRO
-                      </a>
+                      </Link>
 
                       {/* <label
                         htmlFor="toggleDarkMode"

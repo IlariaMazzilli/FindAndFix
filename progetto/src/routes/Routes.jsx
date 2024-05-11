@@ -6,6 +6,7 @@ import Faqs from "../pages/Faqs";
 import SignIn from '../pages/SignIn'
 import ChiSiamo from "../pages/ChiSiamo";
 import Servizi from "../Servizi";
+import NotFound from '../pages/NotFound'
 
 export const Rotte = createBrowserRouter([
     {
@@ -35,5 +36,9 @@ export const Rotte = createBrowserRouter([
     {
         path: "/servizi",
         element: <Servizi/>,
+    },
+    {
+        path: "*",
+        element: <NotFound/>,
     },
 ])
