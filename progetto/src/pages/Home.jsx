@@ -1,4 +1,3 @@
-import { useContext } from 'react';
 import '../index.css'
 import { Fade } from "react-awesome-reveal";
 import { Slide } from "react-awesome-reveal";
@@ -82,11 +81,7 @@ function Home() {
         <Jumbotron />
       </Fade>
       <Slide direction={"up"} triggerOnce={true} duration={2500}>
-<<<<<<< HEAD
-        <h1 className='flex maintitle justify-center text-5xl text-customBlue font-bold my-10 mobile:text-4xl dark:text-white'>CERCA IL TUO PRO</h1>
-=======
         <h1 className='flex maintitle justify-center text-5xl text-customBlue font-bold my-10 smtext-4xl dark:text-white max-[600px]:text-4xl'>Cerca il tuo pro</h1>
->>>>>>> NuovaHomepage
       </Slide>
       <Fade triggerOnce={true} duration={2500}>
         <div className="[@media(min-width:768px)]:hidden z-20">
@@ -136,21 +131,13 @@ function Home() {
         <Bottone text={'Vedi altro'} />
       </div>
       <Fade triggerOnce={true}>
-<<<<<<< HEAD
-        <h1 className='flex maintitle justify-center text-5xl text-customBlue font-bold mt-20 mobile:text-4xl'>COME FUNZIONA</h1>
-=======
         <h1 className='flex maintitle justify-center text-5xl text-customBlue font-bold mt-20 xs:text-4xl'>Come funziona</h1>
->>>>>>> NuovaHomepage
       </Fade>
       <Fade triggerOnce={true}>
         <Steps/>
       </Fade>
       <Fade triggerOnce={true} duration={2500}>
-<<<<<<< HEAD
-        <h1 className='flex maintitle justify-center text-5xl text-customBlue font-bold my-10 mobile:text-2xl medium:text-4xl'>PROFESSIONISTI NELLA TUA ZONA</h1>
-=======
         <h1 className='flex maintitle justify-center text-5xl text-customBlue font-bold mt-20 xs:text-3xl '>Professionisti vicini a te</h1>
->>>>>>> NuovaHomepage
       </Fade>
       <div className='overflow-hidden p-8'>
         <Slider {...settings}>
