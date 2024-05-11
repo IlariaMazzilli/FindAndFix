@@ -4,8 +4,8 @@ import '../index.css'
 
 function RatingWithComment({ name, image, job, reviewsNumber, score }) {
   return (
-    <div className='flex mt-9 justify-center'>
-      <div className="wrapper mx-4">
+    // <div className='flex mt-9 justify-center'>
+      <div className="wrapper mx-1">
         <div className="img-area">
           <div className="inner-area">
             <img src={image} alt="" />
@@ -27,7 +27,7 @@ function RatingWithComment({ name, image, job, reviewsNumber, score }) {
           <button>Contatta</button>
         </div>
       </div>
-    </div>
+    // </div>
   )
 }
 

@@ -38,15 +38,15 @@ function Reviews() {
   };
   return (
 
-    <section>
-      <div className=" max-w-screen-2xl px-4 py-12 mobile:px-6 large:px-8 large:py-16 ">
+    <section className="flex justify-center">
+      <div className=" w-full px-4 py-12 sm:px-6 lg:px-8 lg:py-16 ">
         <div className=" flex justify-center">
         </div>
 
         <div className="slider-container overflow-hidden h-full ">
           <Slider {...settings}>
             <div>
-              <blockquote className="flex h-full flex-col justify-between  pl-4  mobile:p-8 dark:bg-black dark:text-white ">
+              <blockquote className="flex h-full flex-col justify-between  pl-4  sm:p-8 dark:bg-black dark:text-white ">
                 <div className=' p-4 rounded-3xl '>
                   <div className="flex gap-0.5 text-green-500 ">
                     <svg
@@ -106,7 +106,7 @@ function Reviews() {
                   </div>
 
                   <div >
-                    <p className="text-2xl font-bold text-customBlue mobile:text-3xl my-4">Professionista affidabile</p>
+                    <p className="text-2xl font-bold text-customBlue sm:text-3xl my-4">Professionista affidabile</p>
 
                     <p className="mt-4 leading-relaxed text-gray-700">
                       Dovevo far mettere a posto l'impianto elettrico di casa e non conoscevo nessuno che conoscesse un buon elettricista in zona.
@@ -126,7 +126,7 @@ function Reviews() {
               </blockquote>
             </div>
             <div>
-              <blockquote className="flex h-full flex-col justify-between pl-4  mobile:p-8">
+              <blockquote className="flex h-full flex-col justify-between pl-4  sm:p-8">
                 <div className=' p-4 rounded-3xl'>
                   <div className="flex gap-0.5 text-green-500">
                     <svg
@@ -186,7 +186,7 @@ function Reviews() {
                   </div>
 
                   <div className="mt-4">
-                    <p className="text-2xl font-bold text-customBlue mobile:text-3xl">Veloce e professionale</p>
+                    <p className="text-2xl font-bold text-customBlue sm:text-3xl">Veloce e professionale</p>
 
                     <p className="mt-4 leading-relaxed text-gray-700">
                       Avevo bisogno di imbiancare nuovamente casa, ma soprattutto avevo bisogno di un professionista.
@@ -207,7 +207,7 @@ function Reviews() {
               </blockquote>
             </div>
             <div>
-              <blockquote className="flex h-full flex-col justify-between  pl-4  mobile:p-8">
+              <blockquote className="flex h-full flex-col justify-between  pl-4  sm:p-8">
                 <div className=' p-4 rounded-3xl'>
                   <div className="flex gap-0.5 text-green-500">
                     <svg
@@ -267,7 +267,7 @@ function Reviews() {
                   </div>
 
                   <div className="mt-4">
-                    <p className="text-2xl font-bold text-customBlue mobile:text-3xl">Buon prezzo per un ottimo lavoro</p>
+                    <p className="text-2xl font-bold text-customBlue sm:text-3xl">Buon prezzo per un ottimo lavoro</p>
 
                     <p className="mt-4 leading-relaxed text-gray-700">
                       Ho avuto dei problemi con il lavandino in cucina e non essendo esperto del settore ho optato per seguire il consiglio di
