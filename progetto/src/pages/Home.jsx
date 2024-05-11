@@ -131,13 +131,13 @@ function Home() {
         <Bottone text={'Vedi altro'} />
       </div>
       <Fade triggerOnce={true}>
-        <h1 className='flex maintitle justify-center text-5xl text-customBlue font-bold mt-20 xs:text-4xl'>Come funziona</h1>
+        <h1 className='flex maintitle justify-center text-5xl text-customBlue font-bold mt-20 max-[600px]:text-3xl'>Come funziona</h1>
       </Fade>
       <Fade triggerOnce={true}>
         <Steps/>
       </Fade>
       <Fade triggerOnce={true} duration={2500}>
-        <h1 className='flex maintitle justify-center text-5xl text-customBlue font-bold mt-20 xs:text-3xl '>Professionisti vicini a te</h1>
+        <h1 className='flex maintitle justify-center text-5xl text-customBlue font-bold mt-20 max-[600px]:text-3xl '>Professionisti vicini a te</h1>
       </Fade>
       <div className='overflow-hidden p-8'>
         <Slider {...settings}>
@@ -173,7 +173,7 @@ function Home() {
         </div>
       </Fade>
       <Fade triggerOnce={true} duration={2500}>
-        <h2 className="text-4xl maintitle font-bold tracking-tight text-customBlue w-full xs:text-3xl flex justify-center " >
+        <h2 className="text-4xl maintitle font-bold tracking-tight text-customBlue w-full max-[600px]:text-3xl flex justify-center " >
           Recensioni degli utenti
         </h2>
       </Fade>
