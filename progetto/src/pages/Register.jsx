@@ -1,9 +1,13 @@
 import React from 'react'
 import LogoCompleto from '../images/LogoCompleto.jpeg'
 import RegistrationBanner from '../images/Registrazione-Banner.png'
+import Navbar from '../components/Navbar'
+import Footer from '../components/Footer'
 
 function Register() {
   return (
+    <div>
+    <Navbar/>
 <section className="bg-white">
   <div className="lg:grid lg:min-h-screen lg:grid-cols-12">
     <aside className="relative block h-16 lg:order-last lg:col-span-5 lg:h-full xl:col-span-6">
@@ -140,6 +144,8 @@ function Register() {
     </main>
   </div>
 </section>
+<Footer/>
+</div>
   )
 }
 

@@ -1,10 +1,13 @@
 import React from 'react'
 import House from '../images/House.jpg'
+import Navbar from '../components/Navbar'
+import Footer from '../components/Footer'
 
 function SignIn() {
   return (
     <>
     <>
+    <Navbar/>
   <section className="flex flex-col md:flex-row h-screen items-center">
     <div className="bg-customBlue hidden lg:block w-full md:w-1/2 xl:w-2/3 h-screen">
       <img
@@ -118,6 +121,7 @@ function SignIn() {
       </div>
     </div>
   </section>
+  <Footer/>
 </>
 
     </>

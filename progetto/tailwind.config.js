@@ -6,9 +6,6 @@ export default {
     'flowbite.content()',
   ],
   theme: {
-    screens:{
-      'xs': '320px'
-    },
     extend: {
       colors: {
         customBlue: "#0F5DA6",
