@@ -12,7 +12,7 @@ import Pagamenti from './pages/Pagamenti'
 function App() {
   return (
     <div>
-      <SideBarUserProfile/>
+      <SideBarUserProfile />
     </div>
   )
 }

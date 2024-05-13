@@ -14,8 +14,20 @@ function UserPage() {
             </div>
 
             <div className="content-block">
-              <a className="button button--booking">Book Course</a>
-              <a className="button button--download">Download PDF</a>
+              <a className="send-a-message">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    fill="#66BC46"
+                    d="M20 2H4a2 2 0 0 0-2 2v18l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2"
+                  />
+                </svg>
+                Send a message
+              </a>
             </div>
 
             <div className="content-block">
@@ -91,16 +103,6 @@ function UserPage() {
                 <span className="label courseStats__label">Email</span>
                 <span className="courseStats__divider"></span>
                 <span className="courseStats__data">john.doe@example.com</span>
-              </li>
-              <li>
-                <span className="label courseStats__label">Suitable For</span>
-                <span className="courseStats__divider"></span>
-                <span className="courseStats__data">Managers</span>
-              </li>
-              <li>
-                <span className="label courseStats__label">Subject</span>
-                <span className="courseStats__divider"></span>
-                <span className="courseStats__data">Working At Height</span>
               </li>
             </ul>
           </aside>
