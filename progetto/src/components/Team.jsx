@@ -1,7 +1,10 @@
 import React from 'react'
 import { Fade } from "react-awesome-reveal";
 import IlariaMazzilli from '../images/IlariaMazzilli.png'
-import lucy from '../images/lucy.jpg'
+import lucy from '../images/lucy.png'
+import manu from '../images/manu.png'
+import fabian from '../images/fabian.png'
+import giuse from '../images/giuse.png'
 
 
 function Team() {
@@ -9,8 +12,8 @@ function Team() {
     <section className="bg-white dark:bg-gray-900">
     <div className="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-6">
         <Fade triggerOnce={true} duration={1000}>
-        <div className="mx-auto max-w-screen-sm lg:mb-16 mb-36">
-            <h2 className="mb-4 text-5xl tracking-tight font-bold text-customBlue dark:text-white">Il nostro team</h2>
+        <div className="mx-auto max-w-screen-sm lg:mb-16 ">
+            <h2 className=" text-5xl tracking-tight font-bold text-customBlue dark:text-white mb-44">Il nostro team</h2>
         </div> 
         </Fade>
         <div className="flex justify-center flex-wrap gap-8 lg:gap-16 ">
@@ -78,9 +81,9 @@ function Team() {
             </Fade>
             <Fade triggerOnce={true} delay={1000}>
             <div className="text-center text-gray-500 dark:text-gray-400">
-                <img className="mx-auto mb-4 w-46 h-46 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/jese-leos.png" alt="Jese Avatar"/>
+                <img className="mx-auto mb-4 w-52 h-46 rounded-full" src={manu} alt="Emanuele Avitabile"/>
                 <h3 className="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                    <a href="#">Jese Leos</a>
+                    <a href="#">Emanuele Avitabile</a>
                 </h3>
                 <p>SEO & Marketing</p>
                 <ul className="flex justify-center mt-4 space-x-4">
@@ -109,9 +112,9 @@ function Team() {
             </Fade>
             <Fade triggerOnce={true} delay={1500}>
             <div className="text-center text-gray-500 dark:text-gray-400">
-                <img className="mx-auto mb-4 w-46 h-46 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/joseph-mcfall.png" alt="Joseph Avatar"/>
+                <img className="mx-auto mb-4 w-46 h-46 rounded-full" src={fabian} alt="Fabian Mardale"/>
                 <h3 className="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                    <a href="#">Joseph Mcfall</a>
+                    <a href="#">Fabian Mardale</a>
                 </h3>
                 <p>Sales</p>
                 <ul className="flex justify-center mt-4 space-x-4">
@@ -140,9 +143,9 @@ function Team() {
             </Fade>
             <Fade triggerOnce={true} delay={2000}>
             <div className="text-center text-gray-500 dark:text-gray-400">
-                <img className="mx-auto mb-4 w-46 h-46 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/sofia-mcguire.png" alt="Sofia Avatar"/>
+                <img className="mx-auto mb-4 w-46 h-46 rounded-full" src={giuse} alt="Giuseppe Buoncore"/>
                 <h3 className="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                    <a href="#">Lana Byrd</a>
+                    <a href="#">Giuseppe Buoncore</a>
                 </h3>
                 <p>Web Designer</p>
                 <ul className="flex justify-center mt-4 space-x-4">
@@ -171,9 +174,9 @@ function Team() {
             </Fade>
             <Fade triggerOnce={true} delay={2500}>
             <div className="text-center text-gray-500 dark:text-gray-400">
-                <img className="mx-auto mb-4 w-46 h-46 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/thomas-lean.png" alt="Leslie Avatar"/>
+                <img className="mx-auto mb-4 w-46 h-46 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/thomas-lean.png" alt="Danguole Schiavone"/>
                 <h3 className="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                    <a href="#">Leslie Livingston</a>
+                    <a href="#">Danguole Schiavone</a>
                 </h3>
                 <p>Graphic Designer</p>
                 <ul className="flex justify-center mt-4 space-x-4">

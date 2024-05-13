@@ -6,11 +6,11 @@ import logoNoBg from '../images/logoNoBg.svg'
 function AboutUsFirstPart() {
     return (
         <Fade triggerOnce={true} duration={3000}>
-            <div className='flex justify-center'>
+            <div className='flex justify-center mt-24'>
             <div className="sm:flex items-center w-2/2 flex">
-                <div className="sm:w-1/2 p-10 mt-24  ">
-                    <div className="image object-center text-center  mr-56 w-full h-full">
-                        <img src={logoNoBg} className='w-2/4 h-full'/>
+                <div className="sm:w-1/2 p-10 mt-24 max-[600px]:hidden ">
+                    <div className="image object-center text-center  mr-56 w-full h-full max-[600px]:hidden">
+                        <img src={logoNoBg} className='w-2/4 h-full '/>
                     </div>
                 </div>
                 <div className="sm:w-1/2 p-5">

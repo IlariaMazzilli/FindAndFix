@@ -11,7 +11,7 @@ function AboutNumbers() {
                I migliori in Italia
             </h2>
         </div>
-        <div className="mb-4 space-y-4 flex flex-wrap justify-center gap-8 ">
+        <div className="mb-4 space-y-4 flex flex-wrap justify-center items-end gap-8 ">
         <Fade triggerOnce={true} duration={1000}>
             <div className="flex justify-center pt-8 items-center p-6 text-center bg-customBlue xl:p-12 dark:bg-gray-800 rounded-full ">
                 <div className="text-white dark:text-white">
@@ -25,7 +25,7 @@ function AboutNumbers() {
             <Fade triggerOnce={true} duration={1000} delay={600}>
             <div className="flex justify-center items-center p-6 text-center bg-customBlue rounded-full xl:p-12 dark:bg-gray-800 ">
                 <div className="text-white dark:text-white">
-                    <p className="mb-2 text-4xl font-extrabold md:text-5xl">4,9/5</p>
+                    <p className="mb-4 text-4xl font-extrabold md:text-5xl">4,9/5</p>
                     <h3 className="mb-2 text-xl font-semibold">Voto medio</h3>
                     <p className="font-light text-white dark:text-gray-400">Su TrustPilot</p>
                 </div>
@@ -33,9 +33,9 @@ function AboutNumbers() {
             </Fade>
 
             <Fade triggerOnce={true} duration={1000} delay={900}>
-            <div className="flex justify-center items-center p-6 text-center bg-customBlue rounded-full xl:p-12 dark:bg-gray-800">
+            <div className="flex justify-center pt-6 items-center p-6 text-center bg-customBlue xl:p-12 dark:bg-gray-800 rounded-full ">
                 <div className="text-white dark:text-white">
-                    <p className="mb-2 text-4xl font-extrabold md:text-5xl">35mln</p>
+                    <p className="mb-4 text-4xl font-extrabold md:text-5xl">9mln</p>
                     <h3 className="mb-2 text-xl font-semibold">Utenti attivi</h3>
                     <p className="font-light text-white dark:text-gray-400">Ogni mese</p>
                 </div>

@@ -14,7 +14,7 @@ function Footer() {
     }, [])
 
     return (
-        <footer className='bg-customGrey'>
+        <footer className='bg-customGrey' id='footer'>
             <div className="mx-auto max-w-screen-xl px-4 pb-6 pt-16 sm:px-6 lg:px-8 lg:pt-24 sm:pt-8">
                 <div className="grid grid-cols-1 gap-8 lg:grid-cols-1 sm:grid-cols-1 md:grid-cols-1">
                     <div>

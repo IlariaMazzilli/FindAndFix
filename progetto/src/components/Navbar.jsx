@@ -2,6 +2,7 @@ import logoNoBg from '../images/logoNoBg.svg'
 import { useState, useContext } from 'react';
 import { Fade } from 'react-awesome-reveal';
 import { Link } from 'react-router-dom';
+import {Link as ScrollLink} from 'react-scroll'
 // import DarkModeButton from '../DarkMode.jsx';
 // import { DarkModeContext } from '../DarkMode';
 // import '../darkModeStyles.css'
@@ -13,7 +14,6 @@ function Navbar() {
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
-
 
 
   return (
@@ -33,8 +33,7 @@ function Navbar() {
             </li>
 
             <li>
-              {/* controllare come fare per riportare alla sezione contattaci del footer */}
-              <a className=" text-customBlue transition hover:text-customGreen text-xl max-[768px]:text-base" href="#"> Contatti </a>
+              <ScrollLink className=" text-customBlue transition hover:text-customGreen text-xl max-[768px]:text-base hover:cursor-pointer" smooth={true} to="footer" duration={1500}> Contatti </ScrollLink>
             </li>
           </ul>
         </nav>
