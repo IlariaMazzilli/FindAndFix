@@ -1,8 +1,15 @@
-import React, { useState } from 'react';
-import { FaStar, FaStarHalfAlt, FaRegStar } from 'react-icons/fa';
-import Seemore from '../images/see.png'
+import React, { useState } from "react";
+import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
+import Seemore from "../images/see.png";
 
-const ProfileCard = ({ name, image, description, rating, pricing, onContact }) => {
+const ProfileCard = ({
+  name,
+  image,
+  description,
+  rating,
+  pricing,
+  onContact,
+}) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const renderRating = (rating) => {
@@ -37,7 +44,7 @@ const ProfileCard = ({ name, image, description, rating, pricing, onContact }) =
         <div className="profile__description-wrapper">
           <div
             className={`profile__description ${
-              isExpanded ? 'expanded' : 'collapsed'
+              isExpanded ? "expanded" : "collapsed"
             }`}
           >
             {description}
@@ -45,26 +52,25 @@ const ProfileCard = ({ name, image, description, rating, pricing, onContact }) =
           {!isExpanded && <div className="profile__description__fade" />}
         </div>
         <button
-            onClick={toggleDescription}
-            className="profile__description__toggle"
-          >
-            <img src={Seemore} alt="See More" /> {/* Usa l'immagine come pulsante */}
-          </button>
-      </div>
-      <div className="profile__stats">
-        <strong>
-          <p className="profile__stats__title">Valutazione</p>
-        </strong>
-        {renderRating(rating)}
-      </div>
-      <div className="profile__stats2">
-        <strong>
-          <p className="profile__stats__title">Prezzo/h</p>
-        </strong>
-        <h5>{pricing}</h5>
+          onClick={toggleDescription}
+          className="profile__description__toggle"
+        >
+          <img src={Seemore} alt="See More" />{" "}
+          {/* Usa l'immagine come pulsante */}
+        </button>
       </div>
       <div className="profile__cta">
-        <a className="button" onClick={onContact}>
+        <strong>
+          <p>Valutazione</p>
+        </strong>
+        {renderRating(rating)}
+
+        <strong>
+          <p>Prezzo/h</p>
+        </strong>
+        <h5>{pricing}</h5>
+
+        <a className="button-contact" onClick={onContact}>
           Contatta!
         </a>
       </div>

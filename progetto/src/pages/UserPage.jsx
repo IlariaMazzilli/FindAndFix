@@ -1,118 +1,117 @@
-import "./UserPage.css";
+import "./UserPage.scss";
 
 function UserPage() {
   return (
-    <div className="container-user">
-      <div className="user-info">
-        <div className="logo">
-          <button className="button-change-img">
-            {" "}
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20px"
-              height="20px"
-              viewBox="0 0 24 24"
-            >
-              <g fill="white">
-                <path
-                  fillRule="evenodd"
-                  d="M21.264 2.293a1 1 0 0 0-1.415 0l-.872.872a3.001 3.001 0 0 0-3.415.587L4.955 14.358l5.657 5.657L21.22 9.41a3 3 0 0 0 .586-3.415l.873-.873a1 1 0 0 0 0-1.414zm-4.268 8.51l-6.384 6.384l-2.828-2.829l6.383-6.383zm1.818-1.818l.99-.99a1 1 0 0 0 0-1.415l-1.413-1.414a1 1 0 0 0-1.415 0l-.99.99z"
-                  clipRule="evenodd"
-                />
-                <path d="m2 22.95l2.122-7.778l5.656 5.657z" />
-              </g>
-            </svg>
-          </button>
+    <div className="container-user-page">
+      <main className="page__course">
+        <div className="container-page">
+          <div className="course-content">
+            <h1>Giuseppe</h1>
+
+            <div className="content-block">
+              <span className="label">Valutazione</span>
+              <span className="stars">★★★☆☆</span>
+            </div>
+
+            <div className="content-block">
+              <a className="button button--booking">Book Course</a>
+              <a className="button button--download">Download PDF</a>
+            </div>
+
+            <div className="content-block">
+              <ul id="tabs">
+                <li className="active">
+                  <a href="#">Descrizione</a>
+                </li>
+              </ul>
+
+              <ul id="tab">
+                <li className="active">
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Moatibus amet quisquam accus, porro, alias sed distinctio.
+                    necessitatibus amet quisquam accusamus minus rederit cum
+                    dolores ab ratione, porro, alias sed distinctio.
+                  </p>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Modi quo, culpa susc ipsum assumenda odio doloribus
+                    necessitatibus amequam porro, alias sed distinct.
+                    necessitatibus quisquam accusamus minus reprehenderit cum
+                    dolores ab ratione, porro,as sed distinctio.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Moatibus ametoijoj ioj iuh accusamus minus rederit cum
+                    dolores ab ratione, poruiyg ro, alias sed distinctio.
+                  </p>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Modi quo, culpa susc ipsum as sed distinct. neceby tbatibus
+                    quisquam ac byuu minus reprehenderit cum dolores ab ratione,
+                    porro,as sed distinctio.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    Luy uy lor sit amet, c ur adipisicing elit. Moatibus amet
+                    quisquam accus, porro, alias sed distinctio. necessitatibus
+                    hui reprehenderit cum dolores ab ratione, porro,as sed
+                    distinctio.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    ipsum dolor sit amet, consectetur adipisicing elit. Moatibus
+                    quisquam accus, imiinus rederit cum dolores ab ratione,
+                    porro, alias sed distinctio.
+                  </p>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Modi quo, culpa susc ipsum assumes sed distinct.
+                    necessitatibuo joij oij bhuohb ouyone, porro,as sed
+                    distinctio.
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <aside className="courseSidebar">
+            <div className="courseSidebar__featureImage"></div>
+
+            <ul className="courseStats">
+              <li>
+                <span className="label courseStats__label">Telefono</span>
+                <span className="courseStats__divider"></span>
+                <span className="courseStats__data">+39 02 1234567</span>
+              </li>
+              <li>
+                <span className="label courseStats__label">Email</span>
+                <span className="courseStats__divider"></span>
+                <span className="courseStats__data">john.doe@example.com</span>
+              </li>
+              <li>
+                <span className="label courseStats__label">Suitable For</span>
+                <span className="courseStats__divider"></span>
+                <span className="courseStats__data">Managers</span>
+              </li>
+              <li>
+                <span className="label courseStats__label">Subject</span>
+                <span className="courseStats__divider"></span>
+                <span className="courseStats__data">Working At Height</span>
+              </li>
+            </ul>
+          </aside>
         </div>
-        <p>Giu</p>
+      </main>
+
+      <div className="tools">
+        <a className="tools__"></a>
+        <a className=""></a>
+        <a></a>
       </div>
-      <div className="input-container">
-        <div>
-          <label
-            htmlFor="Name"
-            className="block text-xs font-medium text-gray-700"
-          >
-            {" "}
-            Name{" "}
-          </label>
-
-          <input
-            type="text"
-            id="Name"
-            placeholder="Giu"
-            className="mt-1 w-500 rounded-md border-gray-200 shadow-md sm:text-sm"
-          />
-        </div>
-        <div>
-          <label
-            htmlFor="Password"
-            className="block text-xs font-medium text-gray-700"
-          >
-            {" "}
-            Password{" "}
-          </label>
-
-          <input
-            type="Password"
-            id="Password"
-            placeholder=""
-            className="mt-1 w-500 rounded-md border-gray-200 shadow-md sm:text-sm"
-          />
-        </div>
-      </div>
-      <div className="input-container">
-        <div>
-          <label
-            htmlFor="UserEmail"
-            className="block text-xs font-medium text-gray-700"
-          >
-            {" "}
-            Email{" "}
-          </label>
-
-          <input
-            type="email"
-            id="UserEmail"
-            placeholder="john@rhcp.com"
-            className="mt-1 w-500 rounded-md border-gray-200 shadow-md sm:text-sm"
-          />
-        </div>
-        <div>
-          <label
-            htmlFor="PhoneNumber"
-            className="block text-xs font-medium text-gray-700"
-          >
-            {" "}
-            Phone Number{" "}
-          </label>
-
-          <input
-            type="text"
-            id="PhoneNumber"
-            placeholder="+39"
-            className="mt-1 w-500 rounded-md border-gray-200 shadow-md sm:text-sm"
-          />
-        </div>
-      </div>
-     
-      <div className="input-container-description">
-        <div>
-          <label
-            htmlFor="Description"
-            className="block text-xs font-medium text-gray-700"
-          >
-            {" "}
-            Descrizione{" "}
-          </label>
-
-          <input
-            type="text"
-            id="Description"
-            placeholder=""
-            className="w-full py-10 px-1 rounded-md border-gray-200 shadow-md sm:text-sm"
-          />
-        </div>
-        </div>
     </div>
   );
 }

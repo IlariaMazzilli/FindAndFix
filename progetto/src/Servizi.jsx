@@ -1,30 +1,16 @@
-import React, { useState } from 'react';
-import './myStyles.css'; // Importa il file CSS
+import React, { useState } from "react";
+import "./myStyles.css"; // Importa il file CSS
 
 // import chatIcon from './images/logo.svg'; // Icona della chat
-import ProfileList from './components/ProfileList';
-
+import ProfileList from "./components/ProfileList";
 
 const MyComponent = () => {
-
-
-    
-
   return (
-        <div>
-
-     
-
-
+    <div>
       <div>
-      
-                <ProfileList />
-
+        <ProfileList />
       </div>
-
-      
     </div>
   );
-
 };
 export default MyComponent;

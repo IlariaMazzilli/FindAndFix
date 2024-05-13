@@ -26,7 +26,7 @@ const ProfileList = () => {
 
 
   return (
-    <div className="container">
+    <div className="container-servizi">
       {profiles.map((profile, index) => (
         <ProfileCard
           key={index}
