@@ -1,146 +1,140 @@
-import React from "react";
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-//icons
-import { FcGoogle } from "react-icons/fc";
+import React, { useState } from "react";
+import House from "../images/House.jpg";
 import { MdVisibility } from "react-icons/md";
-import { MdAlternateEmail } from "react-icons/md";
-import { FaLongArrowAltRight } from "react-icons/fa";
-import { IoMdPersonAdd } from "react-icons/io";
+import { FcGoogle } from "react-icons/fc";
+import { useNavigate } from "react-router-dom";
 
-export const SignIn = () => {
+function SignIn() {
+  const [errorMessage, setErrorMessage] = useState('')
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
   const { email, password } = formData;
- /*  const navigate = useNavigate(); */
-  
-  function handleInput (e){
+  const navigate = useNavigate();
+
+  async function OnLogInClicked() {
+    alert("Log In manca delle funzioni ");
+  }
+
+  function handleInput(e) {
     setFormData((prevState) => ({
       ...prevState,
-      [e.target.id]: e.target.value 
-   
-    }))
-    
-  } 
+      [e.target.name]: e.target.value,
+    }));
+  }
 
   return (
     <>
-      <a
-        rel="stylesheet"
-        href="https://kit-pro.fontawesome.com/releases/v5.15.1/css/pro.min.css"
-      />
-
-      <div className="min-h-screen flex flex-col items-center justify-center bg-gray-300">
-        <div className="flex flex-col bg-white shadow-md px-4 sm:px-6 md:px-8 lg:px-10 py-8 rounded-md w-full max-w-md">
-          <div className="font-medium self-center text-xl sm:text-2xl uppercase text-gray-800">
-            Login To Your Account
+      <>
+        <section className="flex flex-col md:flex-row h-screen items-center">
+          <div className="bg-customBlue hidden lg:block w-full md:w-1/2 xl:w-2/3 h-screen">
+            <img src={House} alt="" className="w-full h-full object-cover" />
           </div>
-          <button className="relative mt-6 border rounded-md py-2 text-sm text-gray-800 bg-gray-100 hover:bg-gray-200">
-            <span className="absolute left-0 top-0 flex items-center justify-center h-full w-10 text-blue-500">
-              <FcGoogle />
-            </span>
-            <span>Login with Google</span>
-          </button>
-          <div className="relative mt-10 h-px bg-gray-300">
-            <div className="absolute left-0 top-0 flex justify-center w-full -mt-2">
-              <span className="bg-white px-4 text-xs text-gray-500 uppercase">
-                Or Login With Email
-              </span>
-            </div>
-          </div>
-          <div className="mt-10">
-            <form action="#">
-              <div className="flex flex-col mb-6">
-                <label
-                  htmlFor="email"
-                  className="mb-1 text-xs sm:text-sm tracking-wide text-gray-600"
-                >
-                  E-Mail Address:
-                </label>
-                <div className="relative">
-                  <div className="inline-flex items-center justify-center absolute left-0 top-0 h-full w-10 text-gray-400">
-                   <MdAlternateEmail />
-                  </div>
-
+          <div
+            className="bg-white w-full md:max-w-md lg:max-w-full md:mx-auto md:w-1/2 xl:w-1/3 h-screen px-6 lg:px-16 xl:px-12
+  flex items-center justify-center"
+          >
+            <div className="w-full h-100">
+              <h1 className="text-xl md:text-2xl font-bold leading-tight mt-12">
+                Accedi al tuo account
+              </h1>
+              <form className="mt-6" action="#" method="POST">
+              {errorMessage && <div className="fail">{errorMessage}</div>}
+                <div>
+                  <label className="block text-gray-700">
+                    Indirizzo e-mail
+                  </label>
                   <input
-                    id="email"
                     type="email"
                     name="email"
-                    className="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
-                    placeholder="E-Mail Address"
-                  value={email}
-                    onChange={handleInput} 
+                    id="email"
+                    placeholder="Inserire l'indirizzo e-mail"
+                    className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none"
+                    value={email}
+                    onChange={handleInput}
+                    autoFocus=""
+                    autoComplete=""
+                    required=""
                   />
                 </div>
-              </div>
-              <div className="flex flex-col mb-6">
-                <label
-                  htmlFor="password"
-                  className="mb-1 text-xs sm:text-sm tracking-wide text-gray-600"
-                >
-                  Password:
-                </label>
-                <div className="relative">
-                  <div className="inline-flex items-center justify-center absolute left-0 top-0 h-full w-10 text-gray-400">
-                    <span>
-                     <MdVisibility className="showPassword" onClick={()=> setShowPassword((prevState) => !prevState)}/>
-                    </span>
+                <div className="mt-4">
+                  <label htmlFor="password" className="block text-gray-700">
+                    Password:
+                  </label>
+                  <div className="relative">
+                    <div className="inline-flex items-center justify-center absolute right-0 top-0 h-full  pt-8 w-10 text-gray-400">
+                      <span>
+                        {/* aggiustare icon metterlo più in basso */}
+                        <MdVisibility
+                          className="showPassword"
+                          onClick={() =>
+                            setShowPassword((prevState) => !prevState)
+                          }
+                        />
+                      </span>
+                    </div>
+
+                    <input
+                      id="password"
+                      type={showPassword ? "text" : "password"}
+                      name="password"
+                      className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none pr-10"
+                      placeholder="Password"
+                      minLength={6}
+                      required=""
+                      autoComplete=""
+                      value={password}
+                      onChange={handleInput}
+                    />
                   </div>
-
-                  <input
-                    id="password"
-                    type={showPassword ? 'text': 'password'}
-                    name="password"
-                    className="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
-                    placeholder="Password"
-                    value={password}
-                   onChange={handleInput}  
-                  />
                 </div>
-              </div>
-
-              <div className="flex items-center mb-6 -mt-4">
-                <div className="flex ml-auto">
-                  <Link
-                    to="/forgot-password"
-                    className="inline-flex text-xs sm:text-sm text-blue-500 hover:text-blue-700"
+                <div className="text-right mt-2">
+                  <button
+                  /* inserire il nuovo form di forgot password */
+                    onClick={() => navigate("/forgot-password")}
+                    className="text-sm font-semibold text-gray-700 hover:text-blue-700 focus:text-blue-700"
                   >
-                    Forgot Your Password?
-                  </Link>
+                    Hai dimenticato la password?
+                    </button>
                 </div>
-              </div>
-
-              <div className="flex w-full">
-                
                 <button
                   type="submit"
-                  className="flex items-center justify-center focus:outline-none text-white text-sm sm:text-base bg-blue-600 hover:bg-blue-700 rounded py-2 w-full transition duration-150 ease-in"
+                  className="w-full block bg-customBlue hover:bg-customGreen focus:bg-customGreen text-white font-semibold rounded-lg
+        px-4 py-3 mt-6"
+                  disabled={!email || !password}
+                  onClick={OnLogInClicked}
                 >
-                  <span className="mr-2 uppercase">Login</span>
-                  <span>
-                   <FaLongArrowAltRight />
-                  </span>
+                  Log In
                 </button>
-                
-              </div>
-            </form>
+              </form>
+              <hr className="my-6 border-gray-300 w-full" />
+              <button
+                type="button"
+                className="w-full block bg-white hover:bg-gray-100 focus:bg-gray-100 text-gray-900 font-semibold rounded-lg px-4 py-3 border border-gray-300"
+              >
+                <div className="flex items-center justify-center">
+                  <FcGoogle />
+                  <span className="ml-4">Accedi con Google</span>
+                </div>
+              </button>
+
+              <p className="mt-8">
+                Hai bisogno di un account?{" "}
+                <button
+                  onClick={() => navigate("/registrati")}
+                  className="text-customBlue hover:text-customGreen font-semibold"
+                >
+                  Registrati
+                  </button>
+              </p>
+            </div>
           </div>
-          <div className="flex justify-center items-center mt-6">
-            <Link
-              to="/signUp"
-              className="inline-flex items-center font-bold text-blue-500 hover:text-blue-700 text-xs text-center"
-            >
-              <span>
-             <IoMdPersonAdd />
-              </span>
-              <span className="ml-2">You don't have an account?</span>
-            </Link>
-          </div>
-        </div>
-      </div>
+        </section>
+      </>
     </>
   );
-};
+}
+
+export default SignIn;
