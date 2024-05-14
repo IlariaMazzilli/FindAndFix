@@ -15,7 +15,7 @@ export const SignIn = () => {
     password: "",
   });
   const { email, password } = formData;
-  const navigate = useNavigate();
+ /*  const navigate = useNavigate(); */
   
   function handleInput (e){
     setFormData((prevState) => ({
@@ -28,7 +28,7 @@ export const SignIn = () => {
 
   return (
     <>
-      <link
+      <a
         rel="stylesheet"
         href="https://kit-pro.fontawesome.com/releases/v5.15.1/css/pro.min.css"
       />
