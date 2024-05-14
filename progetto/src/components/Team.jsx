@@ -5,6 +5,7 @@ import lucy from '../images/lucy.png'
 import manu from '../images/manu.png'
 import fabian from '../images/fabian.png'
 import giuse from '../images/giuse.png'
+import dange from '../images/dange.png'
 
 
 function Team() {
@@ -48,7 +49,7 @@ function Team() {
                 </ul>
             </div>
             </Fade>
-            <Fade triggerOnce={true} delay={500}>
+            <Fade triggerOnce={true} delay={400}>
             <div className="text-center text-gray-500 dark:text-gray-400">
                 <img className="mx-auto mb-4 w-46 h-46 rounded-full" src={lucy} alt="Lucy"/>
                 <h3 className="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
@@ -79,7 +80,7 @@ function Team() {
                 </ul>
             </div>
             </Fade>
-            <Fade triggerOnce={true} delay={1000}>
+            <Fade triggerOnce={true} delay={800}>
             <div className="text-center text-gray-500 dark:text-gray-400">
                 <img className="mx-auto mb-4 w-52 h-46 rounded-full" src={manu} alt="Emanuele Avitabile"/>
                 <h3 className="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
@@ -110,7 +111,7 @@ function Team() {
                 </ul>
             </div>
             </Fade>
-            <Fade triggerOnce={true} delay={1500}>
+            <Fade triggerOnce={true} delay={1200}>
             <div className="text-center text-gray-500 dark:text-gray-400">
                 <img className="mx-auto mb-4 w-46 h-46 rounded-full" src={fabian} alt="Fabian Mardale"/>
                 <h3 className="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
@@ -141,7 +142,7 @@ function Team() {
                 </ul>
             </div>
             </Fade>
-            <Fade triggerOnce={true} delay={2000}>
+            <Fade triggerOnce={true} delay={1600}>
             <div className="text-center text-gray-500 dark:text-gray-400">
                 <img className="mx-auto mb-4 w-46 h-46 rounded-full" src={giuse} alt="Giuseppe Buoncore"/>
                 <h3 className="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
@@ -172,9 +173,9 @@ function Team() {
                 </ul>
             </div>
             </Fade>
-            <Fade triggerOnce={true} delay={2500}>
+            <Fade triggerOnce={true} delay={2000}>
             <div className="text-center text-gray-500 dark:text-gray-400">
-                <img className="mx-auto mb-4 w-46 h-46 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/thomas-lean.png" alt="Danguole Schiavone"/>
+                <img className="mx-auto mb-4 w-46 h-46 rounded-full" src={dange} alt="Danguole Schiavone"/>
                 <h3 className="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                     <a href="#">Danguole Schiavone</a>
                 </h3>

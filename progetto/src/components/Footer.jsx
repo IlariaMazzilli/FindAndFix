@@ -232,12 +232,11 @@ function Footer() {
                     <div className="text-center sm:flex sm:justify-between sm:text-left">
                         <p className="text-sm text-customGreen font-bold [@media(min-width:540px)]:flex [@media(min-width:540px)]:justify-around  ">
 
-                            <a
+                            <Link to="/TermsAndConditions"
                                 className=" text-customGreen transition  "
-                                href="#"
                             >
                                 Termini e condizioni
-                            </a>
+                            </Link>
 
                             <span>&middot;</span>
 

@@ -7,17 +7,17 @@ function TermsAndConditions() {
         <div>
             <Navbar />
             <br /><br /><br /><br />
-            <div >
-                <div className="container mx-auto px-4 py-8">
-                    <h1 className="text-3xl font-bold mb-4">Privacy Policy</h1>
+            <div>
+                <div className="mx-auto px-4 py-8">
+                    <h1 className="text-3xl font-bold mb-4 text-customBlue">Privacy Policy</h1>
 
                     <p className="mb-4">
                         This privacy policy sets out how our website uses and protects any information that you give us when you use
                         this
                         website.
                     </p>
-
-                    <h2 className="text-2xl font-bold mb-2">Information We Collect</h2>
+                    <br />
+                    <h2 className="text-2xl font-bold mb-2 text-customBlue">Information We Collect</h2>
 
                     <p className="mb-4">
                         We may collect the following information:
@@ -28,8 +28,8 @@ function TermsAndConditions() {
                         <li>Demographic information</li>
                         <li>Other information relevant to customer surveys and/or offers</li>
                     </ul>
-
-                    <h2 className="text-2xl font-bold mb-2">How We Use the Information</h2>
+                    <br />
+                    <h2 className="text-2xl font-bold mb-2 text-customBlue">How We Use the Information</h2>
 
                     <p className="mb-4">
                         We require this information to understand your needs and provide you with a better service, and in
@@ -50,8 +50,8 @@ function TermsAndConditions() {
                             you by email, phone, or mail. We may use the information to customize the website according to your
                             interests.</li>
                     </ul>
-
-                    <h2 className="text-2xl font-bold mb-2">Security</h2>
+                    <br />
+                    <h2 className="text-2xl font-bold mb-2 text-customBlue">Security</h2>
 
                     <p className="mb-4">
                         We are committed to ensuring that your information is secure. In order to prevent unauthorized access or
@@ -59,8 +59,8 @@ function TermsAndConditions() {
                         we have put in place suitable physical, electronic, and managerial procedures to safeguard and secure the
                         information we collect online.
                     </p>
-
-                    <h2 className="text-2xl font-bold mb-2">Cookies</h2>
+                    <br />
+                    <h2 className="text-2xl font-bold mb-2 text-customBlue">Cookies</h2>
 
                     <p className="mb-4">
                         A cookie is a small file that asks permission to be placed on your computer's hard drive. Once you agree,
@@ -82,8 +82,8 @@ function TermsAndConditions() {
                         than
                         the data you choose to share with us.
                     </p>
-
-                    <h2 className="text-2xl font-bold mb-2">Links to Other Websites</h2>
+                    <br />
+                    <h2 className="text-2xl font-bold mb-2 text-customBlue">Links to Other Websites</h2>
 
                     <p className="mb-4">
                         Our website may contain links to other websites of interest. However, once you have used these links to
@@ -99,8 +99,8 @@ function TermsAndConditions() {
                         to
                         the website in question.
                     </p>
-
-                    <h2 className="text-2xl font-bold mb-2">Controlling Your Personal Information</h2>
+                    <br />
+                    <h2 className="text-2xl font-bold mb-2 text-customBlue">Controlling Your Personal Information</h2>
 
                     <p className="mb-4">
                         You may choose to restrict the collection or use of your personal information in the following ways:
@@ -109,7 +109,7 @@ function TermsAndConditions() {
                     <ul className="list-disc list-inside mb-4">
                         <li>If you have previously agreed to us using your personal information for direct marketing purposes, you
                             may
-                            change your mind at any time by writing to or emailing us at [email protected]</li>
+                            change your mind at any time by writing to or emailing us at findandfix@info.com </li>
                         <li>We will not sell, distribute, or lease your personal information to third parties unless we have your
                             permission
                             or are required by law to do so. We may use your personal information to send you promotional
@@ -117,8 +117,8 @@ function TermsAndConditions() {
                             about
                             third parties which we think you may find interesting if you tell us that you wish this to happen.</li>
                         <li>You may request details of personal information which we hold about you. If you would like a copy of the
-                            information held on you, please write to [Your Company Name, Address, City, State, Zip Code] or email
-                            [email protected]</li>
+                            information held on you, please write to Find & Fix, Piazza della Luna, 14, Domodossola, 28845 or email
+                            findandfix@info.com</li>
                         <li>If you believe that any information we are holding on you is incorrect or incomplete, please write to or
                             email
                             us as soon as possible at the above address. We will promptly correct any information found to be
@@ -129,6 +129,7 @@ function TermsAndConditions() {
                     <p className="mb-4">
                         This privacy policy is subject to change without notice.
                     </p>
+                    <br />
                 </div>
             </div>
             <br />

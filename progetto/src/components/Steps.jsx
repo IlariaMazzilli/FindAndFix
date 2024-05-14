@@ -14,7 +14,7 @@ function Steps() {
     // primo
     <Fade triggerOnce={true}>
 
-      <Slide direction='right' duration={2500} triggerOnce={true}>
+      <Slide direction='right' duration={1500} triggerOnce={true}>
         <section className="overflow-hidden sm:grid-cols-2 flex mt-12 px-8 sm:px-4 sm:flex ">
 
           <img
@@ -34,7 +34,7 @@ function Steps() {
       </Slide>
       {/* secondo */}
       <Fade triggerOnce={true}>
-        <Slide direction='left' duration={2500} triggerOnce={true}>
+        <Slide direction='left' duration={1500} triggerOnce={true}>
           <section className="overflow-hidden sm:grid sm:grid-cols-2 flex mt-12 px-8 sm:px-4">
             <div className="p-8 md:p-12 lg:px-16 lg:py-24 sm:p-0 sm:pl-4">
               <div className="flex flex-col">
@@ -57,7 +57,7 @@ function Steps() {
       </Fade>
       {/* terzo */}
       <Fade triggerOnce={true}>
-        <Slide direction='right' duration={2500} triggerOnce={true}>
+        <Slide direction='right' duration={1500} triggerOnce={true}>
           <section className="overflow-hidden sm:grid-cols-2 flex mt-12 px-8 sm:px-4 sm:flex ">
 
             <img
@@ -78,7 +78,7 @@ function Steps() {
       </Fade>
       {/* quarto */}
       <Fade triggerOnce={true}>
-        <Slide direction='left' duration={2500} triggerOnce={true}>
+        <Slide direction='left' duration={1500} triggerOnce={true}>
           <section className="overflow-hidden sm:grid sm:grid-cols-2 flex mt-12 px-8 sm:px-4">
             <div className="p-8 md:p-12 lg:px-16 lg:py-24 sm:p-0  sm:pl-4">
               <div className="flex flex-col">
