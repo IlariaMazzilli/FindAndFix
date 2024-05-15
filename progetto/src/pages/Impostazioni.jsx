@@ -90,7 +90,7 @@ function Impostazioni() {
             className="w-full py-10 px-1 rounded-md border-gray-200 shadow-md sm:text-sm"
           />
         </div>
-        <Pagamenti />
+        
       </div>
       <div className="container-save-btn">
       <button className="save-btn">Salva</button>

@@ -6,7 +6,8 @@ function UserPage() {
       <main className="page__course">
         <div className="container-page">
           <div className="course-content">
-            <h1>Giuseppe</h1>
+            <h1>Giuseppe Verdi</h1>
+           
 
             <div className="content-block">
               <span className="label">Valutazione</span>
@@ -27,6 +28,7 @@ function UserPage() {
                   />
                 </svg>
                 Send a message
+                {/* solo recensioni */}
               </a>
             </div>
 

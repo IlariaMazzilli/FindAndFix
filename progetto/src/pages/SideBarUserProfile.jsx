@@ -3,6 +3,7 @@ import "./SideBarUserProfile.css";
 import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
 import Servizi from "../Servizi";
 import Impostazioni from "./Impostazioni";
+import Pagamenti from './Pagamenti';
 
 // Importa i file e sostituisci i 'to'
 
@@ -67,7 +68,7 @@ function SideBarUserProfile() {
                   </li>
                   <hr />
                   <li>
-                    <Link to="/servizi" className="content-side-bar">
+                    <Link to="/pagamenti" className="content-side-bar">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         className="size-5 opacity-75"
@@ -82,7 +83,7 @@ function SideBarUserProfile() {
                           d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"
                         />
                       </svg>
-                      <p className="nome-pagina-sidebar">Pagamanti</p>
+                      <p className="nome-pagina-sidebar">Pagamenti</p>
                       <span className="invisible absolute start-full top-1/2 ms-4 -translate-y-1/2 rounded bg-gray-900 px-2 py-1.5 text-xs font-medium text-white group-hover:visible">
                         Pagamenti
                       </span>
@@ -174,6 +175,7 @@ function SideBarUserProfile() {
             <Route path="/" element={<UserPage />} />
             <Route path="/servizi" element={<Servizi />} />{" "}
             <Route path="/impostazioni" element={<Impostazioni />} />{" "}
+            <Route path="/pagamenti" element={<Pagamenti />} />{" "}
             {/* Assicurati di fornire il componente per la pagina dei servizi */}
             {/* aggiungi rotte */}
           </Routes>
