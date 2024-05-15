@@ -6,8 +6,8 @@ function UserPage() {
       <main className="page__course">
         <div className="container-page">
           <div className="course-content">
-            <h1>Giuseppe Verdi</h1>
-           
+            <h1 className="name-user">Giuseppe Verdi</h1>
+            <h2 className="profession">Elettricista</h2>
 
             <div className="content-block">
               <span className="label">Valutazione</span>

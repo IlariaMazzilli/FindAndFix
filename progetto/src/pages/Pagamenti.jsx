@@ -1,10 +1,10 @@
-import './Pagamenti.css'
+import "./Pagamenti.css";
 
 function Pagamenti() {
   return (
     <div className="container-pagamenti">
       <div className="payment-title">
-        <h1>Payment Information</h1>
+        <h1>Informazioni di Pagamento</h1>
       </div>
       <div className="container preload">
         <div className="creditcard">
@@ -55,19 +55,19 @@ function Pagamenti() {
                   transform="matrix(1 0 0 1 54.1074 389.8793)"
                   className="st7 st5 st8"
                 >
-                  cardholder name
+                  Nome
                 </text>
                 <text
                   transform="matrix(1 0 0 1 479.7754 388.8793)"
                   className="st7 st5 st8"
                 >
-                  expiration
+                  Scadenza
                 </text>
                 <text
                   transform="matrix(1 0 0 1 65.1054 241.5)"
                   className="st7 st5 st8"
                 >
-                  card number
+                  Numero Carta
                 </text>
                 <g>
                   <text
@@ -182,7 +182,6 @@ function Pagamenti() {
               x="0px"
               y="0px"
               viewBox="0 0 750 471"
-           
               xmlSpace="preserve"
             >
               <g id="Front">
@@ -268,12 +267,11 @@ function Pagamenti() {
       </div>
       <div className="form-container">
         <div className="field-container">
-          <label htmlFor="name">Name</label>
+          <label htmlFor="name">Nome</label>
           <input id="name" maxLength="20" type="text" />
         </div>
         <div className="field-container">
-          <label htmlFor="cardnumber">Card Number</label>
-          <span id="generatecard">generate random</span>
+          <label htmlFor="cardnumber">Numero Carta</label>
           <input
             id="cardnumber"
             type="text"
@@ -292,7 +290,7 @@ function Pagamenti() {
           ></svg>
         </div>
         <div className="field-container">
-          <label htmlFor="expirationdate">Expiration (mm/yy)</label>
+          <label htmlFor="expirationdate">Scadenza (mm/yy)</label>
           <input
             id="expirationdate"
             type="text"
@@ -301,7 +299,7 @@ function Pagamenti() {
           />
         </div>
         <div className="field-container">
-          <label htmlFor="securitycode">Security Code</label>
+          <label htmlFor="securitycode">CVV</label>
           <input
             id="securitycode"
             type="text"
@@ -310,8 +308,11 @@ function Pagamenti() {
           />
         </div>
       </div>
+      <div className="container-save-btn">
+        <button className="save-btn">Salva</button>
+      </div>
     </div>
   );
 }
 
-export default Pagamenti
+export default Pagamenti;

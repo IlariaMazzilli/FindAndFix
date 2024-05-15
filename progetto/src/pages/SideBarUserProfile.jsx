@@ -3,7 +3,9 @@ import "./SideBarUserProfile.css";
 import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
 import Servizi from "../Servizi";
 import Impostazioni from "./Impostazioni";
-import Pagamenti from './Pagamenti';
+import Pagamenti from "./Pagamenti";
+import Notifiche from "./Notifiche";
+import Preferiti from "./Preferiti";
 
 // Importa i file e sostituisci i 'to'
 
@@ -12,7 +14,7 @@ function SideBarUserProfile() {
     <BrowserRouter>
       <div className="container-side-bar">
         <div className="side-bar">
-          <div>      
+          <div>
             <div className="inline-flex size-100 items-center justify-center">
               <span className="content-side-bar">PROFILO UTENTE</span>
             </div>
@@ -46,7 +48,7 @@ function SideBarUserProfile() {
                   </div>
                   <hr />
                   <li>
-                    <Link to="/servizi" className="content-side-bar">
+                    <Link to="/preferiti" className="content-side-bar">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         className="size-5 opacity-75"
@@ -119,7 +121,7 @@ function SideBarUserProfile() {
                   {/* </div> */}
                   <hr />
                   <li>
-                    <Link to="/servizi" className="content-side-bar">
+                    <Link to="/notifiche" className="content-side-bar">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         className="size-5 opacity-75"
@@ -176,6 +178,8 @@ function SideBarUserProfile() {
             <Route path="/servizi" element={<Servizi />} />{" "}
             <Route path="/impostazioni" element={<Impostazioni />} />{" "}
             <Route path="/pagamenti" element={<Pagamenti />} />{" "}
+            <Route path="/notifiche" element={<Notifiche />} />{" "}
+            <Route path="/preferiti" element={<Preferiti />} />{" "}
             {/* Assicurati di fornire il componente per la pagina dei servizi */}
             {/* aggiungi rotte */}
           </Routes>

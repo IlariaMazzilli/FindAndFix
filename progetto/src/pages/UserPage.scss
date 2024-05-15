@@ -25,12 +25,21 @@ li {
   margin-top: 5em;
 }
 
-h1 {
+.name-user {
   margin-top: 10px;
-  margin-bottom: 1em;
   font-size: 2.2em;
   max-width: 650px;
   line-height: 1.3;
+}
+
+.profession {
+  padding-top: 5px;
+  padding-bottom: 60px;
+}
+
+.aggiungi-ai-preferiti {
+  display: flex;
+  padding-top: 20px;
 }
 
 .content-block {

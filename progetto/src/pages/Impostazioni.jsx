@@ -8,23 +8,23 @@ function Impostazioni() {
         <div>
           <label
             htmlFor="Name"
-            className="block text-xs font-medium text-gray-700"
+            className="block text-lg font-medium text-green-700"
           >
             {" "}
-            Name{" "}
+            Nome{" "}
           </label>
 
           <input
             type="text"
             id="Name"
             placeholder="Giu"
-            className="mt-1 w-500 rounded-md border-gray-200 shadow-md sm:text-sm"
+            className="mt-1 w-500 rounded-md border-green-500 shadow-lg sm:text-sm"
           />
         </div>
         <div>
           <label
             htmlFor="Password"
-            className="block text-xs font-medium text-gray-700"
+            className="block text-lg font-medium text-green-700"
           >
             {" "}
             Password{" "}
@@ -34,7 +34,7 @@ function Impostazioni() {
             type="Password"
             id="Password"
             placeholder=""
-            className="mt-1 w-500 rounded-md border-gray-200 shadow-md sm:text-sm"
+            className="mt-1 w-500 rounded-md border-green-500 shadow-lg sm:text-sm"
           />
         </div>
       </div>
@@ -42,7 +42,7 @@ function Impostazioni() {
         <div>
           <label
             htmlFor="UserEmail"
-            className="block text-xs font-medium text-gray-700"
+            className="block text-lg font-medium text-green-700"
           >
             {" "}
             Email{" "}
@@ -52,23 +52,23 @@ function Impostazioni() {
             type="email"
             id="UserEmail"
             placeholder="john@rhcp.com"
-            className="mt-1 w-500 rounded-md border-gray-200 shadow-md sm:text-sm"
+            className="mt-1 w-500 rounded-md border-green-500 shadow-lg sm:text-sm"
           />
         </div>
         <div>
           <label
             htmlFor="PhoneNumber"
-            className="block text-xs font-medium text-gray-700"
+            className="block text-lg font-medium text-green-700"
           >
             {" "}
-            Phone Number{" "}
+            Numero di telefono{" "}
           </label>
 
           <input
             type="text"
             id="PhoneNumber"
             placeholder="+39"
-            className="mt-1 w-500 rounded-md border-gray-200 shadow-md sm:text-sm"
+            className="mt-1 w-500 rounded-md border-green-500 shadow-lg sm:text-sm"
           />
         </div>
       </div>
@@ -77,7 +77,7 @@ function Impostazioni() {
         <div>
           <label
             htmlFor="Description"
-            className="block text-xs font-medium text-gray-700"
+            className="block text-lg font-medium text-green-700"
           >
             {" "}
             Descrizione{" "}
@@ -87,10 +87,9 @@ function Impostazioni() {
             type="text"
             id="Description"
             placeholder=""
-            className="w-full py-10 px-1 rounded-md border-gray-200 shadow-md sm:text-sm"
+            className="w-full py-10 px-1 rounded-md border-green-500 shadow-lg sm:text-sm"
           />
         </div>
-        
       </div>
       <div className="container-save-btn">
       <button className="save-btn">Salva</button>
