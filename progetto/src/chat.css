@@ -1,0 +1,17 @@
+.logowewe {
+    height: 80px;
+    width: 80px;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 999;
+}
+
+.bot {
+    position: fixed;
+    bottom: 125px; /* altezza del logo più un margine */
+    right: 20px;
+    z-index: 998; /* Inferiore al logo */
+  }
+
+  

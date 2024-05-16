@@ -1,7 +1,7 @@
 import React, { Component, useState } from 'react'
 import ChatBot from 'react-simple-chatbot';
-import openIcon from './images/Logo.png'; // Sostituisci con il percorso corretto
-import closeIcon from './images/Logo.png'; // Sostituisci con il percorso corretto
+import openIcon from './images/logoNoBg.svg'; 
+import closeIcon from './images/logoNoBg.svg';
 import { ThemeProvider } from 'styled-components';
 import './chat.css';
 
@@ -28,7 +28,7 @@ const ChatBotComponent = () => {
     <div className='app'>
       <ThemeProvider theme={theme}>
       <img
-      className='logo'
+      className='logowewe max-[1024px]:hidden'
         src={isChatbotOpen ? closeIcon : openIcon}
         alt={isChatbotOpen ? 'Chiudi Chatbot' : 'Apri Chatbot'}
         onClick={toggleChatbot}

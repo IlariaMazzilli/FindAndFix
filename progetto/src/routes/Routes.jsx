@@ -8,12 +8,18 @@ import ChiSiamo from "../pages/ChiSiamo";
 import Servizi from "../Servizi";
 import NotFound from '../pages/NotFound'
 import TermsAndConditions from "../pages/TermsAndConditions";
+import ChatBotComponent from "../ChatBotComponent";
 
 export const Rotte = createBrowserRouter([
     {
         path: "/",
-        element: <Home />,
-    },
+        element: (
+            <>
+              <Home />
+              <ChatBotComponent />
+            </>
+          )
+},
     {
         path: "/registrati",
         element: <Register />,
