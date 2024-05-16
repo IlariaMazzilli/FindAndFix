@@ -10,7 +10,7 @@ import Navbar from './components/Navbar';
 const MyComponent = () => {
   return (
     <div>
-      <Navbar />
+      <Navbar /><br/><br/><br/><br/>
       <ProfileList />
       <Footer />
     </div>

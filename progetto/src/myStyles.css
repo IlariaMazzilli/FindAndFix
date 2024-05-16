@@ -48,6 +48,7 @@
     /* Aggiungi padding al container */
     justify-content: center; /* Centra orizzontalmente */
   align-content: center; /* Centra verticalmente */
+  text-align: center;
 }
 
 .profile-default {
