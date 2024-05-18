@@ -1,0 +1,50 @@
+.container-user {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: space-between;
+ 
+}
+
+
+
+
+/* .input-style {
+    border: 1px solid black;
+  } */
+
+.input-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  padding: 50px 200px 100px;
+}
+
+.button-change-img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 25px;
+  width: 30px;
+  height: 30px;
+  background-color: #1b5b97;
+}
+
+.input-container-description {
+  width: 90%;
+  padding: 0 200px 100px;
+}
+
+.container-save-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+}
+
+.save-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

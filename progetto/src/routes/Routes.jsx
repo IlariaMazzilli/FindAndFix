@@ -1,4 +1,4 @@
-import { createBrowserRouter, redirect } from "react-router-dom";
+import { createBrowserRouter, redirect, Outlet} from "react-router-dom";
 import Home from "../pages/Home";
 import Register from "../pages/Register";
 import ProRegister from "../pages/ProRegister";
@@ -9,6 +9,13 @@ import Servizi from "../Servizi";
 import NotFound from '../pages/NotFound'
 import TermsAndConditions from "../pages/TermsAndConditions";
 import ChatBotComponent from "../ChatBotComponent";
+import SideBarUserProfile from "../pages/SideBarUserProfile";
+import UserPage from "../pages/UserPage";
+import Card from "../components/Card";
+import ProfileCard from "../components/ProfileCard";
+import Impostazioni from "../pages/Impostazioni";
+import Pagamenti from "../pages/Pagamenti"
+import Preferiti from "../pages/Preferiti"
 
 export const Rotte = createBrowserRouter([
     {
@@ -52,4 +59,30 @@ export const Rotte = createBrowserRouter([
         path: "*",
         element: <NotFound/>,
     },
+    {
+        path: "/Userwewe",
+        element: (
+          <>
+            <SideBarUserProfile />
+          </>
+        ),
+        children: [
+          {
+            path: "avatar",
+            element: <UserPage />,
+          },
+          {
+            path: "impostazioni",
+            element: <Impostazioni />,
+          },
+          {
+            path: "pagamenti",
+            element: <Pagamenti />,
+          },
+          {
+            path: "preferiti",
+            element: <Preferiti />,
+          },
+        ],
+      },
 ])

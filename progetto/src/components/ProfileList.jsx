@@ -20,13 +20,10 @@ const ProfileList = () => {
     { name: 'Sylvia Darqua', image: moverImage, price:'74€', rating: 2.5, description:'Etiam volutpat dictum neque eu facilisis. Nulla id erat ligula. In hac habitasse platea dictumst. Morbi condimentum dignissim risus sed finibus. Curabitur a iaculis ante, sit amet tempor quam. Aenean fringilla magna diam, ut finibus eros rhoncus eu. Mauris auctor posuere lorem vitae elementum. Integer quis condimentum purus. Cras ut quam sed augue dignissim consectetur sed et est.' },
   ];
 
-  const handleContact = (name) => {
-    alert(`Hai contattato ${name}!`); // O qualsiasi altra logica di contatto
-  };
 
 
   return (
-    <div className="container">
+    <div className="containerwewe">
       {profiles.map((profile, index) => (
         <ProfileCard
           key={index}
