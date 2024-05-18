@@ -1,4 +1,4 @@
-import { createBrowserRouter, redirect, Outlet} from "react-router-dom";
+import { createBrowserRouter, redirect, Navigate } from "react-router-dom";
 import Home from "../pages/Home";
 import Register from "../pages/Register";
 import ProRegister from "../pages/ProRegister";
@@ -11,11 +11,11 @@ import TermsAndConditions from "../pages/TermsAndConditions";
 import ChatBotComponent from "../ChatBotComponent";
 import SideBarUserProfile from "../pages/SideBarUserProfile";
 import UserPage from "../pages/UserPage";
-import Card from "../components/Card";
-import ProfileCard from "../components/ProfileCard";
 import Impostazioni from "../pages/Impostazioni";
-import Pagamenti from "../pages/Pagamenti"
-import Preferiti from "../pages/Preferiti"
+import Pagamenti from "../pages/Pagamenti";
+import Preferiti from "../pages/Preferiti";
+import Prowewe from "../pages/Prowewe";
+
 
 export const Rotte = createBrowserRouter([
     {
@@ -64,12 +64,17 @@ export const Rotte = createBrowserRouter([
         element: (
           <>
             <SideBarUserProfile />
+            
           </>
         ),
         children: [
           {
+            path: "",
+            element: <Navigate to="avatar" />, // Redirect to avatar when /Userwewe is accessed
+          },
+          {
             path: "avatar",
-            element: <UserPage />,
+            element: <Prowewe />,
           },
           {
             path: "impostazioni",

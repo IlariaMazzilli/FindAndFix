@@ -1,4 +1,4 @@
-import "./UserPage.scss";
+import "./Prowewe.scss";
 
 function UserPage() {
   return (
@@ -6,27 +6,31 @@ function UserPage() {
       <main className="page__course">
         <div className="container-page">
           <div className="course-content">
-            <h1 className="name-user">Giuseppe Verdi</h1>
+            <h1 className="name-user text-5xl">Sylvia Darqua</h1>
+            <h2 className="profession text-customBlue text-2xl">Interior Designer</h2>
 
             <div className="content-block">
               <span className="label">Valutazione</span>
-              <span className="stars">★★☆☆☆</span>
+              <span className="stars">★★★★☆</span>
             </div>
 
-            <div className="content-block">
-              <a className="send-a-message">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    fill="#66BC46"
-                    d="M20 2H4a2 2 0 0 0-2 2v18l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2"
-                  />
-                </svg>
-                Send a message
+            <div className="content-block w-full">
+              <a className="send-a-message w-full ">
+              <a
+                  className="h-fit button rounded bg-customBlue px-5 py-2 text-mobile font-medium  text-white transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-indigo-500 hover:bg-customGreen"
+                  href="#"
+              >
+                 Contattami!
+                 
+              </a>
+              <button className="hover:scale-110  hover:customGreen"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="43" viewBox="0 0 16 16"><path fill="#0F5DA6" d="M2 15.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2zM8 4.41c1.387-1.425 4.854 1.07 0 4.277C3.146 5.48 6.613 2.986 8 4.412z"/></svg>
+              </button>
+              </a>
+
+
+
+              <a className="add_to_favorites ">
+              
                 {/* solo recensioni */}
               </a>
             </div>
@@ -98,12 +102,12 @@ function UserPage() {
               <li>
                 <span className="label courseStats__label">Telefono</span>
                 <span className="courseStats__divider"></span>
-                <span className="courseStats__data">+39 02 1234567</span>
+                <span className="courseStats__data">+39 357 145687</span>
               </li>
               <li>
                 <span className="label courseStats__label">Email</span>
                 <span className="courseStats__divider"></span>
-                <span className="courseStats__data">giuver@google.com</span>
+                <span className="courseStats__data">sylvia@outlook.com</span>
               </li>
             </ul>
           </aside>
