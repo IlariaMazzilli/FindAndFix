@@ -22,9 +22,6 @@ function Stepper() {
     provincia: '',
   });
 
-  const handleSubscriptionSelect = (selectedSubscription) => {
-    setAbbonamento(selectedSubscription);
-  };
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -67,6 +64,11 @@ function Stepper() {
     setStep(1);
   };
 
+  const handleSubscriptionSelect = (selectedSubscription) => {
+    setAbbonamento(selectedSubscription);
+  };
+
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setFormData((prevState) => ({
@@ -82,8 +84,7 @@ function Stepper() {
 
   return (
     <div
-      className="relative min-h-screen flex w-full overflow-x-hidden justify-center"
-      style={{ backgroundColor: "#0F5DA6" }}
+      className="relative min-h-screen flex w-full overflow-x-hidden justify-center bg-customBlue"
     >
       <div className="container max-w-screen-xl mx-auto my-auto relative flex flex-col w-3/5 ">
         <form
@@ -733,8 +734,8 @@ function Stepper() {
                 <div className="h-full bg-green-500  rounded-3xl w-10/12"></div>
               </div>
               <div className="bg-white py-24 sm:py-32">
-        <div className="mx-auto max-w-4xl px-6 lg:px-8">
-          <div className="mx-auto max-w-4xl text-center">
+        <div className="mx-auto  px-6 lg:px-8">
+          <div className="mx-auto  text-center">
             <p className="mt-2 text-4xl font-bold tracking-tight text-customBlue sm:text-5xl font-lato">
               SELEZIONA IL TUO ABBONAMENTO
             </p>
@@ -769,7 +770,7 @@ function Stepper() {
                 href="#"
                 aria-describedby="tier-freelancer"
                 className="mt-6 block rounded-xl py-2 px-3 text-center text-sm font-semibold leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 bg-green-600 text-white shadow-sm hover:bg-customBlue focus-visible:outline-orange-600"
-              > <button onClick={() => {handleSubscriptionSelect('mensile'); handleSubmit();}}>
+              > <button onClick={() => {handleSubscriptionSelect('mensile'); nextStep(); }}>
                 ACQUISTA ORA </button>
               </a>
               <ul
@@ -860,7 +861,7 @@ function Stepper() {
                 href="#"
                 aria-describedby="tier-freelancer"
                 className="mt-6 block rounded-xl py-2 px-3 text-center text-sm font-semibold leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 bg-green-600 text-white shadow-sm hover:bg-customBlue focus-visible:outline-orange-600"
-              > <button onClick={() => {handleSubscriptionSelect('annuale'); handleSubmit();}}>
+              > <button onClick={() => {handleSubscriptionSelect('annuale'); nextStep();}}>
                 ACQUISTA ORA
                 </button>
               </a>
@@ -945,6 +946,69 @@ function Stepper() {
         
               </div>
             </motion.div>
+            
+            
+          )}
+           {step === 9 && (
+            <motion.div>
+         <div class="font-[sans-serif] bg-gray-50 p-6 min-h-screen">
+      <div class="max-w-7xl mx-auto">
+        <h2 class="text-3xl font-extrabold text-[#333] text-center">Checkout</h2>
+        <div class="grid lg:grid-cols-3 gap-8 mt-12">
+          <div class="lg:col-span-2">
+            <h3 class="text-xl font-bold text-[#333]">Scegli il tuo metodo di pagamento</h3>
+            <div class="grid gap-4 sm:grid-cols-2 mt-6">
+              <div class="flex items-center">
+                <input type="radio" class="w-5 h-5 cursor-pointer" id="card" checked />
+                <label for="card" class="ml-4 flex gap-2 cursor-pointer">
+                  <img src="https://readymadeui.com/images/visa.webp" class="w-12" alt="card1" />
+                  <img src="https://readymadeui.com/images/american-express.webp" class="w-12" alt="card2" />
+                  <img src="https://readymadeui.com/images/master.webp" class="w-12" alt="card3" />
+                </label>
+              </div>
+              <div class="flex items-center">
+                <input type="radio" class="w-5 h-5 cursor-pointer" id="paypal" />
+                <label for="paypal" class="ml-4 flex gap-2 cursor-pointer">
+                  <img src="https://readymadeui.com/images/paypal.webp" class="w-20" alt="paypalCard" />
+                </label>
+              </div>
+            </div>
+            <form class="mt-8">
+              <div class="grid gap-6">
+                <div class="grid sm:grid-cols-3 gap-6">
+                  <input type="number" placeholder="Numero della carta"
+                    class="px-4 py-3.5 bg-white text-[#333] w-full text-sm border rounded-md focus:border-[#007bff] outline-none" />
+                  <input type="number" placeholder="Scadenza"
+                    class="px-4 py-3.5 bg-white text-[#333] w-full text-sm border rounded-md focus:border-[#007bff] outline-none" />
+                  <input type="number" placeholder="CVV"
+                    class="px-4 py-3.5 bg-white text-[#333] w-full text-sm border rounded-md focus:border-[#007bff] outline-none" />
+                </div>
+                <div class="sm:col-span-2 grid sm:grid-cols-2 gap-6">
+                  <input type="text" placeholder="Nome del titolare"
+                    class="px-4 py-3.5 bg-white text-[#333] w-full text-sm border rounded-md focus:border-[#007bff] outline-none" />
+                  <input type="number" placeholder="Codice Postale"
+                    class="px-4 py-3.5 bg-white text-[#333] w-full text-sm border rounded-md focus:border-[#007bff] outline-none" />
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="lg:border-l lg:pl-8">
+            <h3 class="text-xl font-bold text-[#333]">Carrello</h3>
+            <ul class="text-[#333] mt-6 space-y-4">
+              <li class="flex flex-wrap gap-4 text-sm">Abbonamento mensile <span class="ml-auto font-bold">€50.00</span></li>
+              <li class="flex flex-wrap gap-4 text-base font-bold border-t pt-4">Totale <span class="ml-auto">€50.00</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="flex flex-wrap gap-4 mt-10">
+        
+          <button onClick ={ handleSubmit} type="button"
+            class="px-6 py-3.5 text-sm bg-blue-600 text-white rounded-md hover:bg-blue-700">Paga ora</button>
+        </div>
+      </div>
+    </div>
+            </motion.div>
+            
             
           )}
       

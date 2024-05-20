@@ -15,7 +15,7 @@ function App() {
   return (
     <div>
      
-  <Register />
+  <Stepper />
     </div>
   )
 }
