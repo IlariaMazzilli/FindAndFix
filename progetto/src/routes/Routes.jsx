@@ -15,11 +15,11 @@ export const Rotte = createBrowserRouter([
         path: "/",
         element: (
             <>
-              <Home />
-              <ChatBotComponent />
+                <Home />
+                <ChatBotComponent />
             </>
-          )
-},
+        )
+    },
     {
         path: "/registrati",
         element: <Register />,
@@ -30,26 +30,41 @@ export const Rotte = createBrowserRouter([
     },
     {
         path: "/faqs",
-        element: <Faqs/>,
+        element: (<div>
+            <Faqs />
+            <ChatBotComponent />
+        </div>
+
+        ),
     },
     {
         path: "/signIn",
-        element: <SignIn/>,
+        element: <SignIn />,
     },
     {
         path: "/chiSiamo",
-        element: <ChiSiamo/>,
+        element: (
+            <div>
+                <ChiSiamo />
+                <ChatBotComponent />
+            </div>
+        ),
     },
     {
         path: "/servizi",
-        element: <Servizi/>,
+        element: (
+            <div>
+                <Servizi/>
+                <ChatBotComponent />
+            </div>
+        ),
     },
     {
         path: "/termsAndConditions",
-        element: <TermsAndConditions/>,
+        element: <TermsAndConditions />,
     },
     {
         path: "*",
-        element: <NotFound/>,
+        element: <NotFound />,
     },
 ])

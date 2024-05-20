@@ -37,11 +37,11 @@ async function OnSignUpClicked() {
     <br/><br/><br/><br/>
     <section className="bg-white">
       <div className="lg:grid lg:min-h-screen lg:grid-cols-12">
-        <aside className="relative block h-16 lg:order-last lg:col-span-5 lg:h-full xl:col-span-6">
+        <aside className="relative block h-16 lg:order-last lg:col-span-5 lg:h-full xl:col-span-6 max-[1024px]:hidden">
           <img
             alt=""
             src={RegistrationBanner}
-            className="absolute inset-0 h-full w-full object-cover"
+            className="absolute inset-0 h-full w-full object-cover max-[768px]:hidden"
           />
         </aside>
 

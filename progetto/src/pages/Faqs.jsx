@@ -25,7 +25,7 @@ function Faqs() {
 
       <div className="divide-y divide-gray-100 rounded-xl border border-gray-100 bg-white">
         <details className="group p-6 [&_summary::-webkit-details-marker]:hidden" open>
-          <summary className="flex cursor-pointer items-center justify-between gap-1.5 text-gray-900">
+          <summary className="flex cursor-pointer items-center justify-between gap-1.5 text-customBlue">
             <h2 className="text-lg font-medium">QUANTO PAGO PER USUFRUIRE DEL SERVIZIO COME CLIENTE ?</h2>
 
             <span className="relative size-5 shrink-0">
@@ -67,7 +67,7 @@ function Faqs() {
         </details>
 
         <details className="group p-6 [&_summary::-webkit-details-marker]:hidden">
-          <summary className="flex cursor-pointer items-center justify-between gap-1.5 text-gray-900">
+          <summary className="flex cursor-pointer items-center justify-between gap-1.5 text-customBlue">
             <h2 className="text-lg font-medium">SONO TUTELATO IN CASO DI PROBLEMI CON IL PROFESSIONISTA ?</h2>
 
             <span className="relative size-5 shrink-0">
@@ -109,7 +109,7 @@ function Faqs() {
         </details>
 
         <details className="group p-6 [&_summary::-webkit-details-marker]:hidden">
-          <summary className="flex cursor-pointer items-center justify-between gap-1.5 text-gray-900">
+          <summary className="flex cursor-pointer items-center justify-between gap-1.5 text-customBlue">
             <h2 className="text-lg font-medium">POSSO PAGARE IN CONTANTI IL PROFESSIONISTA ?</h2>
 
             <span className="relative size-5 shrink-0">
@@ -151,7 +151,7 @@ function Faqs() {
         </details>
 
         <details className="group p-6 [&_summary::-webkit-details-marker]:hidden">
-          <summary className="flex cursor-pointer items-center justify-between gap-1.5 text-gray-900">
+          <summary className="flex cursor-pointer items-center justify-between gap-1.5 text-customBlue">
             <h2 className="text-lg font-medium">POSSO CANCELLARE UN APPUNTAMENTO ?</h2>
 
             <span className="relative size-5 shrink-0">
@@ -193,7 +193,7 @@ function Faqs() {
         </details>
 
         <details className="group p-6 [&_summary::-webkit-details-marker]:hidden">
-          <summary className="flex cursor-pointer items-center justify-between gap-1.5 text-gray-900">
+          <summary className="flex cursor-pointer items-center justify-between gap-1.5 text-customBlue">
             <h2 className="text-lg font-medium">SE SONO UN PROFESSIONISTA ED HO GIA' UN CONTRATTO POSSO ISCRIVERMI AL SITO ?</h2>
 
             <span className="relative size-5 shrink-0">
@@ -234,7 +234,7 @@ function Faqs() {
           </p>
         </details>
         <details className="group p-6 [&_summary::-webkit-details-marker]:hidden">
-          <summary className="flex cursor-pointer items-center justify-between gap-1.5 text-gray-900">
+          <summary className="flex cursor-pointer items-center justify-between gap-1.5 text-customBlue">
             <h2 className="text-lg font-medium">QUAL E' LA COMMISSIONE CHE FIND&FIX PRELEVA DAL TOTALE ? </h2>
 
             <span className="relative size-5 shrink-0">
@@ -289,7 +289,7 @@ function Faqs() {
             </div>
 
             <div className="lg:py-24">
-              <h2 className="text-3xl font-bold sm:text-4xl">SIAMO A TUA DISPOSIZIONE</h2>
+              <h2 className="text-3xl font-bold sm:text-4xl text-customBlue">SIAMO A TUA DISPOSIZIONE</h2>
 
               <p className="mt-4 text-gray-600">
                 Qualora avessi altri dubbi o incertezze, non esitare a contattarci.

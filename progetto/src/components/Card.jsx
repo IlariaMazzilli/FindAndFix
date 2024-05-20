@@ -10,7 +10,7 @@ function Card({image, title, description}) {
         <div className="flex justify-center">
             <a
                 className="h-fit rounded  bg-customGreen px-10 py-4 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-indigo-500 "
-                href="#"
+                href="/servizi"
             >
                Cerca pro
             </a>
