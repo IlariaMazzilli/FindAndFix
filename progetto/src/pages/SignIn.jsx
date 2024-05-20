@@ -11,11 +11,31 @@ function SignIn() {
     email: "",
     password: "",
   });
+
   const { email, password } = formData;
   const navigate = useNavigate();
 
   async function OnLogInClicked() {
-    alert("Log In manca delle funzioni ");
+    e.preventDefault();
+    setErrorMessage('');
+    try {
+      const response = await fetch('http://the api-url.com/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json'
+    },
+    body: JSON.stringify({email, password})
+      });
+      if(!response.ok){
+        throw new Error ('Login failed. Please check your credentials.');
+      }
+      const data = await response.json();
+      const {token} = data;
+      localStorage.setItem('token', token);
+      navigate('/home');
+    } catch (error) {
+      setErrorMessage(errorMessage || 'Login failed. Please try again');
+    }
   }
 
   function handleInput(e) {

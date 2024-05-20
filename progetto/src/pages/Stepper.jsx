@@ -60,9 +60,9 @@ function Stepper() {
     setStep(step - 1);
   };
 
-  const redoStep = () => {
+/*   const redoStep = () => {
     setStep(1);
-  };
+  }; */
 
   const handleSubscriptionSelect = (selectedSubscription) => {
     setAbbonamento(selectedSubscription);
@@ -86,7 +86,7 @@ function Stepper() {
     <div
       className="relative min-h-screen flex w-full overflow-x-hidden justify-center bg-customBlue"
     >
-      <div className="container max-w-screen-xl mx-auto my-auto relative flex flex-col w-3/5 ">
+      <div className="container max-w-screen-xl mx-auto my-auto relative flex flex-col w-4/5 min-[1440px]:w-3/5 ">
         <form
           onSubmit={handleSubmit}
           className="mt-12 md:w-4/5 mx-auto rounded-3xl p-3"
@@ -733,10 +733,10 @@ function Stepper() {
               >
                 <div className="h-full bg-green-500  rounded-3xl w-10/12"></div>
               </div>
-              <div className="bg-white py-24 sm:py-32">
+              <div className="bg-white py-24 sm:py-16">
         <div className="mx-auto  px-6 lg:px-8">
           <div className="mx-auto  text-center">
-            <p className="mt-2 text-4xl font-bold tracking-tight text-customBlue sm:text-5xl font-lato">
+            <p className="mt-2 text-2xl font-bold tracking-tight text-customBlue sm:text-2xl font-lato">
               SELEZIONA IL TUO ABBONAMENTO
             </p>
           </div>
@@ -785,9 +785,9 @@ function Stepper() {
                     aria-hidden="true"
                   >
                     <path
-                      fill-rule="evenodd"
+                      fillRule="evenodd"
                       d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
-                      clip-rule="evenodd"
+                      clipRule="evenodd"
                     />
                   </svg>
                   Fino a 30 appuntamenti al mese.
@@ -800,9 +800,9 @@ function Stepper() {
                     aria-hidden="true"
                   >
                     <path
-                      fill-rule="evenodd"
+                      fillRule="evenodd"
                       d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
-                      clip-rule="evenodd"
+                      clipRule="evenodd"
                     />
                   </svg>
                   Fino a 24 ore d'attesa per il supporto.
@@ -815,9 +815,9 @@ function Stepper() {
                     aria-hidden="true"
                   >
                     <path
-                      fill-rule="evenodd"
+                      fillRule="evenodd"
                       d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
-                      clip-rule="evenodd"
+                      clipRule="evenodd"
                     />
                   </svg>
                   Appuntamenti fino a 50 km di distanza.
@@ -830,9 +830,9 @@ function Stepper() {
                     aria-hidden="true"
                   >
                     <path
-                      fill-rule="evenodd"
+                      fillRule="evenodd"
                       d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
-                      clip-rule="evenodd"
+                      clipRule="evenodd"
                     />
                   </svg>
                   Garanzia fino al 50% del valore della prestazioone.
@@ -877,9 +877,9 @@ function Stepper() {
                     aria-hidden="true"
                   >
                     <path
-                      fill-rule="evenodd"
+                      fillRule="evenodd"
                       d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
-                      clip-rule="evenodd"
+                      clipRule="evenodd"
                     />
                   </svg>
                   Appuntamenti illimitati
@@ -892,9 +892,9 @@ function Stepper() {
                     aria-hidden="true"
                   >
                     <path
-                      fill-rule="evenodd"
+                      fillRule="evenodd"
                       d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
-                      clip-rule="evenodd"
+                      clipRule="evenodd"
                     />
                   </svg>
                   Supporto immediato H24
@@ -907,9 +907,9 @@ function Stepper() {
                     aria-hidden="true"
                   >
                     <path
-                      fill-rule="evenodd"
+                      fillRule="evenodd"
                       d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
-                      clip-rule="evenodd"
+                      clipRule="evenodd"
                     />
                   </svg>
                   Nessun limite di distanza
@@ -922,9 +922,9 @@ function Stepper() {
                     aria-hidden="true"
                   >
                     <path
-                      fill-rule="evenodd"
+                      fillRule="evenodd"
                       d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
-                      clip-rule="evenodd"
+                      clipRule="evenodd"
                     />
                   </svg>
                   Garanzia fino al 100% del valore della prestazione.
@@ -951,59 +951,59 @@ function Stepper() {
           )}
            {step === 9 && (
             <motion.div>
-         <div class="font-[sans-serif] bg-gray-50 p-6 min-h-screen">
-      <div class="max-w-7xl mx-auto">
-        <h2 class="text-3xl font-extrabold text-[#333] text-center">Checkout</h2>
-        <div class="grid lg:grid-cols-3 gap-8 mt-12">
-          <div class="lg:col-span-2">
-            <h3 class="text-xl font-bold text-[#333]">Scegli il tuo metodo di pagamento</h3>
-            <div class="grid gap-4 sm:grid-cols-2 mt-6">
-              <div class="flex items-center">
-                <input type="radio" class="w-5 h-5 cursor-pointer" id="card" checked />
-                <label for="card" class="ml-4 flex gap-2 cursor-pointer">
-                  <img src="https://readymadeui.com/images/visa.webp" class="w-12" alt="card1" />
-                  <img src="https://readymadeui.com/images/american-express.webp" class="w-12" alt="card2" />
-                  <img src="https://readymadeui.com/images/master.webp" class="w-12" alt="card3" />
+         <div className="font-[sans-serif] bg-gray-50 p-6 min-h-screen">
+      <div className="max-w-7xl mx-auto">
+        <h2 className="text-3xl font-extrabold text-[#333] text-center">Checkout</h2>
+        <div className="grid lg:grid-cols-3 gap-8 mt-12">
+          <div className="lg:col-span-2">
+            <h3 className="text-xl font-bold text-[#333]">Scegli il tuo metodo di pagamento</h3>
+            <div className="grid gap-4 sm:grid-cols-2 mt-6">
+              <div className="flex items-center">
+                <input type="radio" className="w-5 h-5 cursor-pointer" id="card" checked />
+                <label htmlFor="card" className="ml-4 flex gap-2 cursor-pointer">
+                  <img src="https://readymadeui.com/images/visa.webp" className="w-12" alt="card1" />
+                  <img src="https://readymadeui.com/images/american-express.webp" className="w-12" alt="card2" />
+                  <img src="https://readymadeui.com/images/master.webp" className="w-12" alt="card3" />
                 </label>
               </div>
-              <div class="flex items-center">
-                <input type="radio" class="w-5 h-5 cursor-pointer" id="paypal" />
-                <label for="paypal" class="ml-4 flex gap-2 cursor-pointer">
-                  <img src="https://readymadeui.com/images/paypal.webp" class="w-20" alt="paypalCard" />
+              <div className="flex items-center">
+                <input type="radio" className="w-5 h-5 cursor-pointer" id="paypal" />
+                <label htmlFor="paypal" className="ml-4 flex gap-2 cursor-pointer">
+                  <img src="https://readymadeui.com/images/paypal.webp" className="w-20" alt="paypalCard" />
                 </label>
               </div>
             </div>
-            <form class="mt-8">
-              <div class="grid gap-6">
-                <div class="grid sm:grid-cols-3 gap-6">
+            <form className="mt-8">
+              <div className="grid gap-6">
+                <div className="grid sm:grid-cols-3 gap-6">
                   <input type="number" placeholder="Numero della carta"
-                    class="px-4 py-3.5 bg-white text-[#333] w-full text-sm border rounded-md focus:border-[#007bff] outline-none" />
+                    className="px-4 py-3.5 bg-white text-[#333] w-full text-sm border rounded-md focus:border-[#007bff] outline-none" />
                   <input type="number" placeholder="Scadenza"
-                    class="px-4 py-3.5 bg-white text-[#333] w-full text-sm border rounded-md focus:border-[#007bff] outline-none" />
+                    className="px-4 py-3.5 bg-white text-[#333] w-full text-sm border rounded-md focus:border-[#007bff] outline-none" />
                   <input type="number" placeholder="CVV"
-                    class="px-4 py-3.5 bg-white text-[#333] w-full text-sm border rounded-md focus:border-[#007bff] outline-none" />
+                    className="px-4 py-3.5 bg-white text-[#333] w-full text-sm border rounded-md focus:border-[#007bff] outline-none" />
                 </div>
-                <div class="sm:col-span-2 grid sm:grid-cols-2 gap-6">
+                <div className="sm:col-span-2 grid sm:grid-cols-2 gap-6">
                   <input type="text" placeholder="Nome del titolare"
-                    class="px-4 py-3.5 bg-white text-[#333] w-full text-sm border rounded-md focus:border-[#007bff] outline-none" />
+                    className="px-4 py-3.5 bg-white text-[#333] w-full text-sm border rounded-md focus:border-[#007bff] outline-none" />
                   <input type="number" placeholder="Codice Postale"
-                    class="px-4 py-3.5 bg-white text-[#333] w-full text-sm border rounded-md focus:border-[#007bff] outline-none" />
+                    className="px-4 py-3.5 bg-white text-[#333] w-full text-sm border rounded-md focus:border-[#007bff] outline-none" />
                 </div>
               </div>
             </form>
           </div>
-          <div class="lg:border-l lg:pl-8">
-            <h3 class="text-xl font-bold text-[#333]">Carrello</h3>
-            <ul class="text-[#333] mt-6 space-y-4">
-              <li class="flex flex-wrap gap-4 text-sm">Abbonamento mensile <span class="ml-auto font-bold">€50.00</span></li>
-              <li class="flex flex-wrap gap-4 text-base font-bold border-t pt-4">Totale <span class="ml-auto">€50.00</span></li>
+          <div className="lg:border-l lg:pl-8">
+            <h3 className="text-xl font-bold text-[#333]">Carrello</h3>
+            <ul className="text-[#333] mt-6 space-y-4">
+              <li className="flex flex-wrap gap-4 text-sm">Abbonamento mensile <span className="ml-auto font-bold">€50.00</span></li>
+              <li className="flex flex-wrap gap-4 text-base font-bold border-t pt-4">Totale <span className="ml-auto">€50.00</span></li>
             </ul>
           </div>
         </div>
-        <div class="flex flex-wrap gap-4 mt-10">
+        <div className="flex flex-wrap gap-4 mt-10">
         
           <button onClick ={ handleSubmit} type="button"
-            class="px-6 py-3.5 text-sm bg-blue-600 text-white rounded-md hover:bg-blue-700">Paga ora</button>
+            className="px-6 py-3.5 text-sm bg-blue-600 text-white rounded-md hover:bg-blue-700">Paga ora</button>
         </div>
       </div>
     </div>
