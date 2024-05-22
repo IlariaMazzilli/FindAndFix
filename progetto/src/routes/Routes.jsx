@@ -74,7 +74,7 @@ export const Rotte = createBrowserRouter([
           },
           {
             path: "avatar",
-            element: <Prowewe />,
+            element: <UserPage />,
           },
           {
             path: "impostazioni",

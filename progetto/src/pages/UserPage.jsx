@@ -1,12 +1,16 @@
 import "./UserPage.scss";
 
-function UserPage() {
+import { BrowserRouter, Route, Routes, Link, useNavigate } from "react-router-dom";
+
+
+const UserPage = ({ name }) => {
+
   return (
-    <div className="container-user-page">
+    <div className="containerwewewe">
       <main className="page__course">
         <div className="container-page">
           <div className="course-content">
-            <h1 className="name-user">Giuseppe Verdi</h1>
+            <h1 className="name-user ">Sylvia Darqua</h1>
 
             <div className="content-block">
               <span className="label">Valutazione</span>

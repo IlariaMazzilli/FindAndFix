@@ -2,10 +2,19 @@ import React, { useState } from 'react';
 import { FaStar, FaStarHalfAlt, FaRegStar } from 'react-icons/fa';
 import Seemore from '../images/see.png'
 import { BrowserRouter, Route, Routes, Link, useNavigate } from "react-router-dom";
+import electricianImage from '../images/Michele.jpg';
+import gardenerImage from '../images/Giuseppe.jpg';
+import painterImage from '../images/francesco.jpg';
+import interiorDesignerImage from '../images/Nadia.jpg';
+import locksmithImage from '../images/Enzo.png';
+import moverImage from '../images/sylvia.jpg';
+import UserPage from '../pages/UserPage';
 
-const ProfileCard = ({ name, image, description, rating, pricing, onContact }) => {
+
+const ProfileCard = ({ id, name, image, description, rating, pricing, onContact }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const navigate = useNavigate();
+
 
   const renderRating = (rating) => {
     const fullStars = Math.floor(rating);
