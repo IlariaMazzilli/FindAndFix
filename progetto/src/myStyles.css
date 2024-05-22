@@ -8,24 +8,24 @@
 } */
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
-.container h2 {
-    font-size: 30px;
+.containerwewe h2, .containerwewewe h2 {
+  font-size: 30px;
 }
 .jumbotron {
-    background-image: url('jumbotronSfocato.png');
-    /* Immagine di sfondo del jumbotron */
-    background-size: cover;
-    /* L'immagine copre l'intero jumbotron */
-    background-position: center;
-    /* Posizionamento dell'immagine */
-    height: 300px;
-    /* Altezza del jumbotron */
-    position: relative;
-    /* Per posizionare il pulsante */
-    /* Spazio interno del jumbotron */
+  background-image: url('jumbotronSfocato.png');
+  /* Immagine di sfondo del jumbotron */
+  background-size: cover;
+  /* L'immagine copre l'intero jumbotron */
+  background-position: center;
+  /* Posizionamento dell'immagine */
+  height: 300px;
+  /* Altezza del jumbotron */
+  position: relative;
+  /* Per posizionare il pulsante */
+  /* Spazio interno del jumbotron */
 }
 
 /* Pulsante all'interno del Jumbotron */
@@ -35,10 +35,194 @@
 
 
 
-.container {
+.containerwewe {
+  display: grid;
+  /* Attiva la griglia */
+  grid-template-columns: repeat(3, 1fr);
+  /* 3 colonne uguali */
+  grid-template-rows: repeat(4, auto);
+  /* 4 righe, altezza automatica */
+  gap: 25px;
+  /* Spazio tra gli elementi della griglia */
+  padding: 20px;
+  /* Aggiungi padding al container */
+  justify-content: center; /* Centra orizzontalmente */
+align-content: center; /* Centra verticalmente */
+text-align: center;
+}
+
+.profile-default {
+  background-color: #f5f5f5;
+  box-shadow: #6e7070 0 3px 15px;
+  color: black;
+  width: 100%;
+  /* max-width: 450px; */
+  height: 770px;
+  margin: auto;
+  overflow: hidden;
+  display: grid;
+  grid: 340px auto auto / repeat(3, minmax(80px, 1fr));
+  grid-gap: 10px;
+  border-radius: 10px;
+
+  .profile__image {
+      grid-column: span 3;
+
+      img {
+          width: 100%;
+          border-bottom: 7px solid var(--secondaryColor);
+      }
+  }
+
+  .profile__info {
+      grid-column: span 3;
+      margin: 20px 25px 0;
+  }
+
+  
+
+  .profile__stats, .profile__stats2 {
+      margin-right: -180px;
+  }
+
+  .profile__cta {
+      grid-column: span 3;
+      margin: 0 25px 25px;
+      display:flex;
+      justify-content: center;
+      height: 50px;
+  }
+  
+}
+
+
+.profile-default .profile__image img {
+  border-bottom: 7px solid #66BC46;
+}
+
+.profile__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.buttonwewe {
+  display: flex;
+  justify-content: center;
+  height: auto;
+  background-color: #0F5DA6; /* BG blu personalizzato */
+  padding-left: 2.5rem; /* 10 */
+  padding-right: 2.5rem; /* 10 */
+  padding-top: 1rem; /* 4 */
+  padding-bottom: 1rem; /* 4 */
+  font-size: 0.875rem; /* Text size */
+  font-weight: 500; /* Medium weight */
+  color: white; /* Text color */
+  border-radius: 0.25rem; /* Rounded corners */
+  transition: all 0.2s ease; /* Smooth transitions */
+  text-decoration: none; /* No underline for links */
+}
+
+.buttonwewe:hover {
+  transform: scale(1.10); /* Scaling on hover */
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+             0 10px 10px -5px rgba(0, 0, 0, 0.04); /* Shadow effect */
+  background-color: #66BC46; /* BG green on hover */
+}
+
+.buttonwewe:focus {
+  outline: none; /* No outline */
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5); /* Ring on focus */
+}
+
+.buttonwewe:active {
+  background-color: #6366F1; /* BG indigo on active */
+}
+
+
+.sidebar-link {
+  color: rgb(255, 255, 255);
+  /* Cambia il colore del link */
+  text-decoration: none;
+  /* Rimuove la sottolineatura */
+  padding: 10px;
+  /* Aggiunge spazio intorno al link */
+  display: block;
+  /* Per garantire che il link occupi l'intera larghezza */
+  transition: 0.3s;
+  /* Aggiunge un'animazione di transizione */
+}
+
+.sidebar-link:hover {
+  background-color: lightgray;
+  /* Cambia lo sfondo al passaggio del mouse */
+  color: black;
+  /* Cambia il colore del testo al passaggio del mouse */
+}
+
+.dark {
+  z-index: 2;
+}
+
+.profile__stats__stars {
+  display: flex;
+  justify-content: center;
+padding: 5px;
+}
+
+.profile__description-wrapper {
+position: relative; /* Permette di posizionare il gradiente */
+}
+
+.profile__description {
+max-height: 85px; /* Limita l'altezza per troncamento */
+overflow: hidden; /* Nasconde il testo in eccesso */
+transition: max-height 0.3s ease; /* Aggiunge una transizione fluida */
+
+}
+
+.profile__description__fade {
+position: absolute; /* Posiziona il gradiente */
+bottom: 0; /* Gradiente alla base della descrizione */
+left: 0;
+right: 0;
+height: 30px; /* Altezza del gradiente */
+background: linear-gradient(to bottom, transparent, #00000027); 
+filter: blur(9px);
+}
+
+.profile__description.expanded {
+max-height: 200px; 
+}
+
+.profile__description__toggle {
+background: none;
+border: none;
+color: #0F5DA6;
+cursor: pointer;
+text-decoration: underline;
+padding: 0;
+}
+
+.profile__description__toggle img {
+height: 40px;
+}
+
+@media screen and (max-width: 540px) {
+  .containerwewe {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+  }
+}
+
+@media screen and (min-width: 540px) and (max-width: 1280px) {
+  .containerwewe {
     display: grid;
     /* Attiva la griglia */
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     /* 3 colonne uguali */
     grid-template-rows: repeat(4, auto);
     /* 4 righe, altezza automatica */
@@ -47,163 +231,6 @@
     padding: 20px;
     /* Aggiungi padding al container */
     justify-content: center; /* Centra orizzontalmente */
-  align-content: center; /* Centra verticalmente */
-  text-align: center;
-}
-
-.profile-default {
-    background-color: #f5f5f5;
-    box-shadow: #6e7070 0 3px 15px;
-    color: black;
-    width: 100%;
-    /* max-width: 450px; */
-    height: 770px;
-    margin: auto;
-    overflow: hidden;
-    display: grid;
-    grid: 340px auto auto / repeat(3, minmax(80px, 1fr));
-    grid-gap: 10px;
-    border-radius: 10px;
-
-    .profile__image {
-        grid-column: span 3;
-
-        img {
-            width: 100%;
-            border-bottom: 7px solid var(--secondaryColor);
-        }
-    }
-
-    .profile__info {
-        grid-column: span 3;
-        margin: 20px 25px 0;
-    }
-
-    
-
-    .profile__stats, .profile__stats2 {
-        margin-right: -180px;
-    }
-
-    .profile__cta {
-        grid-column: span 3;
-        margin: 0 25px 25px;
-        display:flex;
-        justify-content: center;
-        height: 50px;
-    }
-    
-}
-
-
-.profile-default .profile__image img {
-    border-bottom: 7px solid #66BC46;
-}
-
-.profile__image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.button {
-    display: flex;
-    justify-content: center;
-    height: auto;
-    background-color: #0F5DA6; /* BG blu personalizzato */
-    padding-left: 2.5rem; /* 10 */
-    padding-right: 2.5rem; /* 10 */
-    padding-top: 1rem; /* 4 */
-    padding-bottom: 1rem; /* 4 */
-    font-size: 0.875rem; /* Text size */
-    font-weight: 500; /* Medium weight */
-    color: white; /* Text color */
-    border-radius: 0.25rem; /* Rounded corners */
-    transition: all 0.2s ease; /* Smooth transitions */
-    text-decoration: none; /* No underline for links */
+    align-content: center; /* Centra verticalmente */
   }
-  
-  .button:hover {
-    transform: scale(1.10); /* Scaling on hover */
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
-               0 10px 10px -5px rgba(0, 0, 0, 0.04); /* Shadow effect */
-    background-color: #66BC46; /* BG green on hover */
-  }
-  
-  .button:focus {
-    outline: none; /* No outline */
-    box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5); /* Ring on focus */
-  }
-  
-  .button:active {
-    background-color: #6366F1; /* BG indigo on active */
-  }
-  
-
-.sidebar-link {
-    color: rgb(255, 255, 255);
-    /* Cambia il colore del link */
-    text-decoration: none;
-    /* Rimuove la sottolineatura */
-    padding: 10px;
-    /* Aggiunge spazio intorno al link */
-    display: block;
-    /* Per garantire che il link occupi l'intera larghezza */
-    transition: 0.3s;
-    /* Aggiunge un'animazione di transizione */
-}
-
-.sidebar-link:hover {
-    background-color: lightgray;
-    /* Cambia lo sfondo al passaggio del mouse */
-    color: black;
-    /* Cambia il colore del testo al passaggio del mouse */
-}
-
-.dark {
-    z-index: 2;
-}
-
-.profile__stats__stars {
-    display: flex;
-    justify-content: center;
-padding: 5px;
-}
-
-.profile__description-wrapper {
-  position: relative; /* Permette di posizionare il gradiente */
-}
-
-.profile__description {
-  max-height: 85px; /* Limita l'altezza per troncamento */
-  overflow: hidden; /* Nasconde il testo in eccesso */
-  transition: max-height 0.3s ease; /* Aggiunge una transizione fluida */
-  
-}
-
-.profile__description__fade {
-  position: absolute; /* Posiziona il gradiente */
-  bottom: 0; /* Gradiente alla base della descrizione */
-  left: 0;
-  right: 0;
-  height: 30px; /* Altezza del gradiente */
-  background: linear-gradient(to bottom, transparent, #00000027); 
-  filter: blur(9px);
-}
-
-.profile__description.expanded {
-  max-height: 200px; 
-}
-
-.profile__description__toggle {
-  background: none;
-  border: none;
-  color: #0F5DA6;
-  cursor: pointer;
-  text-decoration: underline;
-  padding: 0;
-}
-
-.profile__description__toggle img {
-height: 40px;
 }

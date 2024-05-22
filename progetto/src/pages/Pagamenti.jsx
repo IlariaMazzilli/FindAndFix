@@ -4,7 +4,7 @@ function Pagamenti() {
   return (
     <div className="container-pagamenti">
       <div className="payment-title">
-        <h1>Informazioni di Pagamento</h1>
+        <h1 className="text-customGreen">Informazioni di Pagamento</h1>
       </div>
       <div className="container preload">
         <div className="creditcard">

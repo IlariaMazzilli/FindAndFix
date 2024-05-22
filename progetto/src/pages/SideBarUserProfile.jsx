@@ -3,9 +3,12 @@ import "./SideBarUserProfile.css";
 import { BrowserRouter, Route, Routes, Link, Outlet } from "react-router-dom";
 import UserPage from "./UserPage";
 import Navbar from "../components/Navbar";
+import React, { useState } from "react";
+
 
 
 function SideBarUserProfile() {
+  
   return (
     <div>
     <Navbar/> <br/><br/><br/><br/>

@@ -1,4 +1,4 @@
-import { createBrowserRouter, redirect } from "react-router-dom";
+import { createBrowserRouter, redirect, Navigate } from "react-router-dom";
 import Home from "../pages/Home";
 import Register from "../pages/Register";
 import Faqs from "../pages/Faqs";
@@ -9,6 +9,12 @@ import NotFound from '../pages/NotFound'
 import TermsAndConditions from "../pages/TermsAndConditions";
 import ChatBotComponent from "../ChatBotComponent";
 import Stepper from "../pages/Stepper";
+import SideBarUserProfile from "../pages/SideBarUserProfile";
+import Notifiche from "../pages/Notifiche";
+import Impostazioni from "../pages/Impostazioni";
+import Pagamenti from "../pages/Pagamenti";
+import Preferiti from "../pages/Preferiti";
+import Profilewewe from "../pages/Profilewewe";
 
 export const Rotte = createBrowserRouter([
     {
@@ -67,4 +73,40 @@ export const Rotte = createBrowserRouter([
         path: "*",
         element: <NotFound />,
     },
+    {
+        path: "/Userwewe",
+        element: (
+          <>
+            <SideBarUserProfile />
+          
+                <ChatBotComponent />
+              </>
+        ),
+        children: [
+          {
+            path: "",
+            element: <Navigate to="avatar" />, // Redirect to avatar when /Userwewe is accessed
+          },
+          {
+            path: "avatar",
+            element: <Profilewewe />,
+          },
+          {
+            path: "impostazioni",
+            element: <Impostazioni />,
+          },
+          {
+            path: "pagamenti",
+            element: <Pagamenti />,
+          },
+          {
+            path: "preferiti",
+            element: <Preferiti />,
+          },
+          {
+            path: "notifiche",
+            element: <Notifiche />,
+          },
+        ],
+      },
 ])
