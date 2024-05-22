@@ -27,6 +27,7 @@ import profile5 from '../images/profile5.webp'
 import profile6 from '../images/profile6.webp'
 import profile7 from '../images/profile7.webp'
 import profile8 from '../images/profile8.webp'
+import sylvia from '../images/sylvia.jpg'
 import Select from '../components/Select'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css';
@@ -122,13 +123,13 @@ function Home() {
         </Fade>
         </div>
       </Fade>
-      <Fade triggerOnce={true} duration={4500}>
-        <div className="[@media(min-width:767px)]:hidden">
-          <Bottone text={'Cerca pro'} />
+      <Fade triggerOnce={true} duration={4500} >
+        <div className="[@media(min-width:767px)]:hidden" >
+          <Bottone text={'Cerca pro'}  href={"/servizi"}/>
         </div>
       </Fade>
-      <div className='[@media(max-width:767px)]:hidden'>
-        <Bottone text={'Vedi altro'} />
+      <div className='[@media(max-width:767px)]:hidden' >
+        <Bottone text={'Vedi altro'}  href={"/servizi"}/>
       </div>
       <Fade triggerOnce={true}>
         <h1 className='flex maintitle justify-center text-5xl text-customBlue font-bold mt-20 max-[600px]:text-3xl'>Come funziona</h1>
@@ -154,7 +155,7 @@ function Home() {
             <RatingWithComment name="Umberto Del Capo" image={profile4} job="Serramentista" reviewsNumber={45} score={4.80} />
           </div>
           <div className='py-8 w-fit max-[600px]:px-8'>
-            <RatingWithComment name="Paolo Sciuti" image={profile5} job="Elettricista" reviewsNumber={89} score={4.80} />
+            <RatingWithComment name="Sylvia Darqua" image={sylvia} job="Interior Designer" reviewsNumber={89} score={4.00} href={"/Userwewe"}/>
           </div>
           <div className='py-8 w-fit max-[600px]:px-8'>
             <RatingWithComment name="Michele Dellapiazza" image={profile6} job="Interior Designer" reviewsNumber={140} score={4.75} />

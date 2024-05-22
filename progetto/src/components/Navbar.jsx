@@ -25,7 +25,7 @@ function Navbar() {
               <img src={logoNoBg} className='w-20 h-16 max-[768px]:w-10 max-[768px]:h-8 logo' alt='Find & Fix' />
             </Link>
             <li>
-              <Link to="/chiSiamo" className=" text-customBlue transition hover:text-customGreen text-xl max-[768px]:text-base" href="#"> Chi siamo </Link>
+              <Link to="/chiSiamo" className=" text-customBlue transition hover:text-customGreen whitespace-nowrap text-xl max-[768px]:text-base" href="#"> Chi siamo </Link>
             </li>
 
             <li>
@@ -39,15 +39,15 @@ function Navbar() {
         </nav>
 
         <div className='flex px-4 max-[768px]:hidden h-12'>
-          <Link to="/signIn" className="button rounded-md mx-4 bg-customBlue  text-mobile font-medium text-white shadow hover:bg-customGreen max-[768px]:p-2 flex items-center" >
+          <Link to="/signIn" className="button rounded-md mx-4 bg-customBlue  text-mobile font-medium text-white shadow hover:bg-customGreen p-4 flex items-center box-border" >
             LOGIN
           </Link>
 
-          <Link to="/registrati" className="button rounded-md bg-customBlue  flex items-center text-mobile font-medium text-white hover:bg-customGreen " >
+          <Link to="/registrati" className="button rounded-md bg-customBlue p-4 flex items-center text-mobile font-medium text-white hover:bg-customGreen box-border " >
             REGISTRATI
           </Link>
 
-          <Link to="/proRegistrati" className="button rounded-md ml-4 bg-customBlue text-mobile font-medium text-white hover:bg-customGreen flex items-center " >
+          <Link to="/proRegistrati" className="button rounded-md ml-4 bg-customBlue text-mobile font-medium text-white hover:bg-customGreen flex items-center p-4 box-border" >
             REGISTRATI COME PRO
           </Link>
         </div>

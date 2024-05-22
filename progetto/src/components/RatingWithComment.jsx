@@ -2,7 +2,10 @@ import './RatingWithComment.css'
 import '../index.css'
 
 
-function RatingWithComment({ name, image, job, reviewsNumber, score }) {
+
+function RatingWithComment({ name, image, job, reviewsNumber, score, onClick }) {
+  
+
   return (
     // <div className='flex mt-9 justify-center'>
       <div className="wrapper mx-1">
@@ -23,8 +26,8 @@ function RatingWithComment({ name, image, job, reviewsNumber, score }) {
           <span className="w-1 h-1 mx-1.5 bg-gray-500 rounded-full dark:bg-gray-400"></span>
           <a href="#" className="text-sm font-medium text-customBlue underline hover:no-underline  my-4">{reviewsNumber} recensioni</a>
         </div>
-        <div className="buttons">
-          <button>Contatta</button>
+        <div className="buttons" >
+          <button className='linkProfile' >Contatta</button>
         </div>
       </div>
     // </div>
