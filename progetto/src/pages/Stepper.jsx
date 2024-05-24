@@ -3,6 +3,9 @@ import { motion, useAnimation } from "framer-motion";
 import LogoBianco from "../images/LogoBianco.png";
 import Abbonamenti from "./Abbonamenti";
 import { Link, useNavigate } from "react-router-dom";
+import axios from 'axios';
+
+
 
 function Stepper() {
 
@@ -10,16 +13,18 @@ function Stepper() {
    const [abbonamento, setAbbonamento] = useState('');
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
-    categoria: [],
-    tipo: '',
-    nome: '',
-    cognome: '',
-    email: '',
-    password: '',
-    confermaPassword:'',
-    telefono: '',
-    città: '',
-    provincia: '',
+     nome: '',
+     cognome: '',
+     categoria_servizi: [],
+     città: '',
+     email: '',
+     password: '',
+     confermaPassword:'',
+     provincia:'',
+     telefono: '',
+     user_type: 'professionista',
+     p_iva:'',
+   
   });
 
 
@@ -31,13 +36,13 @@ function Stepper() {
       // Se l'input è stato selezionato, aggiungi il valore alla categoria
       setFormData((prevState) => ({
         ...prevState,
-        categoria: [...prevState.categoria, value]
+        categoria_servizi: [...prevState.categoria_servizi, value]
       }));
     } else {
       // Se l'input è stato deselezionato, rimuovi il valore dalla categoria
       setFormData((prevState) => ({
         ...prevState,
-        categoria: prevState.categoria.filter((cat) => cat !== value)
+        categoria_servizi: prevState.categoria_servizi.filter((cat) => cat !== value)
       }));
     }
   } else {
@@ -69,17 +74,38 @@ function Stepper() {
   };
 
 
-  const handleSubmit = (e) => {
+
+
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setFormData((prevState) => ({
       ...prevState,
-      abbonamento: abbonamento
+      tipo_abbonamento: abbonamento
     }));
     console.log(formData);
+    // Estrazione dei campi rilevanti
+    const dataToSend = {
+        nome: formData.nome,
+        cognome: formData.cognome,
+        città: formData.città,
+        email: formData.email,
+        password: formData.password,
+        telefono: formData.telefono,
+        tipo_abbonamento: abbonamento, // Supponendo che il tipo di abbonamento sia sempre 'nessuno' per ora
+        user_type: formData.user_type,
+        p_iva: formData.p_iva,
+        categoria_servizi: formData.categoria_servizi.join(',') // Convertire l'array in una stringa se necessario
+    };
 
-  }
-
-
+    try {
+        const response = await axios.post('http://localhost:3000/register', dataToSend);
+        console.log('Dati inviati con successo!', response.data);
+        // Effettua azioni aggiuntive dopo l'invio dei dati, ad esempio reindirizzamento o messaggio di conferma
+    } catch (error) {
+        console.error('Si è verificato un errore durante l\'invio dei dati:', error);
+    }
+};
 
 
   return (
