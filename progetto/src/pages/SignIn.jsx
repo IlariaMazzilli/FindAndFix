@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import House from "../images/House.jpg";
 import { MdVisibility } from "react-icons/md";
 import { FcGoogle } from "react-icons/fc";

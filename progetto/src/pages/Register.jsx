@@ -4,6 +4,8 @@ import RegistrationBanner from "../images/Registrazione-Banner.png";
 import { useNavigate } from "react-router-dom";
 import { MdVisibility } from "react-icons/md";
 import Navbar from "../components/Navbar";
+/* devo instalar axios */
+import axios from "axios"
 
 function Register() {
   const [errorMessage, setErrorMessage] = useState('')
@@ -13,24 +15,50 @@ function Register() {
     cognome: "",
     email: "",
     password: "",
-    confermaPassword: ""
+    confermaPassword: "",
+    emailMarketing: false
   });
 
-  const { nome, cognome, email, password, confermaPassword } = formData;
+  const { nome, cognome, email, password, confermaPassword, emailMarketing } = formData;
   const navigate = useNavigate(); 
 
-async function OnSignUpClicked() {
-  alert("Log In manca delle funzioni ");
+
+
+function handleInput(e) {
+  const { name, value, type, checked } = e.target;
+  setFormData((prevState) => ({
+    ...prevState,
+    [name]: type === 'checkbox' ? checked : value,
+  }));
+  
 }
 
-  function handleInput(e) {
-    setFormData((prevState) => ({
-      ...prevState,
-      [e.target.name]: e.target.value,
-      
-    }))
-    console.log();
-  };
+const OnSignUpClicked = async (e) => {
+  e.preventDefault();
+  if (password !== confermaPassword) {
+    setErrorMessage("Le password non corrispondono.");
+    return;
+  }
+
+  try {
+    const response = await axios.post('/api/registrati', {
+      nome,
+      cognome,
+      email,
+      password,
+      emailMarketing
+    });
+    console.log(response.data);
+    navigate( "/"); // Reindirizza alla pagina di accesso dopo la registrazione
+  } catch (error) {
+    console.error(error);
+    if (error.response.status === 409) {
+      setErrorMessage('Utente già esistente.');
+    } else {
+      setErrorMessage('Errore durante la registrazione.');
+    }
+  }
+};
   return (
     <>
     <Navbar />
@@ -59,6 +87,8 @@ async function OnSignUpClicked() {
             <br />
 
             <form action="#" className="mt-8 grid grid-cols-6 gap-6">
+            {errorMessage && <div className="fail">{errorMessage}</div>}
+
               <div className="col-span-6 sm:col-span-3">
                 <label
                   htmlFor="Nome"
@@ -186,13 +216,14 @@ async function OnSignUpClicked() {
               </div>
 
               <div className="col-span-6">
-                {/* manca come metterlo nel formDATA */}
-                <label htmlFor="MarketingAccept" className="flex gap-4">
+                <label htmlFor="emailMarketing" className="flex gap-4">
                   <input
                     type="checkbox"
-                    id="MarketingAccept"
-                    name="marketing_accept"
+                    id="emailMarketing"
+                    name="emailMarketing"
                     className="size-5 rounded-md border-gray-200 bg-white shadow-sm"
+                    checked= {emailMarketing}
+                    onChange={handleInput}
                   />
 
                   <span className=" text-gray-700">
