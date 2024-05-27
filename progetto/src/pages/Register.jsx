@@ -1,272 +1,266 @@
-import React, { useState } from "react";
-import LogoCompleto from "../images/LogoCompleto.jpeg";
+import  { useState } from "react";
 import RegistrationBanner from "../images/Registrazione-Banner.png";
 import { useNavigate } from "react-router-dom";
 import { MdVisibility } from "react-icons/md";
 import Navbar from "../components/Navbar";
-/* devo instalar axios */
-import axios from "axios"
+import axios from "axios";
+import {useToken} from '../auth/useToken';
 
 function Register() {
-  const [errorMessage, setErrorMessage] = useState('')
+
+  const [token, setToken] = useToken();
+  const [errorMessage, setErrorMessage] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [formData, setFormData] = useState({
     nome: "",
     cognome: "",
     email: "",
     password: "",
     confermaPassword: "",
-    emailMarketing: false
+    email_marketing: false
   });
 
-  const { nome, cognome, email, password, confermaPassword, emailMarketing } = formData;
+  const { nome, cognome, email, password, confermaPassword, email_marketing } = formData;
   const navigate = useNavigate(); 
 
-
-
-function handleInput(e) {
-  const { name, value, type, checked } = e.target;
-  setFormData((prevState) => ({
-    ...prevState,
-    [name]: type === 'checkbox' ? checked : value,
-  }));
-  
-}
-
-const OnSignUpClicked = async (e) => {
-  e.preventDefault();
-  if (password !== confermaPassword) {
-    setErrorMessage("Le password non corrispondono.");
-    return;
+  function handleInput(e) {
+    const { name, value, type, checked } = e.target;
+    setFormData((prevState) => ({
+      ...prevState,
+      [name]: type === 'checkbox' ? checked : value,
+    }));
   }
 
-  try {
-    const response = await axios.post('/api/registrati', {
-      nome,
-      cognome,
-      email,
-      password,
-      emailMarketing
-    });
-    console.log(response.data);
-    navigate( "/"); // Reindirizza alla pagina di accesso dopo la registrazione
-  } catch (error) {
-    console.error(error);
-    if (error.response.status === 409) {
-      setErrorMessage('Utente già esistente.');
-    } else {
-      setErrorMessage('Errore durante la registrazione.');
+  const OnSignUpClicked = async (e) => {
+    e.preventDefault();
+    if (password !== confermaPassword) {
+      setErrorMessage("Le password non corrispondono.");
+      return;
     }
-  }
-};
+
+    try {
+      const response = await axios.post('http://localhost:3000/api/registrazione/cliente', {
+        nome,
+        cognome,
+        email,
+        password,
+        email_marketing
+      });
+      const {token} = response.data;
+      setToken(token);
+      console.log(token);
+      navigate("/"); // Reindirizza alla pagina di accesso dopo la registrazione
+    } catch (error) {
+      console.error(error);
+      if (error.response.status === 409) {
+        setErrorMessage('Utente già esistente.');
+      } else {
+        setErrorMessage('Errore durante la registrazione.');
+      }
+    }
+  };
+
   return (
     <>
-    <Navbar />
-    <br/><br/><br/><br/>
-    <section className="bg-white">
-      <div className="lg:grid lg:min-h-screen lg:grid-cols-12">
-        <aside className="relative block h-16 lg:order-last lg:col-span-5 lg:h-full xl:col-span-6 max-[1024px]:hidden">
-          <img
-            alt=""
-            src={RegistrationBanner}
-            className="absolute inset-0 h-full w-full object-cover max-[768px]:hidden"
-          />
-        </aside>
+      <Navbar />
+      <br/><br/><br/><br/>
+      <section className="bg-white">
+        <div className="lg:grid lg:min-h-screen lg:grid-cols-12">
+          <aside className="relative block h-16 lg:order-last lg:col-span-5 lg:h-full xl:col-span-6 max-[1024px]:hidden">
+            <img
+              alt=""
+              src={RegistrationBanner}
+              className="absolute inset-0 h-full w-full object-cover max-[768px]:hidden"
+            />
+          </aside>
 
-        <main className="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6">
-          <div className="max-w-xl lg:max-w-3xl">
-           
+          <main className="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6">
+            <div className="max-w-xl lg:max-w-3xl">
+              <h1 className="mt-6 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl">
+                Registrati Come Cliente
+              </h1>
 
-            <h1 className="mt-6 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl">
-              Registrati Come Cliente
-            </h1>
+              <p className="mt-4 leading-relaxed text-gray-500">
+                Completa tutti i campi e assicurati un'esperienza professionale.
+              </p>
+              <br />
+              {errorMessage && <div className="text-red-500">{errorMessage}</div>}
+              <b />
+              <form action="#" className="mt-8 grid grid-cols-6 gap-6">
 
-            <p className="mt-4 leading-relaxed text-gray-500">
-              Completa tutti i campi e assicurati un'esperienza professionale.
-            </p>
-            <br />
+                <div className="col-span-6 sm:col-span-3">
+                  <label
+                    htmlFor="Nome"
+                    className="block font-medium text-gray-700"
+                  >
+                    Nome
+                  </label>
 
-            <form action="#" className="mt-8 grid grid-cols-6 gap-6">
-            {errorMessage && <div className="fail">{errorMessage}</div>}
-
-              <div className="col-span-6 sm:col-span-3">
-                <label
-                  htmlFor="Nome"
-                  className="block font-medium text-gray-700"
-                >
-                  Nome
-                </label>
-
-                <input
-                  type="text"
-                  id="nome"
-                  name="nome"
-                  placeholder="Nome"
-                  className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none"
-                  value={nome}
-                  onChange={handleInput}
-                  required=""
-                />
-              </div>
-
-              <div className="col-span-6 sm:col-span-3">
-                <label
-                  htmlFor="Cognome"
-                  className="block  font-medium text-gray-700"
-                >
-                  Cognome
-                </label>
-
-                <input
-                  type="text"
-                  id="cognome"
-                  name="cognome"
-                  placeholder="Cognome"
-                  className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none"
-                  value={cognome}
-                  onChange={handleInput}
-                  required=""
-                />
-              </div>
-
-              <div className="col-span-6">
-                <label
-                  htmlFor="Email"
-                  className="block  font-medium text-gray-700"
-                >
-                  {" "}
-                  Email{" "}
-                </label>
-
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  placeholder="Inserire l'indirizzo e-mail"
-                  className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none"
-                  value={email}
-                  onChange={handleInput}
-                />
-              </div>
-
-              <div className="col-span-6 sm:col-span-3 relative" >
-                <label
-                  htmlFor="Password"
-                  className="block font-medium text-gray-700"
-                >
-                  {" "}
-                  Password{" "}
-                </label>
-                <div className="inline-flex items-center justify-center absolute right-0 top-0 h-full pt-8 w-10 text-gray-400">
-                      <span>
-                        {/* aggiustare icon metterlo più in basso */}
-                        <MdVisibility
-                          className="showPassword"
-                          onClick={() =>
-                            setShowPassword((prevState) => !prevState)
-                          }
-                        />
-                      </span>
-                    </div>
-
-                <input
-                  type={showPassword ? "text" : "password"}
-                  id="password"
-                  name="password"
-                  placeholder="Password"
-                  className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none"
-                  minLength={6}
-                  value={password}
-                  onChange={handleInput}
-                  autoComplete=""
-                  required=""
-                />
-              </div>
-
-              <div className="col-span-6 sm:col-span-3 relative">
-                <label
-                  htmlFor="PasswordConfirmation"
-                  className="block  font-medium text-gray-700"
-                >
-                  Conferma Password
-                </label>
-                <div className="inline-flex items-center justify-center absolute right-0 top-0 h-full pt-8 w-10 text-gray-400">
-                      <span>
-                        {/* aggiustare icon metterlo più in basso */}
-                        <MdVisibility
-                          className="showPassword"
-                          onClick={() =>
-                            setShowPassword((prevState) => !prevState)
-                          }
-                        />
-                      </span>
-                    </div>
-                <input
-                  type={showPassword ? "text" : "password"}
-                  id="confermapassword"
-                  name="confermapassword"
-                  placeholder="Conferma Password"
-                  className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none pr-10"
-                  minLength={6}
-                  value={confermaPassword }
-                  onChange={handleInput}
-                  autoComplete=""
-                  required=""
-                />
-              </div>
-
-              <div className="col-span-6">
-                <label htmlFor="emailMarketing" className="flex gap-4">
                   <input
-                    type="checkbox"
-                    id="emailMarketing"
-                    name="emailMarketing"
-                    className="size-5 rounded-md border-gray-200 bg-white shadow-sm"
-                    checked= {emailMarketing}
+                    type="text"
+                    id="nome"
+                    name="nome"
+                    placeholder="Nome"
+                    className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none"
+                    value={nome}
+                    onChange={handleInput}
+                   
+                  />
+                </div>
+
+                <div className="col-span-6 sm:col-span-3">
+                  <label
+                    htmlFor="Cognome"
+                    className="block  font-medium text-gray-700"
+                  >
+                    Cognome
+                  </label>
+
+                  <input
+                    type="text"
+                    id="cognome"
+                    name="cognome"
+                    placeholder="Cognome"
+                    className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none"
+                    value={cognome}
+                    onChange={handleInput}
+                   
+                  />
+                </div>
+
+                <div className="col-span-6">
+                  <label
+                    htmlFor="Email"
+                    className="block  font-medium text-gray-700"
+                  >
+                    {" "}
+                    Email{" "}
+                  </label>
+
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="Inserire l'indirizzo e-mail"
+                    className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none"
+                    value={email}
                     onChange={handleInput}
                   />
+                </div>
 
-                  <span className=" text-gray-700">
-                    Voglio ricevere email riguardanti sconti, eventi e
-                    promozioni
-                  </span>
-                </label>
-              </div>
-
-              <div className="col-span-6">
-                <p className="text-sm text-gray-500">
-                  Creando un account sono consapevole di accettare
-                  <a href="#" className="text-gray-700 underline">
+                <div className="col-span-6 sm:col-span-3 relative" >
+                  <label
+                    htmlFor="Password"
+                    className="block font-medium text-gray-700"
+                  >
                     {" "}
-                    termini e condizioni{" "}
-                  </a>
-                  e
-                  <a href="#" className="text-gray-700 underline">
-                    {" "}
-                    privacy policy
-                  </a>
-                  .
-                </p>
-              </div>
+                    Password{" "}
+                  </label>
+                  <div className="inline-flex items-center justify-center absolute right-0 top-0 h-full pt-8 w-10 text-gray-400">
+                    <span>
+                      <MdVisibility
+                        className="showPassword"
+                        onClick={() =>
+                          setShowPassword((prevState) => !prevState)
+                        }
+                      />
+                    </span>
+                  </div>
 
-              <div className="col-span-6 sm:flex sm:items-center sm:gap-4">
-                <button 
-                className="w-full block bg-customBlue hover:bg-customGreen focus:bg-customGreen text-white font-semibold rounded-lg
-        px-4 py-3 mt-6"
-        disabled={!email || !password || password !== confermaPassword}
-        onClick={OnSignUpClicked}
-        >
-                  Crea un account.
-                </button>
-              </div>
-              <div className="col-span-6">
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    id="password"
+                    name="password"
+                    placeholder="Password"
+                    className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none"
+                    minLength={8}
+                    value={password}
+                    onChange={handleInput}
+                  />
+                </div>
+
+                <div className="col-span-6 sm:col-span-3 relative">
+                  <label
+                    htmlFor="PasswordConfirmation"
+                    className="block  font-medium text-gray-700"
+                  >
+                    Conferma Password
+                  </label>
+                  <div className="inline-flex items-center justify-center absolute right-0 top-0 h-full pt-8 w-10 text-gray-400">
+                    <span>
+                      <MdVisibility
+                        className="showPassword"
+                        onClick={() =>
+                          setShowConfirmPassword((prevState) => !prevState)
+                        }
+                      />
+                    </span>
+                  </div>
+                  <input
+                    type={showConfirmPassword ? "text" : "password"}
+                    id="confermapassword"
+                    name="confermaPassword"
+                    placeholder="Conferma Password"
+                    className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none pr-10"
+                    minLength={8}
+                    value={confermaPassword}
+                    onChange={handleInput}
+                  />
+                </div>
+
+                <div className="col-span-6">
+                  <label htmlFor="emailMarketing" className="flex gap-4">
+                    <input
+                      type="checkbox"
+                      id="emailMarketing"
+                      name="email_marketing"
+                      className="size-5 rounded-md border-gray-200 bg-white shadow-sm"
+                      checked={email_marketing}
+                      onChange={handleInput}
+                    />
+
+                    <span className=" text-gray-700">
+                      Voglio ricevere email riguardanti sconti, eventi e
+                      promozioni
+                    </span>
+                  </label>
+                </div>
+
+                <div className="col-span-6">
+                  <p className="text-sm text-gray-500">
+                    Creando un account sono consapevole di accettare
+                    <a href="#" className="text-gray-700 underline">
+                      {" "}
+                      termini e condizioni{" "}
+                    </a>
+                    e
+                    <a href="#" className="text-gray-700 underline">
+                      {" "}
+                      privacy policy
+                    </a>
+                    .
+                  </p>
+                </div>
+
+                <div className="col-span-6 sm:flex sm:items-center sm:gap-4">
+                  <button 
+                    className="w-full block bg-customBlue hover:bg-customGreen focus:bg-customGreen text-white font-semibold rounded-lg
+                      px-4 py-3 mt-6"
+                    disabled={!email || !password || password !== confermaPassword}
+                    onClick={OnSignUpClicked}
+                  >
+                    Crea un account.
+                  </button>
+                </div>
+                <div className="col-span-6">
                   <p className=" mt-4 text-sm text-gray-500 sm:mt-0">
                     Hai già un account ?{" "}
-                    <button  onClick={() => navigate("/signIn")}  className="text-gray-700 underline">
-                      Login
-                      </button>
+                    <button onClick={() => navigate("/signIn")} className="text-gray-700 underline">
+                      Accedi
+                    </button>
                   </p>
-                <br />
+                  <br />
 
                 <p className="mt-4 text-sm text-gray-500 sm:mt-0">
                   Sei un professionista ?{" "}
@@ -275,14 +269,13 @@ const OnSignUpClicked = async (e) => {
                   className="text-gray-700 underline">
                     Registrati come professionista.
                   </button>
-                  
-                </p>
+                  </p>
                 </div>
-            </form>
-          </div>
-        </main>
-      </div>
-    </section>
+              </form>
+            </div>
+          </main>
+        </div>
+      </section>
     </>
   );
 }

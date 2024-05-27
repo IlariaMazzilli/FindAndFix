@@ -54,11 +54,13 @@ function Stepper() {
 
 
   const nextStep = () => {
-    setStep(step + 1);
+    const newStep = step < 8 ? step + 1 : step; // Assuming 8 is the last step
+    setStep(newStep);
   };
 
   const prevStep = () => {
-    setStep(step - 1);
+    const newStep = step > 1 ? step - 1 : step;
+    setStep(newStep);
   };
 
   /*   const redoStep = () => {
