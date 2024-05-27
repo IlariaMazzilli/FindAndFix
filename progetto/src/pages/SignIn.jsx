@@ -4,8 +4,11 @@ import { MdVisibility } from "react-icons/md";
 import { FcGoogle } from "react-icons/fc";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import {useToken} from '../auth/useToken';
+import axios from "axios";
 
 function SignIn() {
+  const [token, setToken] = useToken();
   const [errorMessage, setErrorMessage] = useState('')
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
@@ -16,35 +19,31 @@ function SignIn() {
   const { email, password } = formData;
   const navigate = useNavigate();
 
-  async function OnLogInClicked(e) {
-    e.preventDefault();
-    setErrorMessage('');
-    try {
-      const response = await fetch('http://the api-url.com/api/login', {
-        method: 'POST',
-        headers: {
-          'Content-type': 'application/json'
-    },
-    body: JSON.stringify({email, password})
-      });
-      if(!response.ok){
-        throw new Error ('Login failed. Please check your credentials.');
-      }
-      const data = await response.json();
-      const {token} = data;
-      localStorage.setItem('token', token);
-      navigate('/home');
-    } catch (error) {
-      setErrorMessage(errorMessage || 'Login failed. Please try again');
-    }
-  }
-
   function handleInput(e) {
     setFormData((prevState) => ({
       ...prevState,
       [e.target.name]: e.target.value,
     }));
   }
+
+  async function OnLogInClicked(e) {
+    e.preventDefault();
+    setErrorMessage('');
+    try {
+      const response = await axios.post('http://localhost:3000/api/login', {
+        email,
+        password
+      });
+    const {token} = response.data;
+    setToken(token);
+    console.log(token);
+    navigate("/");
+    } catch (error) {
+      setErrorMessage(errorMessage || 'Login failed. Please try again');
+    }
+  }
+
+
 
   return (
     <>
@@ -62,8 +61,10 @@ function SignIn() {
               <h1 className="text-xl md:text-2xl font-bold leading-tight mt-12">
                 Accedi al tuo account
               </h1>
+              <br/>
+              {errorMessage && <div className="text-red-500">{errorMessage}</div>}
               <form className="mt-6" action="#" method="POST">
-              {errorMessage && <div className="fail">{errorMessage}</div>}
+             
                 <div>
                   <label className="block text-gray-700">
                     Indirizzo e-mail
@@ -104,7 +105,7 @@ function SignIn() {
                       name="password"
                       className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none pr-10"
                       placeholder="Password"
-                      minLength={6}
+                      minLength={8}
                       required=""
                       autoComplete=""
                       value={password}
