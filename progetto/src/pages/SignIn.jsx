@@ -4,7 +4,7 @@ import { MdVisibility } from "react-icons/md";
 import { FcGoogle } from "react-icons/fc";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
-import {useToken} from '../auth/useToken';
+import { useToken } from '../auth/useToken';
 import axios from "axios";
 
 function SignIn() {
@@ -34,20 +34,22 @@ function SignIn() {
         email,
         password
       });
-    const {token} = response.data;
-    setToken(token);
-    console.log(token);
-    navigate("/");
+      const { token } = response.data;
+      setToken(token);
+      console.log(token);
+      navigate("/");
     } catch (error) {
       setErrorMessage(errorMessage || 'Login failed. Please try again');
     }
+    // metto in local storage la mail
+    localStorage.setItem('email', formData.email)
   }
 
 
 
   return (
     <>
-    <Navbar />
+      <Navbar />
       <>
         <section className="flex flex-col md:flex-row h-screen items-center">
           <div className="bg-customBlue hidden lg:block w-full md:w-1/2 xl:w-2/3 h-screen">
@@ -61,10 +63,10 @@ function SignIn() {
               <h1 className="text-xl md:text-2xl font-bold leading-tight mt-12">
                 Accedi al tuo account
               </h1>
-              <br/>
+              <br />
               {errorMessage && <div className="text-red-500">{errorMessage}</div>}
               <form className="mt-6" action="#" method="POST">
-             
+
                 <div>
                   <label className="block text-gray-700">
                     Indirizzo e-mail
@@ -115,12 +117,12 @@ function SignIn() {
                 </div>
                 <div className="text-right mt-2">
                   <button
-                  /* inserire il nuovo form di forgot password */
+                    /* inserire il nuovo form di forgot password */
                     onClick={() => navigate("/forgot-password")}
                     className="text-sm font-semibold text-gray-700 hover:text-blue-700 focus:text-blue-700"
                   >
                     Hai dimenticato la password?
-                    </button>
+                  </button>
                 </div>
                 <button
                   type="submit"
@@ -150,7 +152,7 @@ function SignIn() {
                   className="text-customBlue hover:text-customGreen font-semibold"
                 >
                   Registrati
-                  </button>
+                </button>
               </p>
             </div>
           </div>

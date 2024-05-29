@@ -739,7 +739,7 @@ function Stepper() {
                     onChange={handleChange}
                   />
                   {/* Icona per mostrare/nascondere la password */}
-                  <div className="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer">
+                  <div className="absolute inset-y-0 mt-4 right-0 flex items-center pr-3 cursor-pointer">
                     {showPassword ? (
                       <FaEyeSlash
                         className="h-5 w-5 text-gray-400"
