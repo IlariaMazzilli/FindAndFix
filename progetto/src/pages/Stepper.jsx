@@ -71,9 +71,13 @@ function Stepper() {
         }));
       }
     } else if (type === "file") {
+      const file = files[0]; // Ottieni il primo file dall'array dei file
+      const fileName = file.name; // Ottieni il nome del file
+      const fileUrl = URL.createObjectURL(file); // Ottieni il percorso temporaneo del file
       setFormData((prevState) => ({
         ...prevState,
-        [name]: files[0],
+        [name]: fileUrl, // Salva il percorso temporaneo del file nell'oggetto formData
+        profilePhoto: file, // Salva il file nell'oggetto formData
       }));
     } else {
       setFormData((prevState) => ({
@@ -114,7 +118,7 @@ function Stepper() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('your-backend-url', formData)
+    axios.post('http://localhost:3000/api/', formData)
       .then(response => {
         console.log('Data sent successfully:', response.data);
         navigate("/servizi")
