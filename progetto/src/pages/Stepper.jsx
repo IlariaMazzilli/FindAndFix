@@ -118,7 +118,7 @@ function Stepper() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:3000/api/', formData)
+    axios.post('http://localhost:3000/api/registratazione/', formData)
       .then(response => {
         console.log('Data sent successfully:', response.data);
         navigate("/servizi")
