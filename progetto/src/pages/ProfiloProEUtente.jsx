@@ -9,7 +9,7 @@ function ProfiloProEUtente({children}) {
   return (
     <div>
       <Navbar/>
-      <br /><br /><br /><br /><br />
+      <br /><br /><br /><br /><br /><br />
       <div className='flex h-fit w-full'>
         <Sidebar/>
         <Outlet/>

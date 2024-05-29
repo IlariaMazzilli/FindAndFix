@@ -2,7 +2,7 @@ import React from 'react'
 
 function ListaClienti() {
   return (
-    <div className='flex justify-center w-2/4'>
+    <div className='flex justify-center w-full'>
        
 <div className="max-w-2xl mx-auto">
 
