@@ -1,15 +1,13 @@
-import React, { useState, useEffect } from "react";
-import { motion, useAnimation } from "framer-motion";
-import LogoBianco from "../images/LogoBianco.png";
-import Abbonamenti from "./Abbonamenti";
+import { useState, useEffect } from "react";
+import { motion} from "framer-motion";
 import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import { FaEye, FaEyeSlash, FaUpload } from "react-icons/fa";
+import axios from "axios";
 
 function Stepper() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [abbonamento, setAbbonamento] = useState("");
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     categoria: [],
@@ -28,6 +26,7 @@ function Stepper() {
     partitaIVA: "",
     codiceFiscale: "",
     abbonamento: "",
+    costoAbbonamento: 0,
   });
 
   const {
@@ -46,11 +45,13 @@ function Stepper() {
     descrizioneProfessionista,
     partitaIVA,
     codiceFiscale,
+    abbonamento,
+    costoAbbonamento,
   } = formData;
 
-  /* const navigate = useNavigate(); */
+  const navigate = useNavigate(); 
 
-/*   aggiungere i commenti */
+  /*   aggiungere i commenti */
   const handleChange = (e) => {
     const { name, value, type, checked, files } = e.target;
     if (type === "checkbox") {
@@ -92,28 +93,35 @@ function Stepper() {
     setStep(newStep);
   };
 
-  const handleSubscriptionSelect = (selectedSubscription) => {
-    setAbbonamento(selectedSubscription);
+  const handleSubscriptionSelect = (selectedSubscription, cost) => {
     setFormData((prevState) => ({
       ...prevState,
       abbonamento: selectedSubscription,
+      costoAbbonamento: cost,
     }));
   };
 
   const handleMonthlySubscription = () => {
-    handleSubscriptionSelect("mensile");
+    handleSubscriptionSelect("mensile", 50);
     nextStep();
   };
 
   const handleAnnualSubscription = () => {
-    handleSubscriptionSelect("annuale");
+    handleSubscriptionSelect("annuale", 500);
     nextStep();
   };
 
-  const totalAmount = formData.abbonamento === 'mensile' ? 50 : 500;
-  
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    axios.post('your-backend-url', formData)
+      .then(response => {
+        console.log('Data sent successfully:', response.data);
+        navigate("/servizi")
+      })
+      .catch(error => {
+        console.error('Error sending data to backend:', error);
+      });
     console.log(formData);
   };
 
@@ -143,7 +151,9 @@ function Stepper() {
                 transition={{ duration: 0.3 }}
                 className="md:w-3/5 mx-auto py-12"
               >
-                <div className="text-base font-light text-center">Step 1/12</div>
+                <div className="text-base font-light text-center">
+                  Step 1/12
+                </div>
                 <div
                   className="mt-4 w-full h-2"
                   style={{ backgroundColor: "#0F5DA6" }}
@@ -153,6 +163,12 @@ function Stepper() {
                 <div className="mt-12 text-3xl text-center">
                   Quale servizio offri?
                 </div>
+                <br />
+                {categoria.length > 3 && (
+                  <p className="text-red-500">
+                    Puoi selezionare solo fino a tre servizi.
+                  </p>
+                )}
                 <br />
                 <div>
                   <fieldset>
@@ -222,7 +238,9 @@ function Stepper() {
                 transition={{ duration: 0.3 }}
                 className="md:w-3/5 mx-auto py-12"
               >
-                <div className="text-base font-light text-center">Step 2/12</div>
+                <div className="text-base font-light text-center">
+                  Step 2/12
+                </div>
                 <div
                   className="mt-4 w-full h-2"
                   style={{ backgroundColor: "#0F5DA6" }}
@@ -293,6 +311,7 @@ function Stepper() {
                     type="button"
                     onClick={nextStep}
                     className=" bg-customGreen text-white font-bold py-2 px-4 rounded"
+                    disabled={!tipo}
                   >
                     Avanti
                   </button>
@@ -378,7 +397,9 @@ function Stepper() {
                 transition={{ duration: 0.3 }}
                 className="md:w-3/5 mx-auto py-12"
               >
-                <div className="text-base font-light text-center">Step 3/12</div>
+                <div className="text-base font-light text-center">
+                  Step 3/12
+                </div>
                 <div
                   className="mt-4 w-full h-2"
                   style={{ backgroundColor: "#0F5DA6" }}
@@ -422,68 +443,73 @@ function Stepper() {
                 </div>
               </motion.div>
             )}
-             {step === 4 && (
+            {step === 4 && (
               <motion.div
-              key={step}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3 }}
-              className="md:w-3/5 mx-auto py-12"
-            >
-              <div className="text-base font-light text-center">Step 4/12</div>
-              <div className="mt-4 w-full h-2" style={{ backgroundColor: "#0F5DA6" }}>
-                <div className="h-full bg-green-500 rounded-3xl w-4/12"></div>
-              </div>
-              <div className="mt-12 text-3xl text-center">
-                Inserisci la tua Partita IVA e Codice Fiscale
-                <br />
-                <p className="text-sm">
-                  Questi dati sono necessari per la registrazione.
-                </p>
-              </div>
-    
-              <div className="mt-4">
-                <input
-                  type="text"
-                  placeholder="Partita IVA"
-                  name="partitaIVA"
-                  className="w-full border border-gray-300 rounded p-2 focus:outline-none"
-                  style={{ backgroundColor: "white" }}
-                  value={partitaIVA}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="mt-4">
-                <input
-                  type="text"
-                  placeholder="Codice Fiscale"
-                  name="codiceFiscale"
-                  className="w-full border border-gray-300 rounded p-2 focus:outline-none"
-                  style={{ backgroundColor: "white" }}
-                  value={codiceFiscale}
-                  onChange={handleChange}
-                />
-              </div>
-    
-              <div className="flex justify-center mt-12">
-                <button
-                  type="button"
-                  onClick={prevStep}
-                  className="mr-4 bg-gray-400 text-white font-bold py-2 px-4 rounded"
+                key={step}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.3 }}
+                className="md:w-3/5 mx-auto py-12"
+              >
+                <div className="text-base font-light text-center">
+                  Step 4/12
+                </div>
+                <div
+                  className="mt-4 w-full h-2"
+                  style={{ backgroundColor: "#0F5DA6" }}
                 >
-                  Indietro
-                </button>
-                <button
-                  type="button"
-                  onClick={nextStep}
-                  className="bg-customGreen text-white font-bold py-2 px-4 rounded"
-                >
-                  Avanti
-                </button>
-              </div>
-            </motion.div>
-             )}
+                  <div className="h-full bg-green-500 rounded-3xl w-4/12"></div>
+                </div>
+                <div className="mt-12 text-3xl text-center">
+                  Inserisci la tua Partita IVA e Codice Fiscale
+                  <br />
+                  <p className="text-sm">
+                    Questi dati sono necessari per la registrazione.
+                  </p>
+                </div>
+
+                <div className="mt-4">
+                  <input
+                    type="text"
+                    placeholder="Partita IVA"
+                    name="partitaIVA"
+                    className="w-full border border-gray-300 rounded p-2 focus:outline-none"
+                    style={{ backgroundColor: "white" }}
+                    value={partitaIVA}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="mt-4">
+                  <input
+                    type="text"
+                    placeholder="Codice Fiscale"
+                    name="codiceFiscale"
+                    className="w-full border border-gray-300 rounded p-2 focus:outline-none"
+                    style={{ backgroundColor: "white" }}
+                    value={codiceFiscale}
+                    onChange={handleChange}
+                  />
+                </div>
+
+                <div className="flex justify-center mt-12">
+                  <button
+                    type="button"
+                    onClick={prevStep}
+                    className="mr-4 bg-gray-400 text-white font-bold py-2 px-4 rounded"
+                  >
+                    Indietro
+                  </button>
+                  <button
+                    type="button"
+                    onClick={nextStep}
+                    className="bg-customGreen text-white font-bold py-2 px-4 rounded"
+                  >
+                    Avanti
+                  </button>
+                </div>
+              </motion.div>
+            )}
             {step === 5 && (
               <motion.div
                 key={step} // Add this line
@@ -679,7 +705,9 @@ function Stepper() {
                 transition={{ duration: 0.3 }}
                 className="md:w-3/5 mx-auto py-12"
               >
-                <div className="text-base font-light text-center">Step 8/12</div>
+                <div className="text-base font-light text-center">
+                  Step 8/12
+                </div>
                 <div
                   className="mt-4 w-full h-2"
                   style={{ backgroundColor: "#0F5DA6" }}
@@ -772,122 +800,137 @@ function Stepper() {
               </motion.div>
             )}
             {step === 9 && (
-            <motion.div
-            key={step}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
-            className="md:w-3/5 mx-auto py-12"
-          >
-            <div className="text-base font-light text-center">Step 9/12</div>
-            <div className="mt-4 w-full h-2" style={{ backgroundColor: "#0F5DA6" }}>
-              <div className="h-full bg-green-500 rounded-3xl w-9/12"></div>
-            </div>
-            <div className="mt-12 text-3xl text-center">
-              Carica una foto di profilo
-              <br />
-              <p className="text-sm">
-                Una foto aiuta a rendere il tuo profilo più riconoscibile.
-              </p>
-            </div>
-  
-            <div className="mt-4">
-              <label className="w-full flex flex-col items-center px-4 py-6 bg-white text-blue rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:bg-blue-400 hover:text-white">
-                <FaUpload className="h-8 w-8" />
-                <span className="mt-2 text-base leading-normal">Scegli un file</span>
-                <input
-                  type="file"
-                  accept="image/*"
-                  name="profilePhoto"
-                  onChange={handleChange}
-                  className="hidden"
-                />
-              </label>
-              {profilePhoto && (
-                <div className="mt-2 text-center">
-                  <span className="text-sm text-gray-600">{profilePhoto.name}</span>
+              <motion.div
+                key={step}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.3 }}
+                className="md:w-3/5 mx-auto py-12"
+              >
+                <div className="text-base font-light text-center">
+                  Step 9/12
                 </div>
-              )}
-            </div>
-  
-            {profilePhoto && (
-              <div className="mt-4 text-center">
-                <img
-                  src={URL.createObjectURL(profilePhoto)}
-                  alt="Foto di profilo"
-                  className="mx-auto rounded-full h-24 w-24 object-cover"
-                />
-              </div>
-            )}
-  
-            <div className="flex justify-center mt-12">
-              <button
-                type="button"
-                onClick={prevStep}
-                className="mr-4 bg-gray-400 text-white font-bold py-2 px-4 rounded"
-              >
-                Indietro
-              </button>
-              <button
-                type="button"
-                onClick={nextStep}
-                className="bg-customGreen text-white font-bold py-2 px-4 rounded"
-              >
-                Avanti
-              </button>
-            </div>
-          </motion.div>
+                <div
+                  className="mt-4 w-full h-2"
+                  style={{ backgroundColor: "#0F5DA6" }}
+                >
+                  <div className="h-full bg-green-500 rounded-3xl w-9/12"></div>
+                </div>
+                <div className="mt-12 text-3xl text-center">
+                  Carica una foto di profilo
+                  <br />
+                  <p className="text-sm">
+                    Una foto aiuta a rendere il tuo profilo più riconoscibile.
+                  </p>
+                </div>
+
+                <div className="mt-4">
+                  <label className="w-full flex flex-col items-center px-4 py-6 bg-white text-blue rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:bg-blue-400 hover:text-white">
+                    <FaUpload className="h-8 w-8" />
+                    <span className="mt-2 text-base leading-normal">
+                      Scegli un file
+                    </span>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      name="profilePhoto"
+                      onChange={handleChange}
+                      className="hidden"
+                    />
+                  </label>
+                  {profilePhoto && (
+                    <div className="mt-2 text-center">
+                      <span className="text-sm text-gray-600">
+                        {profilePhoto.name}
+                      </span>
+                    </div>
+                  )}
+                </div>
+
+                {profilePhoto && (
+                  <div className="mt-4 text-center">
+                    <img
+                      src={URL.createObjectURL(profilePhoto)}
+                      alt="Foto di profilo"
+                      className="mx-auto rounded-full h-24 w-24 object-cover"
+                    />
+                  </div>
+                )}
+
+                <div className="flex justify-center mt-12">
+                  <button
+                    type="button"
+                    onClick={prevStep}
+                    className="mr-4 bg-gray-400 text-white font-bold py-2 px-4 rounded"
+                  >
+                    Indietro
+                  </button>
+                  <button
+                    type="button"
+                    onClick={nextStep}
+                    className="bg-customGreen text-white font-bold py-2 px-4 rounded"
+                  >
+                    Avanti
+                  </button>
+                </div>
+              </motion.div>
             )}
             {step === 10 && (
-               <motion.div
-               key={step}
-               initial={{ opacity: 0, y: 20 }}
-               animate={{ opacity: 1, y: 0 }}
-               exit={{ opacity: 0, y: -20 }}
-               transition={{ duration: 0.3 }}
-               className="md:w-3/5 mx-auto py-12"
-             >
-               <div className="text-base font-light text-center">Step 10/12</div>
-               <div className="mt-4 w-full h-2" style={{ backgroundColor: "#0F5DA6" }}>
-                 <div className="h-full bg-green-500 rounded-3xl w-10/12"></div>
-               </div>
-               <div className="mt-12 text-3xl text-center">
-                 Parlaci di te
-                 <br />
-                 <p className="text-sm">
-                   Spiega agli utenti perché dovrebbero scegliere te rispetto agli altri.
-                 </p>
-               </div>
-     
-               <div>
-                 <textarea
-                   name="descrizioneProfessionista"
-                   placeholder="Scrivi qui..."
-                   className="mt-4 w-full border border-gray-300 rounded p-2 focus:outline-none"
-                   style={{ backgroundColor: "white", minHeight: "150px" }}
-                   value={descrizioneProfessionista}
-                   onChange={handleChange}
-                 />
-               </div>
-     
-               <div className="flex justify-center mt-12">
-                 <button
-                   type="button"
-                   onClick={prevStep}
-                   className="mr-4 bg-gray-400 text-white font-bold py-2 px-4 rounded"
-                 >
-                   Indietro
-                 </button>
-                 <button
-                   type="button"
-                   onClick={nextStep}
-                   className="bg-customGreen text-white font-bold py-2 px-4 rounded"
-                 >
-                   Avanti
-                 </button>
-               </div>
-             </motion.div>
+              <motion.div
+                key={step}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.3 }}
+                className="md:w-3/5 mx-auto py-12"
+              >
+                <div className="text-base font-light text-center">
+                  Step 10/12
+                </div>
+                <div
+                  className="mt-4 w-full h-2"
+                  style={{ backgroundColor: "#0F5DA6" }}
+                >
+                  <div className="h-full bg-green-500 rounded-3xl w-10/12"></div>
+                </div>
+                <div className="mt-12 text-3xl text-center">
+                  Parlaci di te
+                  <br />
+                  <p className="text-sm">
+                    Spiega agli utenti perché dovrebbero scegliere te rispetto
+                    agli altri.
+                  </p>
+                </div>
+
+                <div>
+                  <textarea
+                    name="descrizioneProfessionista"
+                    placeholder="Scrivi qui..."
+                    className="mt-4 w-full border border-gray-300 rounded p-2 focus:outline-none"
+                    style={{ backgroundColor: "white", minHeight: "150px" }}
+                    value={descrizioneProfessionista}
+                    onChange={handleChange}
+                  />
+                </div>
+
+                <div className="flex justify-center mt-12">
+                  <button
+                    type="button"
+                    onClick={prevStep}
+                    className="mr-4 bg-gray-400 text-white font-bold py-2 px-4 rounded"
+                  >
+                    Indietro
+                  </button>
+                  <button
+                    type="button"
+                    onClick={nextStep}
+                    className="bg-customGreen text-white font-bold py-2 px-4 rounded"
+                  >
+                    Avanti
+                  </button>
+                </div>
+              </motion.div>
             )}
             {step === 11 && (
               <motion.div
@@ -905,7 +948,7 @@ function Stepper() {
                   className="mt-4 w-full h-2"
                   style={{ backgroundColor: "#0F5DA6" }}
                 >
-                  <div className="h-full bg-green-500  rounded-3xl w-10/12"></div>
+                  <div className="h-full bg-green-500  rounded-3xl w-11/12"></div>
                 </div>
                 <div className="bg-white py-24 sm:py-16">
                   <div className="mx-auto  px-6 lg:px-8">
@@ -946,9 +989,7 @@ function Stepper() {
                         >
                           {" "}
                           <button
-                            onClick={() => {
-                            handleMonthlySubscription
-                            }}
+                            onClick={() => handleMonthlySubscription()}
                           >
                             ACQUISTA ORA{" "}
                           </button>
@@ -1044,9 +1085,7 @@ function Stepper() {
                         >
                           {" "}
                           <button
-                            onClick={() => {
-                             handleAnnualSubscription
-                            }}
+                            onClick={() => handleAnnualSubscription()}
                           >
                             ACQUISTA ORA
                           </button>
@@ -1246,22 +1285,36 @@ function Stepper() {
                         </h3>
                         <ul className="text-[#333] mt-6 space-y-4">
                           <li className="flex flex-wrap gap-4 text-sm">
-                            Abbonamento mensile{" "}
-                            <span className="ml-auto font-bold">€50.00</span>
+                            Abbonamento {abbonamento}{" "}
+                            <span className="ml-auto font-bold">{costoAbbonamento}.00</span>
                           </li>
                           <li className="flex flex-wrap gap-4 text-base font-bold border-t pt-4">
-                            Totale <span className="ml-auto">€50.00</span>
+                            Totale {" "} <span className="ml-auto">{costoAbbonamento}.00</span>
                           </li>
                         </ul>
                       </div>
                     </div>
+                    <div className="flex justify-center mt-12">
+                  <button
+                    type="button"
+                    onClick={handleSubmit}
+                    
+                    className="px-6 py-3.5 text-sm bg-blue-600 text-white rounded-md hover:bg-blue-700"
+                    
+                  >
+                    Paga Ora
+                  </button>
+                </div>
+                <br />
+                <br />
+                <br />
                     <div className="flex flex-wrap gap-4 mt-10">
                       <button
-                        onClick={handleSubmit}
+                       onClick={prevStep}
                         type="button"
-                        className="px-6 py-3.5 text-sm bg-blue-600 text-white rounded-md hover:bg-blue-700"
+                        className=" mr-4 bg-gray-400 text-white font-bold py-2 px-4 rounded"
                       >
-                        Paga ora
+                        Indietro
                       </button>
                     </div>
                   </div>
