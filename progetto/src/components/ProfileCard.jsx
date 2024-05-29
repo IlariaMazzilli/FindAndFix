@@ -39,7 +39,7 @@ const ProfileCard = ({ id, name, image, description, rating, pricing, onContact 
   };
 
   const handleContact = () => {
-    navigate(`/Userwewe`, {
+    navigate(`/profile/:${name}`, {
       state: {
         name,
         image,

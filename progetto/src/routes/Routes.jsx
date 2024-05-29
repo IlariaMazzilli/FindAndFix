@@ -4,17 +4,18 @@ import Register from "../pages/Register";
 import Faqs from "../pages/Faqs";
 import SignIn from '../pages/SignIn'
 import ChiSiamo from "../pages/ChiSiamo";
-import Servizi from "../Servizi";
+import Servizi from "../pages/Servizi";
 import NotFound from '../pages/NotFound'
 import TermsAndConditions from "../pages/TermsAndConditions";
 import ChatBotComponent from "../ChatBotComponent";
 import Stepper from "../pages/Stepper";
-import SideBarUserProfile from "../pages/SideBarUserProfile";
-import Notifiche from "../pages/Notifiche";
-import Impostazioni from "../pages/Impostazioni";
-import Pagamenti from "../pages/Pagamenti";
-import Preferiti from "../pages/Preferiti";
-import Profilewewe from "../pages/Profilewewe";
+import ProfiloProEUtente from '../pages/ProfiloProEUtente'
+import Messaggi from "../components/Messaggi";
+import Profile from "../components/Profile";
+import Impostazioni from "../components/Impostazioni";
+import Notifiche from "../components/Notifiche";
+import ListaClienti from "../components/ListaClienti";
+
 
 export const Rotte = createBrowserRouter([
     {
@@ -66,6 +67,34 @@ export const Rotte = createBrowserRouter([
         ),
     },
     {
+      path:'/profile/:name',
+      element: (
+        <ProfiloProEUtente/>
+      ),
+      children: [
+        {
+          index: true,
+          element: <Profile/>
+        },
+        {
+          path: 'messaggi',
+          element: <Messaggi/>
+        },
+        {
+          path:'settings',
+          element: <Impostazioni/>
+        },
+        {
+          path:'notifiche',
+          element: <Notifiche/>
+        },
+        {
+          path:'clienti',
+          element: <ListaClienti/>
+        }
+      ]
+    },
+    {
         path: "/termsAndConditions",
         element: <TermsAndConditions />,
     },
@@ -73,40 +102,5 @@ export const Rotte = createBrowserRouter([
         path: "*",
         element: <NotFound />,
     },
-    {
-        path: "/Userwewe",
-        element: (
-          <>
-            <SideBarUserProfile />
-          
-                <ChatBotComponent />
-              </>
-        ),
-        children: [
-          {
-            path: "",
-            element: <Navigate to="avatar" />, // Redirect to avatar when /Userwewe is accessed
-          },
-          {
-            path: "avatar",
-            element: <Profilewewe />,
-          },
-          {
-            path: "impostazioni",
-            element: <Impostazioni />,
-          },
-          {
-            path: "pagamenti",
-            element: <Pagamenti />,
-          },
-          {
-            path: "preferiti",
-            element: <Preferiti />,
-          },
-          {
-            path: "notifiche",
-            element: <Notifiche />,
-          },
-        ],
-      },
+    
 ])
