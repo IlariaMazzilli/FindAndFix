@@ -4,8 +4,11 @@ import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import { FaEye, FaEyeSlash, FaUpload } from "react-icons/fa";
 import axios from "axios";
+import {useToken} from '../auth/useToken';
 
 function Stepper() {
+  const [token, setToken] = useToken();
+  const [errorMessage, setErrorMessage] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [step, setStep] = useState(1);
@@ -22,6 +25,8 @@ function Stepper() {
     città: "",
     provincia: "",
     profilePhoto: null,
+    profilePhotoName: "", 
+    profilePhotoPath: "",
     descrizioneProfessionista: "",
     partitaIVA: "",
     codiceFiscale: "",
@@ -42,11 +47,14 @@ function Stepper() {
     città,
     provincia,
     profilePhoto,
+    profilePhotoName,
+    profilePhotoPath,
     descrizioneProfessionista,
     partitaIVA,
     codiceFiscale,
     abbonamento,
     costoAbbonamento,
+    
   } = formData;
 
   const navigate = useNavigate(); 
@@ -76,8 +84,9 @@ function Stepper() {
       const fileUrl = URL.createObjectURL(file); // Ottieni il percorso temporaneo del file
       setFormData((prevState) => ({
         ...prevState,
-        [name]: fileUrl, // Salva il percorso temporaneo del file nell'oggetto formData
-        profilePhoto: file, // Salva il file nell'oggetto formData
+        [name]: file, // Salva il percorso temporaneo del file nell'oggetto formData
+        profilePhotoName: fileName, // Salva il nome del file dell'immagine di profilo
+        profilePhotoPath: fileUrl, // Salva il file nell'oggetto formData
       }));
     } else {
       setFormData((prevState) => ({
@@ -116,17 +125,31 @@ function Stepper() {
   };
 
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async  (e) => {
     e.preventDefault();
-    axios.post('http://localhost:3000/api/registratazione/', formData)
-      .then(response => {
-        console.log('Data sent successfully:', response.data);
-        navigate("/servizi")
-      })
-      .catch(error => {
-        console.error('Error sending data to backend:', error);
-      });
-    console.log(formData);
+    setErrorMessage('');
+    if (password !== confermaPassword) {
+      setErrorMessage("Le password non corrispondono.");
+      return;
+    }
+    const formDataToSend = { ...formData };
+    delete formDataToSend.profilePhoto;
+    try {
+      const response = await axios.post('http://localhost:3000/api/registratazione/professionale', formDataToSend)
+
+      const { token } = response.data;
+      setToken(token);
+      console.log('Data sent successfully:', response.data);
+      console.log(token);
+      navigate("/servizi")
+    } catch (error) {
+      console.error(error);
+      if (error.response.status === 409) {
+        setErrorMessage('Utente già esistente.');
+      } else {
+        setErrorMessage('Errore durante la registrazione.');
+      }
+    }
   };
 
   return (
@@ -164,6 +187,7 @@ function Stepper() {
                 >
                   <div className="h-full bg-green-500 rounded-3xl w-1/12"></div>
                 </div>
+                {errorMessage && <div className="text-red-500">{errorMessage}</div>}
                 <div className="mt-12 text-3xl text-center">
                   Quale servizio offri?
                 </div>
@@ -422,7 +446,7 @@ function Stepper() {
                   <input
                     type="text"
                     placeholder="Nome Azienda"
-                    name="nomeAzienda"
+                    name="nome_azienda"
                     className="mt-4 w-full border border-gray-300 rounded p-2 focus:outline-none"
                     style={{ backgroundColor: "white" }}
                     value={nome_azienda}
@@ -843,19 +867,19 @@ function Stepper() {
                       className="hidden"
                     />
                   </label>
-                  {profilePhoto && (
+                  {profilePhotoName && (
                     <div className="mt-2 text-center">
                       <span className="text-sm text-gray-600">
-                        {profilePhoto.name}
+                        {profilePhotoName}
                       </span>
                     </div>
                   )}
                 </div>
 
-                {profilePhoto && (
+                {profilePhotoPath  && (
                   <div className="mt-4 text-center">
                     <img
-                      src={URL.createObjectURL(profilePhoto)}
+                      src={profilePhotoPath }
                       alt="Foto di profilo"
                       className="mx-auto rounded-full h-24 w-24 object-cover"
                     />
@@ -1249,7 +1273,7 @@ function Stepper() {
                             </label>
                           </div>
                         </div>
-                        <form className="mt-8">
+                        
                           <div className="grid gap-6">
                             <div className="grid sm:grid-cols-3 gap-6">
                               <input
@@ -1281,7 +1305,7 @@ function Stepper() {
                               />
                             </div>
                           </div>
-                        </form>
+                       
                       </div>
                       <div className="lg:border-l lg:pl-8">
                         <h3 className="text-xl font-bold text-[#333]">
