@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
-function Profile({name, job, image, servizio1, servizio2, servizio3, servizio4, servizio5, description}) {
+function ProfilePro({name, job, image, servizio1, servizio2, servizio3, servizio4, servizio5, description}) {
 const [profile, setProfile] = useState([])
 
 useEffect(() => {
@@ -65,4 +65,4 @@ useEffect(() => {
     )
 }
 
-export default Profile
+export default ProfilePro

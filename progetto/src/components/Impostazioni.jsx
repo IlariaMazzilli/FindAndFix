@@ -1,6 +1,18 @@
-import React from 'react'
+import React, {useState} from 'react'
+import {Link, useNavigate} from 'react-router-dom'
 
 function Impostazioni() {
+  const [type, setType] = useState('password')
+  const navigate = useNavigate()
+
+  function changeType() {
+    setType(type === 'password' ? 'text' : 'password');
+  }
+
+  function goToChangeMail(){
+      navigate('/changeMail')
+  }
+
   return (
     <div className='w-full'>
 <div className="mx-4 min-h-screen max-w-screen-xl sm:mx-8 xl:mx-auto text-customBlue">
@@ -16,7 +28,7 @@ function Impostazioni() {
       <p className="py-2 text-xl font-semibold">Email</p>
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
         <p className="text-gray-600">La tua email è <strong>john.doe@company.com</strong></p>
-        <button className="inline-flex text-sm font-semibold text-blue-600 underline decoration-2">Cambia</button>
+        <button className="inline-flex text-sm font-semibold text-blue-600 underline decoration-2" onClick={goToChangeMail}>Cambia</button>
       </div>
       <hr className="mt-4 mb-8" />
       <p className="py-2 text-xl font-semibold">Password</p>
@@ -25,21 +37,22 @@ function Impostazioni() {
           <label htmlFor="login-password">
             <span className="text-sm text-gray-500">Password attuale</span>
             <div className="relative flex overflow-hidden rounded-md border-2 transition focus-within:border-blue-600">
-              <input type="password" id="login-password" className="w-full flex-shrink appearance-none  bg-white py-2 px-4 text-base text-gray-700 placeholder-gray-400 focus:outline-none" placeholder="***********" />
+              <input type={type} id="login-password" className="w-full flex-shrink appearance-none  bg-white py-2 px-4 text-base text-gray-700 placeholder-gray-400 focus:outline-none" placeholder="***********" />
             </div>
           </label>
           <label htmlFor="login-password">
             <span className="text-sm text-gray-500">Nuova password</span>
             <div className="relative flex overflow-hidden rounded-md border-2 transition focus-within:border-blue-600">
-              <input type="password" id="login-password" className="w-full flex-shrink appearance-none  bg-white py-2 px-4 text-base text-gray-700 placeholder-gray-400 focus:outline-none" placeholder="***********" />
+              <input type={type} id="login-password" className="w-full flex-shrink appearance-none  bg-white py-2 px-4 text-base text-gray-700 placeholder-gray-400 focus:outline-none" placeholder="***********" />
             </div>
           </label>
         </div>
-        <svg xmlns="http://www.w3.org/2000/svg" className="mt-5 ml-2 h-6 w-6 cursor-pointer text-sm font-semibold text-gray-600 underline decoration-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <svg xmlns="http://www.w3.org/2000/svg" className="mt-5 ml-2 h-6 w-6 cursor-pointer text-sm font-semibold text-gray-600 underline decoration-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" onClick={changeType}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
         </svg>
       </div>
-      <p className="mt-2">Non ti ricordi la password ? <a className="text-sm font-semibold text-blue-600 underline decoration-2" href="#">Recupera account</a></p>
+      <p className="mt-2">Non ti ricordi la password ? <Link to="/recuperaPassword" className="text-sm font-semibold text-blue-600 underline decoration-2">Recupera account</Link></p>
+
       <button className="mt-4 rounded-lg bg-blue-600 px-4 py-2 text-white">Salva password</button>
       <hr className="mt-4 mb-8" />
 

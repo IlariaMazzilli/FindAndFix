@@ -7,10 +7,11 @@ import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
 
 
-const MyComponent = () => {
+const Servizi = () => {
   return (
     <div>
-      <Navbar /><br/><br/><br/><br/>
+      <Navbar />
+      <br /><br /><br /><br />
       <ProfileList />
       <Footer />
     </div>
@@ -20,4 +21,4 @@ const MyComponent = () => {
   );
 
 };
-export default MyComponent;
+export default Servizi;

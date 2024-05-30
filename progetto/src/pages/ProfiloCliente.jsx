@@ -1,8 +1,7 @@
 import React from 'react'
-import Profile from '../components/Profile'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
-import Sidebar from '../components/Sidebar'
+import SidebarCliente from '../components/SidebarCliente'
 import { Outlet } from 'react-router-dom'
 
 function ProfiloProEUtente({children}) {
@@ -11,7 +10,7 @@ function ProfiloProEUtente({children}) {
       <Navbar/>
       <br /><br /><br /><br /><br /><br />
       <div className='flex h-fit w-full'>
-        <Sidebar/>
+        <SidebarCliente/>
         <Outlet/>
       </div>
       

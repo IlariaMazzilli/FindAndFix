@@ -118,7 +118,7 @@ function SignIn() {
                 <div className="text-right mt-2">
                   <button
                     /* inserire il nuovo form di forgot password */
-                    onClick={() => navigate("/forgot-password")}
+                    onClick={() => navigate("/recuperaPassword")}
                     className="text-sm font-semibold text-gray-700 hover:text-blue-700 focus:text-blue-700"
                   >
                     Hai dimenticato la password?
