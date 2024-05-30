@@ -1,13 +1,12 @@
-import  { useState } from "react";
+import { useState } from "react";
 import RegistrationBanner from "../images/Registrazione-Banner.png";
 import { useNavigate } from "react-router-dom";
 import { MdVisibility } from "react-icons/md";
 import Navbar from "../components/Navbar";
 import axios from "axios";
-import {useToken} from '../auth/useToken';
+import { useToken } from '../auth/useToken';
 
 function Register() {
-
   const [token, setToken] = useToken();
   const [errorMessage, setErrorMessage] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -22,7 +21,7 @@ function Register() {
   });
 
   const { nome, cognome, email, password, confermaPassword, email_marketing } = formData;
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   function handleInput(e) {
     const { name, value, type, checked } = e.target;
@@ -32,8 +31,25 @@ function Register() {
     }));
   }
 
+  function validateEmail(email) {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(String(email).toLowerCase());
+  }
+
   const OnSignUpClicked = async (e) => {
     e.preventDefault();
+    setErrorMessage('');
+
+    if (!validateEmail(email)) {
+      setErrorMessage("L'indirizzo email non è valido.");
+      return;
+    }
+
+    if (password.length < 8) {
+      setErrorMessage("La password deve essere lunga almeno 8 caratteri.");
+      return;
+    }
+
     if (password !== confermaPassword) {
       setErrorMessage("Le password non corrispondono.");
       return;
@@ -47,9 +63,10 @@ function Register() {
         password,
         email_marketing
       });
-      const {token} = response.data;
+      const { token } = response.data;
       setToken(token);
       console.log(token);
+      alert("Registrazione effettuata con successo");
       navigate("/"); // Reindirizza alla pagina di accesso dopo la registrazione
     } catch (error) {
       console.error(error);
@@ -105,7 +122,6 @@ function Register() {
                     className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none"
                     value={nome}
                     onChange={handleInput}
-                   
                   />
                 </div>
 
@@ -125,7 +141,6 @@ function Register() {
                     className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none"
                     value={cognome}
                     onChange={handleInput}
-                   
                   />
                 </div>
 
