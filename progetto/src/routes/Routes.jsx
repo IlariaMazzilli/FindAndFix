@@ -108,8 +108,8 @@ export const Rotte = createBrowserRouter([
                 <ContactForm />
                 <Footer/>
             </div>
-        ),
-        redirect: () => redirectIfUserNotLogged("/signIn")
+        )
+        
     },
     {
         path: "/formReceived",

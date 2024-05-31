@@ -1,11 +1,11 @@
 import React, {useContext} from 'react';
 import { useParams, useNavigate, Link} from 'react-router-dom'
-import { AuthContext } from '../auth/AuthContext';
+
 
 function ViewClientProfilePro() {
     const { name, description } = useParams()
     const navigate = useNavigate()
-    const {email} = useContext(AuthContext)
+    const email = localStorage.getItem('email')
 
     function redirectIfUserNotLogged(){
         if (!email){
