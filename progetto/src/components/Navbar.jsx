@@ -63,7 +63,7 @@ function Navbar() {
             </Link>
 
             {userEmail ?
-              <Link to="/Userwewe" className="button rounded-md  p-4 flex items-center text-mobile font-medium text-customBlue hover:text-customGreen box-border " >
+              <Link to="/clientProfile/:name" className="button rounded-md  p-4 flex items-center text-mobile font-medium text-customBlue hover:text-customGreen box-border " >
                 Ciao, {userEmail}
               </Link>
               : <Link to="/registrati" className="button rounded-md bg-customBlue p-4 flex items-center text-mobile font-medium text-white hover:bg-customGreen box-border " >

@@ -1,4 +1,5 @@
-import { createBrowserRouter, redirect, Navigate } from "react-router-dom";
+import { createBrowserRouter, redirect, Navigate, useNavigate } from "react-router-dom";
+import { useContext } from "react";
 import Home from "../pages/Home";
 import Register from "../pages/Register";
 import Faqs from "../pages/Faqs";
@@ -25,7 +26,17 @@ import ChatCharlie from "../components/ChatCharlie";
 import ChangeEmail from '../pages/ChangeEmail'
 import { AuthContext } from "../auth/AuthContext";
 import CreateReview from "../pages/CreateReview";
+import ViewClientProfilePro from "../pages/ViewClientProfilePro";
+import ContactForm from "../pages/ContactForm";
+import ConfirmationPage from "../pages/ConfirmationPage";
 
+function redirectIfUserNotLogged(path){
+    const {email} = useContext(AuthContext)
+    const navigate = useNavigate()
+    if (!email){
+        navigate(path)
+    }
+}
 
 export const Rotte = createBrowserRouter([
     {
@@ -73,6 +84,41 @@ export const Rotte = createBrowserRouter([
             <div>
                 <Servizi />
                 <ChatBotComponent />
+            </div>
+        ),
+    },
+    {
+        path: "/clientViewPro/:name/:description",
+        element: (
+            <div>
+                <Navbar/>
+                <br /><br /><br /><br />
+                <ViewClientProfilePro/>
+                <ChatBotComponent />
+                <Footer/>
+            </div>
+        ),
+    },
+    {
+        path: "/contactForm",
+        element: (
+            <div>
+                <Navbar/>
+                <br /><br /><br /><br />
+                <ContactForm />
+                <Footer/>
+            </div>
+        ),
+        redirect: () => redirectIfUserNotLogged("/signIn")
+    },
+    {
+        path: "/formReceived",
+        element: (
+            <div>
+                <Navbar/>
+                <br /><br /><br /><br />
+                <ConfirmationPage />
+                <Footer/>
             </div>
         ),
     },

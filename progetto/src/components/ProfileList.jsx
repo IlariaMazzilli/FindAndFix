@@ -7,7 +7,7 @@ import interiorDesignerImage from '../images/Nadia.jpg';
 import locksmithImage from '../images/Enzo.png';
 import moverImage from '../images/sylvia.jpg';
 import '../myStyles.css';
-import UserPage from '../pages/UserPage';
+// import UserPage from '../pages/UserPage';
 
 
 const ProfileList = () => {

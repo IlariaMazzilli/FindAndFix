@@ -15,18 +15,18 @@ function Footer() {
 
     return (
         <footer className='bg-customGrey' id='footer'>
-            <div className="mx-auto max-w-screen-xl px-4 pb-6 pt-16 sm:px-6 lg:px-8 lg:pt-24 sm:pt-8">
+            <div className="mx-auto max-w-screen-xl px-4 pb-6 max-[768px]:pt-16 sm:px-6 lg:px-8  sm:pt-8">
                 <div className="grid grid-cols-1 gap-8 lg:grid-cols-1 sm:grid-cols-1 md:grid-cols-1">
                     <div>
                         <div className="flex justify-center sm:justify-center">
                             <img src={logoNoBg} alt="logo find and fix" className='w-20 h-16' />
                         </div>
-                            <div className='flex justify-center'>
-                                <p className="mt-6 max-w-md text-center leading-relaxed text-customGreen font-bold sm:max-w-xs sm:text-left ">
-                            Seguici sui nostri social
-                        </p>
-                            </div>
-                        
+                        <div className='flex justify-center'>
+                            <p className="mt-6 max-w-md text-center leading-relaxed text-customGreen font-bold sm:max-w-xs sm:text-left ">
+                                Seguici sui nostri social
+                            </p>
+                        </div>
+
 
                         <ul className="mt-8 flex justify-center gap-6 sm:justify-center md:gap-8">
                             <li>
@@ -134,7 +134,7 @@ function Footer() {
                             </ul>
                         </div>
 
-                   
+
 
                         <div className="text-center sm:text-left">
                             <p className="text-lg font-extrabold text-customBlue">Link utili</p>
@@ -152,8 +152,8 @@ function Footer() {
                                     >
 
                                         <span className="relative flex h-2 w-2">
-                                           
-                                           
+
+
                                         </span>
                                     </a>
                                 </li>
@@ -164,37 +164,37 @@ function Footer() {
                             <p className="text-lg font-extrabold text-customBlue">Contattaci</p>
 
                             <ul className="mt-8 space-y-4 text-sm">
-                            
+
                                 <li
-                                    
+
                                 >
-                                      <a
+                                    <a
                                         className="flex items-center justify-center gap-1.5 max-[600px]:flex-col"
                                         href="#"
                                     >
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        className="size-5 shrink-0  footerSvg"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                        stroke="currentcolor"
-                                        strokeWidth="2"
-                                    >
-                                        <path
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                                        />
-                                        <path
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                                        />
-                                    </svg>
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            className="size-5 shrink-0  footerSvg"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke="currentcolor"
+                                            strokeWidth="2"
+                                        >
+                                            <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                                            />
+                                            <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                                            />
+                                        </svg>
 
-                                    <span className="-mt-0.5 flex-1 not-italic text-customGreen font-bold max-[600px]:text-xs">
-                                        Piazza della Luna, 14, Domodossola, 28845
-                                    </span>
+                                        <span className="-mt-0.5 flex-1 not-italic text-customGreen font-bold max-[600px]:text-xs">
+                                            Piazza della Luna, 14, Domodossola, 28845
+                                        </span>
                                     </a>
                                 </li>
 
