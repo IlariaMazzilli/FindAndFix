@@ -29,11 +29,13 @@ import CreateReview from "../pages/CreateReview";
 import ViewClientProfilePro from "../pages/ViewClientProfilePro";
 import ContactForm from "../pages/ContactForm";
 import ConfirmationPage from "../pages/ConfirmationPage";
+import PrivateRoute from "../auth/PrivateRoute";
+import ReviewsPage from "../pages/ReviewsPage";
 
-function redirectIfUserNotLogged(path){
-    const {email} = useContext(AuthContext)
+function redirectIfUserNotLogged(path) {
+    const { email } = useContext(AuthContext)
     const navigate = useNavigate()
-    if (!email){
+    if (!email) {
         navigate(path)
     }
 }
@@ -79,56 +81,78 @@ export const Rotte = createBrowserRouter([
         ),
     },
     {
-        path: "/servizi",
+        path: "/reviews",
         element: (
             <div>
-                <Servizi />
+                <Navbar/>
+                <br /><br /><br />
+                <ReviewsPage />
+                <br /><br />
                 <ChatBotComponent />
+                <Footer/>
             </div>
         ),
     },
     {
+        path: "/servizi",
+        element: (
+            <PrivateRoute element={() => (
+                <div>
+                    <Servizi />
+                    <ChatBotComponent />
+                </div>
+            )} />
+        )
+    },
+    {
         path: "/clientViewPro/:name/:description",
         element: (
-            <div>
-                <Navbar/>
-                <br /><br /><br /><br />
-                <ViewClientProfilePro/>
-                <ChatBotComponent />
-                <Footer/>
-            </div>
+            <PrivateRoute element={() => (
+                <div>
+                    <Navbar />
+                    <br /><br /><br /><br />
+                    <ViewClientProfilePro />
+                    <ChatBotComponent />
+                    <Footer />
+                </div>
+            )} />
         ),
     },
     {
         path: "/contactForm",
         element: (
-            <div>
-                <Navbar/>
-                <br /><br /><br /><br />
-                <ContactForm />
-                <Footer/>
-            </div>
+            <PrivateRoute element={() => (
+                <div>
+                    <Navbar />
+                    <br /><br /><br /><br />
+                    <ContactForm />
+                    <Footer />
+                </div>
+            )} />
+
         )
-        
+
     },
     {
         path: "/formReceived",
         element: (
             <div>
-                <Navbar/>
+                <Navbar />
                 <br /><br /><br /><br />
                 <ConfirmationPage />
-                <Footer/>
+                <Footer />
             </div>
         ),
     },
     {
         path: '/profile/:name',
         element: (
-            <div>
-            <ProfiloPro />
-            <ChatBotComponent/>
-            </div>
+            <PrivateRoute element={() => (
+                <div>
+                    <ProfiloPro />
+                    <ChatBotComponent />
+                </div>
+            )} />
         ),
         children: [
             {
@@ -141,15 +165,15 @@ export const Rotte = createBrowserRouter([
                 children: [
                     {
                         index: true,
-                        element: <ChatAlice/>
+                        element: <ChatAlice />
                     },
                     {
-                        path:'Martin',
-                        element: <ChatMartin/>
+                        path: 'Martin',
+                        element: <ChatMartin />
                     },
                     {
-                        path:'Charlie',
-                        element: <ChatCharlie/>
+                        path: 'Charlie',
+                        element: <ChatCharlie />
                     },
                 ]
             },
@@ -170,10 +194,13 @@ export const Rotte = createBrowserRouter([
     {
         path: '/clientProfile/:name',
         element: (
-            <div>
-            <ProfiloCliente />
-            <ChatBotComponent/>
-            </div>
+            <PrivateRoute element={() => (
+                <div>
+                    <ProfiloCliente />
+                    <ChatBotComponent />
+                </div>
+            )} />
+
         ),
         children: [
             {
@@ -204,23 +231,29 @@ export const Rotte = createBrowserRouter([
     {
         path: '/changeMail',
         element: (
-            <div>
-                <Navbar />
-                <br />
-                <ChangeEmail />
-                <Footer />
-            </div>
+            <PrivateRoute element={() => (
+                <div>
+                    <Navbar />
+                    <br />
+                    <ChangeEmail />
+                    <Footer />
+                </div>
+            )} />
+
         )
     },
     {
         path: '/createReview',
         element: (
-            <div>
-                <Navbar />
-                <br />
-                <CreateReview />
-                <Footer />
-            </div>
+            <PrivateRoute element={() => (
+                <div>
+                    <Navbar />
+                    <br />
+                    <CreateReview />
+                    <Footer />
+                </div>
+            )} />
+
         )
     },
     {

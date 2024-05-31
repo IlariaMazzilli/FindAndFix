@@ -4,17 +4,7 @@ import { useParams, useNavigate, Link} from 'react-router-dom'
 
 function ViewClientProfilePro() {
     const { name, description } = useParams()
-    const navigate = useNavigate()
-    const email = localStorage.getItem('email')
-
-    function redirectIfUserNotLogged(){
-        if (!email){
-            navigate('/signIn')
-        } else {
-            navigate('/contactForm')
-        }
-    }
-
+   
     return (
 
         <div className="bg-gray-100">
@@ -31,7 +21,7 @@ function ViewClientProfilePro() {
                                 <h1 className="text-xl font-bold">{name}</h1>
 
                                 <div className="mt-6 flex flex-wrap gap-4 justify-center">
-                                    <Link onClick={redirectIfUserNotLogged} className="bg-customBlue hover:bg-customGreen text-white py-2 px-4 rounded">Contatta</Link>
+                                    <Link to="/contactForm" className="bg-customBlue hover:bg-customGreen text-white py-2 px-4 rounded">Contatta</Link>
 
                                 </div>
                             </div>

@@ -1,6 +1,7 @@
 import '../index.css'
 import { Fade } from "react-awesome-reveal";
 import { Slide } from "react-awesome-reveal";
+import { useNavigate } from 'react-router-dom';
 import Jumbotron from "../components/Jumbotron"
 import Navbar from "../components/Navbar"
 import Card from "../components/Card"
@@ -32,12 +33,11 @@ import Select from '../components/Select'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-// import { DarkModeContext } from '../DarkMode'; // Assicurati che l'importazione sia corretta
-// import '../darkModeStyles.css'
+
 
 
 function Home() {
-  // const { toggleDarkMode } = useContext(DarkModeContext);
+  const navigate = useNavigate()
 
   var settings = {
     dots: false,
@@ -169,7 +169,7 @@ function Home() {
         </Slider>
       </div>
       <Fade triggerOnce={true} duration={3500}>
-        <div className='my-14'>
+        <div className='my-14 cursor-pointer' onClick={()=>navigate('/servizi')}>
           <Bottone text={'Cerca altri pro'} />
         </div>
       </Fade>
@@ -182,7 +182,7 @@ function Home() {
         <Slide direction={'left'} triggerOnce={true} duration={2500}>
           <Reviews />
         </Slide>
-        <div className='mb-12 smmt-0'>
+        <div className='mb-12 smmt-0 cursor-pointer' onClick={()=>navigate('/reviews')}>
           <Bottone text='Leggi altre recensioni' />
         </div>
       </Fade>
