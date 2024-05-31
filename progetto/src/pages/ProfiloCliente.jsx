@@ -4,7 +4,7 @@ import Footer from '../components/Footer'
 import SidebarCliente from '../components/SidebarCliente'
 import { Outlet } from 'react-router-dom'
 
-function ProfiloProEUtente({children}) {
+function ProfiloCliente({children}) {
   return (
     <div>
       <Navbar/>
@@ -20,4 +20,4 @@ function ProfiloProEUtente({children}) {
   )
 }
 
-export default ProfiloProEUtente
+export default ProfiloCliente

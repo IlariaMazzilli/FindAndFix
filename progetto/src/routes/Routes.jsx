@@ -178,33 +178,15 @@ export const Rotte = createBrowserRouter([
         children: [
             {
                 index: true,
-                element: <ProfilePro />
-            },
-            {
-                path: 'messaggi',
-                element: <Messaggi />,
-                children: [
-                    {
-                        index: true,
-                        element: <ChatAlice/>
-                    },
-                    {
-                        path:'Martin',
-                        element: <ChatMartin/>
-                    },
-                    {
-                        path:'Charlie',
-                        element: <ChatCharlie/>
-                    },
-                ]
-            },
-            {
-                path: 'settings',
                 element: <Impostazioni />
             },
             {
                 path: 'notifiche',
                 element: <Notifiche />
+            },
+            {
+                path: 'clientSettings',
+                element: <Impostazioni />
             },
         ]
     },
