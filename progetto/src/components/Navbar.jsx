@@ -41,11 +41,11 @@ function Navbar() {
   return (
 
     <div className='fixed z-10 bg-white w-full'>
-      <div className='fixed z-10 bg-white w-full flex justify-between items-center'>
-        <nav className='flex w-full p-4 box-border'>
+      <div className='fixed z-10 bg-white w-full flex  items-center justify-around '>
+        <nav className='flex p-2 box-border w-2/4'>
           <ul className="flex justify-around items-center gap-6 max-[768px]:whitespace-nowrap w-full">
             <Link to="/" className="block text-teal-600" href="#">
-              <img src={logoNoBg} className='w-20 h-16 max-[768px]:w-10 max-[768px]:h-8 logo' alt='Find & Fix' />
+              <img src={logoNoBg} className='w-16 h-12 max-[768px]:w-10 max-[768px]:h-8 logo' alt='Find & Fix' />
             </Link>
             <li>
               <Link to="/chiSiamo" className=" text-customBlue transition hover:text-customGreen whitespace-nowrap text-xl max-[768px]:text-base" href="#"> Chi siamo </Link>
@@ -61,8 +61,8 @@ function Navbar() {
           </ul>
         </nav>
 
-        <div className='flex px-4 max-[768px]:hidden h-12'>
-          <Link to="/signIn" className="button rounded-md mx-4 bg-customBlue  text-mobile font-medium text-white shadow hover:bg-customGreen p-4 flex items-center box-border whitespace-nowrap" onClick={logout}>
+        <div className='flex px-4 max-[768px]:hidden h-8 w-2/4 justify-end'>
+          <Link to="/signIn" className="button rounded-md mx-4 bg-customBlue transition duration-300 text-mobile font-medium text-white shadow hover:bg-customGreen p-4 flex items-center box-border whitespace-nowrap" onClick={logout}>
             {user ? 'LOGOUT' : 'LOGIN'}
           </Link>
 
@@ -70,21 +70,21 @@ function Navbar() {
             <Link to="/clientProfile/:name" className="button rounded-md  p-4 flex items-center text-mobile font-medium text-customBlue hover:text-customGreen box-border " >
               Ciao, {user.email}
             </Link>
-            : <Link to="/registrati" className="button rounded-md bg-customBlue p-4 flex items-center text-mobile font-medium text-white hover:bg-customGreen box-border " >
+            : <Link to="/registrati" className="button rounded-md bg-customBlue transition duration-300 p-4 flex items-center text-mobile font-medium text-white hover:bg-customGreen box-border " >
               REGISTRATI
             </Link>}
 
 
           {user ? null 
           :
-            <Link to="/proRegistrati" className="button rounded-md ml-4 bg-customBlue text-mobile font-medium text-white hover:bg-customGreen flex items-center p-4 box-border" >
+            <Link to="/proRegistrati" className="button rounded-md ml-4 transition duration-300 bg-customBlue text-xs font-medium text-white hover:bg-customGreen flex items-center p-4 box-border" >
               REGISTRATI COME PRO
             </Link>}
 
         </div>
 
 
-        <button className=" min-[769px]:hidden rounded mx-4 bg-gray-100 p-2 text-gray-600 transition hover:text-gray-600/75" onClick={toggleMenu}>
+        <button className=" min-[769px]:hidden rounded bg-gray-100 p-2 text-gray-600 transition hover:text-gray-600/75 mx-12 " onClick={toggleMenu}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5"
@@ -129,7 +129,7 @@ function Navbar() {
               {user ? null
                 :
                 <Link to="/proRegistrati"
-                  className="mx-4 py-2.5 text-mobile font-medium text-customBlue hover:bg-customGreen w-14  flex justify-center"
+                  className="mx-4 py-2.5 text-mobile text-sm font-medium text-customBlue hover:bg-customGreen w-14  flex justify-center"
                 >
                   REGISTRATI COME PRO
                 </Link>

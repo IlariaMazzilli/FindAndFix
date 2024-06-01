@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import RatingStars from '../components/RatingStars'
+import { Fade } from 'react-awesome-reveal'
 
 function CreateReview() {
   const navigate = useNavigate()
@@ -24,6 +25,7 @@ function CreateReview() {
   }
 
   return (
+    <Fade>
     <div>
       <div className="h-fit py-6 flex flex-col justify-center sm:py-12 mt-8">
         <div className="py-3 sm:max-w-xl sm:mx-auto">
@@ -60,6 +62,7 @@ function CreateReview() {
         </div>
       </div>
     </div>
+    </Fade>
   )
 }
 
