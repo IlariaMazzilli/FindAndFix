@@ -31,6 +31,7 @@ import ContactForm from "../pages/ContactForm";
 import ConfirmationPage from "../pages/ConfirmationPage";
 import PrivateRoute from "../auth/PrivateRoute";
 import ReviewsPage from "../pages/ReviewsPage";
+import ProfileClient from "../components/ProfileClient";
 
 
 
@@ -199,7 +200,7 @@ export const Rotte = createBrowserRouter([
         children: [
             {
                 index: true,
-                element: <Impostazioni />
+                element: <ProfileClient />
             },
             {
                 path: 'notifiche',

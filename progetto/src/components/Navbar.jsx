@@ -105,7 +105,7 @@ function Navbar() {
                 href="#"
               >
                 {user ?
-                  <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 16 16" onClick={handleAuthentication}>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 16 16" onClick={logout}>
                     <path fill="#0F5DA6" d="M9 4V1H0v14h9v-3H8v2H1V2h7v2z" />
                     <path fill="#0F5DA6" d="m16 8l-5-4v2H6v4h5v2z" />
                   </svg>
