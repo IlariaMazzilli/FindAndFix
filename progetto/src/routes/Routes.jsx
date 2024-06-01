@@ -32,13 +32,7 @@ import ConfirmationPage from "../pages/ConfirmationPage";
 import PrivateRoute from "../auth/PrivateRoute";
 import ReviewsPage from "../pages/ReviewsPage";
 
-function redirectIfUserNotLogged(path) {
-    const { email } = useContext(AuthContext)
-    const navigate = useNavigate()
-    if (!email) {
-        navigate(path)
-    }
-}
+
 
 export const Rotte = createBrowserRouter([
     {
@@ -84,12 +78,12 @@ export const Rotte = createBrowserRouter([
         path: "/reviews",
         element: (
             <div>
-                <Navbar/>
+                <Navbar />
                 <br /><br /><br />
                 <ReviewsPage />
                 <br /><br />
                 <ChatBotComponent />
-                <Footer/>
+                <Footer />
             </div>
         ),
     },
