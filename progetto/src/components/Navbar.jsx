@@ -63,7 +63,7 @@ function Navbar() {
 
         <div className='flex px-4 max-[768px]:hidden h-12'>
           <Link to="/signIn" className="button rounded-md mx-4 bg-customBlue  text-mobile font-medium text-white shadow hover:bg-customGreen p-4 flex items-center box-border whitespace-nowrap" onClick={logout}>
-            {user ? 'LOG OFF' : 'LOGIN'}
+            {user ? 'LOGOUT' : 'LOGIN'}
           </Link>
 
           {user ?
