@@ -187,7 +187,7 @@ export const Rotte = createBrowserRouter([
         ]
     },
     {
-        path: '/clientProfile/:name',
+        path: '/clientProfile/:id',
         element: (
             <PrivateRoute element={() => (
                 <div>
