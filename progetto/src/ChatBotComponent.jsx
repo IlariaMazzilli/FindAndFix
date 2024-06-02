@@ -10,14 +10,14 @@ const ChatBotComponent = () => {
   const [isChatbotOpen, setIsChatbotOpen] = useState(false);
 
   const theme = {
-    background: '#ebeef2',
+    background: 'white',
     fontFamily: 'Helvetica Neue',
-    headerBgColor: '#66BC46',
+    headerBgColor: "#0F5DA6",
     headerFontColor: '#fff',
     headerFontSize: '15px',
-    botBubbleColor: '#66BC46',
+    botBubbleColor:"#0F5DA6",
     botFontColor: '#fff',
-    userBubbleColor: '#0F5DA6',
+    userBubbleColor:  "#66BC46",
     userFontColor: '#f5f8fb',
   };
 

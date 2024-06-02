@@ -40,7 +40,7 @@ function Navbar() {
 
   return (
 
-    <div className='fixed z-10 bg-white w-full'>
+    <div className='fixed z-10 bg-white w-full mt-10'>
       <div className='fixed z-10 bg-white w-full flex  items-center justify-around '>
         <nav className='flex p-2 box-border w-2/4'>
           <ul className="flex justify-around items-center gap-6 max-[768px]:whitespace-nowrap w-full">
@@ -48,21 +48,21 @@ function Navbar() {
               <img src={logoNoBg} className='w-16 h-12 max-[768px]:w-10 max-[768px]:h-8 logo' alt='Find & Fix' />
             </Link>
             <li>
-              <Link to="/chiSiamo" className=" text-customBlue transition hover:text-customGreen whitespace-nowrap text-xl max-[768px]:text-base" href="#"> Chi siamo </Link>
+              <Link to="/chiSiamo" className=" text-customBlue transition hover:text-customGreen whitespace-nowrap text-xl max-[768px]:text-base" href="#"> CHI SIAMO </Link>
             </li>
 
             <li>
-              <Link to="/servizi" className="text-customBlue transition hover:text-customGreen text-xl max-[768px]:text-base" href="#"> Servizi </Link>
+              <Link to="/servizi" className="text-customBlue transition hover:text-customGreen text-xl max-[768px]:text-base" href="#"> SERVIZI </Link>
             </li>
 
             <li>
-              <ScrollLink className=" text-customBlue transition hover:text-customGreen text-xl max-[768px]:text-base hover:cursor-pointer" smooth={true} to="footer" duration={1500}> Contatti </ScrollLink>
+              <ScrollLink className=" text-customBlue transition hover:text-customGreen text-xl max-[768px]:text-base hover:cursor-pointer" smooth={true} to="footer" duration={1500}> CONTATTI </ScrollLink>
             </li>
           </ul>
         </nav>
 
         <div className='flex px-4 max-[768px]:hidden h-8 w-2/4 justify-end'>
-          <Link to="/signIn" className="button rounded-md mx-4 bg-customBlue transition duration-300 text-mobile font-medium text-white shadow hover:bg-customGreen p-4 flex items-center box-border whitespace-nowrap" onClick={logout}>
+          <Link to="/signIn" className="button rounded-md mx-4 bg-customBlue transition duration-300 text-xs font-medium text-white shadow hover:bg-customGreen p-4 flex items-center box-border whitespace-nowrap" onClick={logout}>
             {user ? 'LOGOUT' : 'LOGIN'}
           </Link>
 
@@ -70,7 +70,7 @@ function Navbar() {
             <Link to="/clientProfile/:name" className="button rounded-md  p-4 flex items-center text-mobile font-medium text-customBlue hover:text-customGreen box-border " >
               Ciao, {user.email}
             </Link>
-            : <Link to="/registrati" className="button rounded-md bg-customBlue transition duration-300 p-4 flex items-center text-mobile font-medium text-white hover:bg-customGreen box-border " >
+            : <Link to="/registrati" className="button rounded-md bg-customBlue transition duration-300 p-4 flex items-center text-xs font-medium text-white hover:bg-customGreen box-border " >
               REGISTRATI
             </Link>}
 
@@ -78,13 +78,13 @@ function Navbar() {
           {user ? null 
           :
             <Link to="/proRegistrati" className="button rounded-md ml-4 transition duration-300 bg-customBlue text-xs font-medium text-white hover:bg-customGreen flex items-center p-4 box-border" >
-              REGISTRATI COME PRO
+              LAVORA CON NOI
             </Link>}
 
         </div>
 
 
-        <button className=" min-[769px]:hidden rounded bg-gray-100 p-2 text-gray-600 transition hover:text-gray-600/75 mx-12 " onClick={toggleMenu}>
+        <button className=" min-[769px]:hidden rounded bg-white p-2 text-gray-600 transition hover:text-gray-600/75 ml-20  " onClick={toggleMenu}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5"

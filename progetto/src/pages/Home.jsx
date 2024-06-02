@@ -33,6 +33,7 @@ import Select from '../components/Select'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import Toolbar from '../components/Toolbar';
 
 
 
@@ -77,12 +78,13 @@ function Home() {
   return (
 
     <div className='dark:bg-black dark:text-white'>
+      <Toolbar/>
        <Navbar /> 
       <Fade cascade={true} triggerOnce={true} duration={3500}>
         <Jumbotron />
       </Fade>
       <Fade  triggerOnce={true} duration={2500}>
-        <h1 className='flex maintitle justify-center text-5xl text-customBlue font-bold my-10 smtext-4xl dark:text-white max-[600px]:text-4xl'>Cerca il tuo pro</h1>
+        <h1 className='flex maintitle justify-center text-5xl text-customBlue font-bold my-10 smtext-4xl dark:text-white max-[600px]:text-4xl'>CERCA IL TUO PRO</h1>
       </Fade>
       <Fade triggerOnce={true} duration={2500}>
         <div className="[@media(min-width:768px)]:hidden z-20">

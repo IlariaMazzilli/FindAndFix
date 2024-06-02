@@ -3,9 +3,9 @@ import video from '../images/video.mp4';
 
 function Jumbotron() {
     return (
-        <div className="relative flex flex-col justify-center items-center containerJumbotron h-screen">
+        <div className="relative flex flex-col justify-center items-center containerJumbotron h-screen ">
             <video
-                className="absolute inset-0  object-contain"
+                className="absolute inset-0  object-contain mt-16"
                 src={video}
                 autoPlay
                 loop
@@ -17,7 +17,7 @@ function Jumbotron() {
                     className="h-fit button rounded bg-customBlue px-10 py-4 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-indigo-500 hover:bg-customGreen"
                     href="/servizi"
                 >
-                    VAI AI SERVIZI
+                    SCOPRI DI PIU'
                 </a>
             </div>
         </div>
