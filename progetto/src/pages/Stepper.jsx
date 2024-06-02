@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion} from "framer-motion";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import { FaEye, FaEyeSlash, FaUpload } from "react-icons/fa";
 import axios from "axios";
@@ -13,7 +13,7 @@ function Stepper() {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
-    categoria: [],
+    categoria_servizi: [], // aggiornato
     tipo: "",
     nome_azienda: "",
     nome: "",
@@ -22,52 +22,28 @@ function Stepper() {
     password: "",
     confermaPassword: "",
     telefono: "",
-    città: "",
+    citta: "",
     provincia: "",
     profilePhoto: null,
     profilePhotoName: "", 
     profilePhotoPath: "",
     descrizioneProfessionista: "",
-    partitaIVA: "",
+    p_iva: "", // aggiornato
     codiceFiscale: "",
-    abbonamento: "",
-    costoAbbonamento: 0,
+    tipo_abbonamento: "", // aggiornato
+    costo: 0, // aggiornato
   });
-
-  const {
-    categoria,
-    tipo,
-    nome_azienda,
-    nome,
-    cognome,
-    email,
-    password,
-    confermaPassword,
-    telefono,
-    città,
-    provincia,
-    profilePhoto,
-    profilePhotoName,
-    profilePhotoPath,
-    descrizioneProfessionista,
-    partitaIVA,
-    codiceFiscale,
-    abbonamento,
-    costoAbbonamento,
-    
-  } = formData;
 
   const navigate = useNavigate(); 
 
-  /*   aggiungere i commenti */
   const handleChange = (e) => {
     const { name, value, type, checked, files } = e.target;
     if (type === "checkbox") {
       if (checked) {
-        if (categoria.length < 3) {
+        if (formData.categoria_servizi.length < 3) { // aggiornato
           setFormData((prevState) => ({
             ...prevState,
-            categoria: [...prevState.categoria, value],
+            categoria_servizi: [...prevState.categoria_servizi, value], // aggiornato
           }));
         } else {
           alert("Puoi selezionare solo fino a tre servizi.");
@@ -75,18 +51,18 @@ function Stepper() {
       } else {
         setFormData((prevState) => ({
           ...prevState,
-          categoria: prevState.categoria.filter((cat) => cat !== value),
+          categoria_servizi: prevState.categoria_servizi.filter((cat) => cat !== value), // aggiornato
         }));
       }
     } else if (type === "file") {
-      const file = files[0]; // Ottieni il primo file dall'array dei file
-      const fileName = file.name; // Ottieni il nome del file
-      const fileUrl = URL.createObjectURL(file); // Ottieni il percorso temporaneo del file
+      const file = files[0];
+      const fileName = file.name;
+      const fileUrl = URL.createObjectURL(file);
       setFormData((prevState) => ({
         ...prevState,
-        [name]: file, // Salva il percorso temporaneo del file nell'oggetto formData
-        profilePhotoName: fileName, // Salva il nome del file dell'immagine di profilo
-        profilePhotoPath: fileUrl, // Salva il file nell'oggetto formData
+        [name]: file,
+        profilePhotoName: fileName,
+        profilePhotoPath: fileUrl,
       }));
     } else {
       setFormData((prevState) => ({
@@ -97,20 +73,18 @@ function Stepper() {
   };
 
   const nextStep = () => {
-    const newStep = step < 12 ? step + 1 : step; // Assuming 10 is the last step
-    setStep(newStep);
+    setStep((prevStep) => prevStep + 1);
   };
 
   const prevStep = () => {
-    const newStep = step > 1 ? step - 1 : step;
-    setStep(newStep);
+    setStep((prevStep) => prevStep - 1);
   };
 
   const handleSubscriptionSelect = (selectedSubscription, cost) => {
     setFormData((prevState) => ({
       ...prevState,
-      abbonamento: selectedSubscription,
-      costoAbbonamento: cost,
+      tipo_abbonamento: selectedSubscription, // aggiornato
+      costo: cost, // aggiornato
     }));
   };
 
@@ -124,27 +98,46 @@ function Stepper() {
     nextStep();
   };
 
-
-  const handleSubmit = async  (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setErrorMessage('');
-    if (password !== confermaPassword) {
+    
+    if (formData.password !== formData.confermaPassword) {
       setErrorMessage("Le password non corrispondono.");
       return;
     }
-    const formDataToSend = { ...formData };
-    delete formDataToSend.profilePhoto;
+  
+    const formDataToSend = new FormData();
+    Object.keys(formData).forEach((key) => {
+      if (key === 'categoria_servizi') {
+        formDataToSend.append(key, formData[key].join(', '));
+      } else {
+        formDataToSend.append(key, formData[key]);
+      }
+    });
+  
+    // Log the FormData entries
+    for (let pair of formDataToSend.entries()) {
+      console.log(pair[0] + ': ' + pair[1]);
+    }
+  
     try {
-      const response = await axios.post('http://localhost:3000/api/registratazione/professionale', formDataToSend)
-
+      const response = await axios.post(
+        'http://localhost:3000/api/registratazione/professionale',
+        formDataToSend,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        }
+      );
+  
       const { token } = response.data;
       setToken(token);
-      console.log('Data sent successfully:', response.data);
-      console.log(token);
-      navigate("/servizi")
+      navigate("/servizi");
     } catch (error) {
       console.error(error);
-      if (error.response.status === 409) {
+      if (error.response && error.response.status === 409) {
         setErrorMessage('Utente già esistente.');
       } else {
         setErrorMessage('Errore durante la registrazione.');
@@ -192,7 +185,7 @@ function Stepper() {
                   Quale servizio offri?
                 </div>
                 <br />
-                {categoria.length > 3 && (
+                {formData.categoria_servizi.length > 3 && (
                   <p className="text-red-500">
                     Puoi selezionare solo fino a tre servizi.
                   </p>
@@ -218,7 +211,7 @@ function Stepper() {
                           key={index}
                           htmlFor={`Option${index + 1}`}
                           className={`flex cursor-pointer items-start gap-4 rounded-lg border border-gray-200 p-4 transition hover:bg-gray-50 ${
-                            categoria.includes(service) ? "bg-green-100" : ""
+                          formData.categoria_servizi.includes(service) ? "bg-green-100" : ""
                           }`}
                         >
                           <div className="flex items-center">
@@ -228,11 +221,11 @@ function Stepper() {
                               id={`Option${index + 1}`}
                               name="categoria"
                               value={service}
-                              checked={categoria.includes(service)}
+                              checked={formData.categoria_servizi.includes(service)}
                               onChange={handleChange}
                               disabled={
-                                !categoria.includes(service) &&
-                                categoria.length >= 3
+                                !formData.categoria_servizi.includes(service) &&
+                               formData.categoria_servizi.length >= 3
                               }
                             />
                           </div>
@@ -292,7 +285,7 @@ function Stepper() {
                           id="liberoProfessionista"
                           name="tipo"
                           value="liberoProfessionista"
-                          checked={tipo === "liberoProfessionista"}
+                          checked={formData.tipo === "liberoProfessionista"}
                           onChange={handleChange}
                         />
                       </div>
@@ -315,7 +308,7 @@ function Stepper() {
                           id="azienda"
                           name="tipo"
                           value="azienda"
-                          checked={tipo === "azienda"}
+                          checked={formData.tipo === "azienda"}
                           onChange={handleChange}
                         />
                       </div>
@@ -339,14 +332,14 @@ function Stepper() {
                     type="button"
                     onClick={nextStep}
                     className=" bg-customGreen text-white font-bold py-2 px-4 rounded"
-                    disabled={!tipo}
+                    disabled={!formData.tipo}
                   >
                     Avanti
                   </button>
                 </div>
               </motion.div>
             )}
-            {step === 3 && tipo === "liberoProfessionista" && (
+            {step === 3 && formData.tipo === "liberoProfessionista" && (
               <motion.div
                 key={step} // Add this line
                 initial={{ opacity: 0, y: 20 }}
@@ -380,7 +373,7 @@ function Stepper() {
                     name="nome" // This should match your formData property
                     className="mt-4 w-full border border-gray-300 rounded p-2 focus:outline-none"
                     style={{ backgroundColor: "white" }}
-                    value={nome} // This correctly points to formData.name
+                    value={formData.nome} // This correctly points to formData.name
                     onChange={handleChange}
                   />
                 </div>
@@ -392,7 +385,7 @@ function Stepper() {
                     name="cognome" // This should match your formData property
                     className="mt-4 w-full border border-gray-300 rounded p-2 focus:outline-none"
                     style={{ backgroundColor: "white" }}
-                    value={cognome} // This correctly points to formData.name
+                    value={formData.cognome} // This correctly points to formData.name
                     onChange={handleChange}
                   />
                 </div>
@@ -416,7 +409,7 @@ function Stepper() {
               </motion.div>
             )}
 
-            {step === 3 && tipo === "azienda" && (
+            {step === 3 && formData.tipo === "azienda" && (
               <motion.div
                 key={step}
                 initial={{ opacity: 0, y: 20 }}
@@ -449,7 +442,7 @@ function Stepper() {
                     name="nome_azienda"
                     className="mt-4 w-full border border-gray-300 rounded p-2 focus:outline-none"
                     style={{ backgroundColor: "white" }}
-                    value={nome_azienda}
+                    value={formData.nome_azienda}
                     onChange={handleChange}
                   />
                 </div>
@@ -501,10 +494,10 @@ function Stepper() {
                   <input
                     type="text"
                     placeholder="Partita IVA"
-                    name="partitaIVA"
+                    name="p_iva"
                     className="w-full border border-gray-300 rounded p-2 focus:outline-none"
                     style={{ backgroundColor: "white" }}
-                    value={partitaIVA}
+                    value={formData.p_iva}
                     onChange={handleChange}
                   />
                 </div>
@@ -515,7 +508,7 @@ function Stepper() {
                     name="codiceFiscale"
                     className="w-full border border-gray-300 rounded p-2 focus:outline-none"
                     style={{ backgroundColor: "white" }}
-                    value={codiceFiscale}
+                    value={formData.codiceFiscale}
                     onChange={handleChange}
                   />
                 </div>
@@ -573,7 +566,7 @@ function Stepper() {
                     name="provincia" // This should match your formData property
                     className="mt-4 w-full border border-gray-300 rounded p-2 focus:outline-none"
                     style={{ backgroundColor: "white" }}
-                    value={provincia}
+                    value={formData.provincia}
                     onChange={handleChange}
                   />
                 </div>
@@ -582,10 +575,10 @@ function Stepper() {
                   <input
                     type="text"
                     placeholder="Città"
-                    name="città" // This should match your formData property
+                    name="citta" // This should match your formData property
                     className="mt-4 w-full border border-gray-300 rounded p-2 focus:outline-none"
                     style={{ backgroundColor: "white" }}
-                    value={città} // This correctly points to formData.name
+                    value={formData.citta} // This correctly points to formData.name
                     onChange={handleChange}
                   />
                 </div>
@@ -643,7 +636,7 @@ function Stepper() {
                     name="telefono" // This should match your formData property
                     className="mt-4 w-full border border-gray-300 rounded p-2 focus:outline-none"
                     style={{ backgroundColor: "white" }}
-                    value={telefono} // This correctly points to formData.name
+                    value={formData.telefono} // This correctly points to formData.name
                     onChange={handleChange}
                     pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
                   />
@@ -702,7 +695,7 @@ function Stepper() {
                     name="email" // This should match your formData property
                     className="mt-4 w-full border border-gray-300 rounded p-2 focus:outline-none"
                     style={{ backgroundColor: "white" }}
-                    value={email}
+                    value={formData.email}
                     onChange={handleChange}
                   />
                 </div>
@@ -759,7 +752,7 @@ function Stepper() {
                     name="password"
                     className="mt-4 w-full border border-gray-300 rounded p-2 pr-10 focus:outline-none"
                     style={{ backgroundColor: "white" }}
-                    value={password}
+                    value={formData.password}
                     onChange={handleChange}
                   />
                   {/* Icona per mostrare/nascondere la password */}
@@ -786,7 +779,7 @@ function Stepper() {
                     name="confermaPassword"
                     className="w-full border border-gray-300 rounded p-2 pr-10 focus:outline-none"
                     style={{ backgroundColor: "white" }}
-                    value={confermaPassword}
+                    value={formData.confermaPassword}
                     onChange={handleChange}
                   />
                   {/* Icona per mostrare/nascondere la password di conferma */}
@@ -867,19 +860,19 @@ function Stepper() {
                       className="hidden"
                     />
                   </label>
-                  {profilePhotoName && (
+                  {formData.profilePhotoName && (
                     <div className="mt-2 text-center">
                       <span className="text-sm text-gray-600">
-                        {profilePhotoName}
+                        {formData.profilePhotoName}
                       </span>
                     </div>
                   )}
                 </div>
 
-                {profilePhotoPath  && (
+                {formData.profilePhotoPath  && (
                   <div className="mt-4 text-center">
                     <img
-                      src={profilePhotoPath }
+                      src={formData.profilePhotoPath }
                       alt="Foto di profilo"
                       className="mx-auto rounded-full h-24 w-24 object-cover"
                     />
@@ -937,7 +930,7 @@ function Stepper() {
                     placeholder="Scrivi qui..."
                     className="mt-4 w-full border border-gray-300 rounded p-2 focus:outline-none"
                     style={{ backgroundColor: "white", minHeight: "150px" }}
-                    value={descrizioneProfessionista}
+                    value={formData.descrizioneProfessionista}
                     onChange={handleChange}
                   />
                 </div>
@@ -1313,11 +1306,11 @@ function Stepper() {
                         </h3>
                         <ul className="text-[#333] mt-6 space-y-4">
                           <li className="flex flex-wrap gap-4 text-sm">
-                            Abbonamento {abbonamento}{" "}
-                            <span className="ml-auto font-bold">{costoAbbonamento}.00</span>
+                            Abbonamento {formData.tipo_abbonamento}{" "}
+                            <span className="ml-auto font-bold">{formData.costo}.00</span>
                           </li>
                           <li className="flex flex-wrap gap-4 text-base font-bold border-t pt-4">
-                            Totale {" "} <span className="ml-auto">{costoAbbonamento}.00</span>
+                            Totale {" "} <span className="ml-auto">{formData.costo}.00</span>
                           </li>
                         </ul>
                       </div>
@@ -1355,5 +1348,6 @@ function Stepper() {
     </>
   );
 }
+
 
 export default Stepper;
