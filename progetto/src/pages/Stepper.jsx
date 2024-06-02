@@ -5,6 +5,7 @@ import Abbonamenti from "./Abbonamenti";
 import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import { FaEye, FaEyeSlash, FaUpload } from "react-icons/fa";
+import Toolbar from "../components/Toolbar";
 
 function Stepper() {
   const [showPassword, setShowPassword] = useState(false);
@@ -120,6 +121,7 @@ function Stepper() {
   return (
     <>
       <div>
+        <Toolbar/>
         <Navbar />
       </div>
       <br />

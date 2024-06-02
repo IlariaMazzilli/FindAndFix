@@ -42,21 +42,23 @@ function Navbar() {
 
     <div className='fixed z-10 bg-white w-full mt-10'>
       <div className='fixed z-10 bg-white w-full flex  items-center justify-around '>
-        <nav className='flex p-2 box-border w-2/4'>
-          <ul className="flex justify-around items-center gap-6 max-[768px]:whitespace-nowrap w-full">
-            <Link to="/" className="block text-teal-600" href="#">
+        <nav className='flex p-2 box-border w-2/4 max-[768px]:overflow-hidden max-[768px]:w-full'>
+          <ul className="flex justify-around items-center gap-6 max-[768px]:whitespace-nowrap w-full max-[768px]:gap-4">
+            <Link to="/" className="block text-teal-600" href="#" >
               <img src={logoNoBg} className='w-16 h-12 max-[768px]:w-10 max-[768px]:h-8 logo' alt='Find & Fix' />
             </Link>
             <li>
-              <Link to="/chiSiamo" className=" text-customBlue transition hover:text-customGreen whitespace-nowrap text-xl max-[768px]:text-base" href="#"> CHI SIAMO </Link>
+              
+              <Link to="/chiSiamo" className=" text-customBlue transition hover:text-customGreen whitespace-nowrap text-xl max-[768px]:text-xs" href="#"> CHI SIAMO </Link>
+              
             </li>
 
             <li>
-              <Link to="/servizi" className="text-customBlue transition hover:text-customGreen text-xl max-[768px]:text-base" href="#"> SERVIZI </Link>
+              <Link className="text-customBlue cursor-pointer transition hover:text-customGreen text-xl max-[768px]:text-xs"  to="/servizi" > SERVIZI </Link>
             </li>
 
             <li>
-              <ScrollLink className=" text-customBlue transition hover:text-customGreen text-xl max-[768px]:text-base hover:cursor-pointer" smooth={true} to="footer" duration={1500}> CONTATTI </ScrollLink>
+              <ScrollLink className=" text-customBlue transition hover:text-customGreen text-xl max-[768px]:text-xs hover:cursor-pointer" smooth={true} to="footer" duration={1500}> CONTATTI </ScrollLink>
             </li>
           </ul>
         </nav>
@@ -84,7 +86,7 @@ function Navbar() {
         </div>
 
 
-        <button className=" min-[769px]:hidden rounded bg-white p-2 text-gray-600 transition hover:text-gray-600/75 ml-20  " onClick={toggleMenu}>
+        <button className=" min-[769px]:hidden rounded bg-white p-2 text-gray-600 transition hover:text-gray-600/75 ml-20 sticky " onClick={toggleMenu}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5"
@@ -101,7 +103,7 @@ function Navbar() {
           <Fade triggerOnce={false} duration={1500}>
             <div className="absolute right-0 mt-2 bg-white rounded-md shadow-lg flex flex-col items-center p-4 w-fit hamburgerNavbar">
               <Link to="/signIn"
-                className=" mx-4  py-2.5 text-mobile font-medium text-customBlue hover:bg-customGreen w-14  flex justify-center whitespace-nowrap"
+                className=" mx-4  py-2.5 text-mobile font-medium text-customBlue hover:bg-customGreen w-14   "
                 href="#"
               >
                 {user ?
@@ -129,9 +131,9 @@ function Navbar() {
               {user ? null
                 :
                 <Link to="/proRegistrati"
-                  className="mx-4 py-2.5 text-mobile text-sm font-medium text-customBlue hover:bg-customGreen w-14  flex justify-center"
+                  className=" py-2.5 text-mobile text-sm font-medium text-customBlue hover:bg-customGreen w-fit whitespace-nowrap"
                 >
-                  REGISTRATI COME PRO
+                  LAVORA CON NOI
                 </Link>
               }
             </div>

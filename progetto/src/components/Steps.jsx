@@ -12,10 +12,10 @@ import { Fade } from 'react-awesome-reveal'
 function Steps() {
   return (
     // primo
-    <Fade triggerOnce={true}>
+    <Fade triggerOnce={true} >
 
       <Slide direction='right' duration={1500} triggerOnce={true}>
-        <section className="overflow-hidden sm:grid-cols-2 flex mt-12 px-8 sm:px-4 sm:flex ">
+        <section className="overflow-hidden sm:grid-cols-2 flex mt-12 px-8 sm:px-4 sm:flex " id='comeFunziona' >
 
           <img
             alt=""

@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import { useToken } from '../auth/useToken';
 import axios from "axios";
+import Toolbar from "../components/Toolbar";
 
 function SignIn() {
   const [token, setToken] = useToken();
@@ -49,6 +50,7 @@ function SignIn() {
 
   return (
     <>
+    <Toolbar/>
       <Navbar />
       <>
         <section className="flex flex-col md:flex-row h-screen items-center">

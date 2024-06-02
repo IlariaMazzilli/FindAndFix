@@ -5,11 +5,13 @@ import '../myStyles.css'; // Importa il file CSS
 import ProfileList from '../components/ProfileList';
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
+import Toolbar from '../components/Toolbar';
 
 
 const Servizi = () => {
   return (
     <div>
+      <Toolbar/>
       <Navbar />
       <br /><br /><br /><br />
       <ProfileList />

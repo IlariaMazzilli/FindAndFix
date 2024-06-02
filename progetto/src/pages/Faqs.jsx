@@ -2,10 +2,12 @@ import FotoFaqs from '../images/foto_faqs.png'
 import Bannerfaqs from '../images/bannerfaqs.png'
 import Footer from '../components/Footer'
 import Navbar from '../components/Navbar'
+import Toolbar from '../components/Toolbar'
 
 function Faqs() {
   return (
     <>
+    <Toolbar/>
       <Navbar />
 <br /><br /><br />
       <div>

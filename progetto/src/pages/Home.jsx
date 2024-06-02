@@ -77,7 +77,7 @@ function Home() {
 
   return (
 
-    <div className='dark:bg-black dark:text-white'>
+    <div className='dark:bg-black dark:text-white' id='home'>
       <Toolbar/>
        <Navbar /> 
       <Fade cascade={true} triggerOnce={true} duration={3500}>
@@ -136,8 +136,11 @@ function Home() {
       <Fade triggerOnce={true}>
         <h1 className='flex maintitle justify-center text-5xl text-customBlue font-bold mt-20 max-[600px]:text-3xl'>Come funziona</h1>
       </Fade>
-      <Fade triggerOnce={true}>
+      <Fade triggerOnce={true} id='comeFunziona'>
         <Steps/>
+        <div className='my-14 cursor-pointer' onClick={()=>navigate('/servizi')}>
+          <Bottone text={'Cerca il pro adatto a te'} />
+        </div>
       </Fade>
       <Fade triggerOnce={true} duration={2500}>
         <h1 className='flex maintitle justify-center text-5xl text-customBlue font-bold mt-20 max-[600px]:text-3xl '>Professionisti vicini a te</h1>
