@@ -9,14 +9,25 @@ import Toolbar from '../components/Toolbar';
 const ProfiloCliente = () => {
   const [userData, setUserData] = useState(null);
   const [error, setError] = useState('');
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchUserData = async () => {
       try {
         // Verifica che il token sia presente
         const token = localStorage.getItem('token');
-        const res = await axiosInstance.get('/profile/cliente');
+        console.log('Token:', token);
+        if (!token) {
+          setError('Token non presente');
+          return;
+        }
+
+        const res = await axiosInstance.get('/profile/cliente', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        console.log('Response data:', res.data);
         setUserData(res.data);
       } catch (error) {
         setError('Errore durante il fetch');
@@ -25,7 +36,6 @@ const ProfiloCliente = () => {
     };
     fetchUserData();
   }, []);
-
 
   return (
     <div>

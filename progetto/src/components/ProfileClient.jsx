@@ -3,6 +3,7 @@ import { useOutletContext } from 'react-router-dom';
 
 const ProfileClient = () => {
   const { userData } = useOutletContext();
+  console.log('User Data:', userData);
 
   return (
     <div className='w-full box-border'>
