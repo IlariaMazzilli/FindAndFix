@@ -13,7 +13,7 @@ function Stepper() {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
-    categoria_servizi: [], // aggiornato
+    categoria_servizi: [], 
     tipo: "",
     nome_azienda: "",
     nome: "",
@@ -28,10 +28,10 @@ function Stepper() {
     profilePhotoName: "", 
     profilePhotoPath: "",
     descrizioneProfessionista: "",
-    p_iva: "", // aggiornato
+    p_iva: "", 
     codiceFiscale: "",
-    tipo_abbonamento: "", // aggiornato
-    costo: 0, // aggiornato
+    tipo_abbonamento: "",
+    costo: 0, 
   });
 
   const navigate = useNavigate(); 
