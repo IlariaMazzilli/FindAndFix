@@ -1,19 +1,19 @@
-import React, { useState, useEffect } from "react";
-import { motion, useAnimation } from "framer-motion";
-import LogoBianco from "../images/LogoBianco.png";
-import Abbonamenti from "./Abbonamenti";
-import { Link, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import { FaEye, FaEyeSlash, FaUpload } from "react-icons/fa";
-import Toolbar from "../components/Toolbar";
+import axios from "axios";
+import { useToken } from '../auth/useToken';
 
 function Stepper() {
+  const [token, setToken] = useToken();
+  const [errorMessage, setErrorMessage] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [abbonamento, setAbbonamento] = useState("");
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
-    categoria: [],
+    categoria_servizi: [], // aggiornato
     tipo: "",
     nome_azienda: "",
     nome: "",
@@ -22,44 +22,28 @@ function Stepper() {
     password: "",
     confermaPassword: "",
     telefono: "",
-    città: "",
+    citta: "",
     provincia: "",
     profilePhoto: null,
+    profilePhotoName: "",
+    profilePhotoPath: "",
     descrizioneProfessionista: "",
-    partitaIVA: "",
+    p_iva: "", // aggiornato
     codiceFiscale: "",
-    abbonamento: "",
+    tipo_abbonamento: "", // aggiornato
+    costo: 0, // aggiornato
   });
 
-  const {
-    categoria,
-    tipo,
-    nome_azienda,
-    nome,
-    cognome,
-    email,
-    password,
-    confermaPassword,
-    telefono,
-    città,
-    provincia,
-    profilePhoto,
-    descrizioneProfessionista,
-    partitaIVA,
-    codiceFiscale,
-  } = formData;
+  const navigate = useNavigate();
 
-  /* const navigate = useNavigate(); */
-
-/*   aggiungere i commenti */
   const handleChange = (e) => {
     const { name, value, type, checked, files } = e.target;
     if (type === "checkbox") {
       if (checked) {
-        if (categoria.length < 3) {
+        if (formData.categoria_servizi.length < 3) { // aggiornato
           setFormData((prevState) => ({
             ...prevState,
-            categoria: [...prevState.categoria, value],
+            categoria_servizi: [...prevState.categoria_servizi, value], // aggiornato
           }));
         } else {
           alert("Puoi selezionare solo fino a tre servizi.");
@@ -67,13 +51,18 @@ function Stepper() {
       } else {
         setFormData((prevState) => ({
           ...prevState,
-          categoria: prevState.categoria.filter((cat) => cat !== value),
+          categoria_servizi: prevState.categoria_servizi.filter((cat) => cat !== value), // aggiornato
         }));
       }
     } else if (type === "file") {
+      const file = files[0];
+      const fileName = file.name;
+      const fileUrl = URL.createObjectURL(file);
       setFormData((prevState) => ({
         ...prevState,
-        [name]: files[0],
+        [name]: file,
+        profilePhotoName: fileName,
+        profilePhotoPath: fileUrl,
       }));
     } else {
       setFormData((prevState) => ({
@@ -84,44 +73,81 @@ function Stepper() {
   };
 
   const nextStep = () => {
-    const newStep = step < 12 ? step + 1 : step; // Assuming 10 is the last step
-    setStep(newStep);
+    setStep((prevStep) => prevStep + 1);
   };
 
   const prevStep = () => {
-    const newStep = step > 1 ? step - 1 : step;
-    setStep(newStep);
+    setStep((prevStep) => prevStep - 1);
   };
 
-  const handleSubscriptionSelect = (selectedSubscription) => {
-    setAbbonamento(selectedSubscription);
+  const handleSubscriptionSelect = (selectedSubscription, cost) => {
     setFormData((prevState) => ({
       ...prevState,
-      abbonamento: selectedSubscription,
+      tipo_abbonamento: selectedSubscription, // aggiornato
+      costo: cost, // aggiornato
     }));
   };
 
   const handleMonthlySubscription = () => {
-    handleSubscriptionSelect("mensile");
+    handleSubscriptionSelect("mensile", 50);
     nextStep();
   };
 
   const handleAnnualSubscription = () => {
-    handleSubscriptionSelect("annuale");
+    handleSubscriptionSelect("annuale", 500);
     nextStep();
   };
 
-  const totalAmount = formData.abbonamento === 'mensile' ? 50 : 500;
-  
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
+    setErrorMessage('');
+
+    if (formData.password !== formData.confermaPassword) {
+      setErrorMessage("Le password non corrispondono.");
+      return;
+    }
+
+    const formDataToSend = new FormData();
+    Object.keys(formData).forEach((key) => {
+      if (key === 'categoria_servizi') {
+        formDataToSend.append(key, formData[key].join(', '));
+      } else {
+        formDataToSend.append(key, formData[key]);
+      }
+    });
+
+    // Log the FormData entries
+    for (let pair of formDataToSend.entries()) {
+      console.log(pair[0] + ': ' + pair[1]);
+    }
+
+    try {
+      const response = await axios.post(
+        'http://localhost:3000/api/registratazione/professionale',
+        formDataToSend,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        }
+      );
+
+      const { token } = response.data;
+      setToken(token);
+      navigate("/servizi");
+    } catch (error) {
+      console.error(error);
+      if (error.response && error.response.status === 409) {
+        setErrorMessage('Utente già esistente.');
+      } else {
+        setErrorMessage('Errore durante la registrazione.');
+      }
+    }
   };
 
   return (
     <>
       <div>
-        <Toolbar/>
         <Navbar />
       </div>
       <br />
@@ -145,16 +171,25 @@ function Stepper() {
                 transition={{ duration: 0.3 }}
                 className="md:w-3/5 mx-auto py-12"
               >
-                <div className="text-base font-light text-center">Step 1/12</div>
+                <div className="text-base font-light text-center">
+                  Step 1/12
+                </div>
                 <div
                   className="mt-4 w-full h-2"
                   style={{ backgroundColor: "#0F5DA6" }}
                 >
                   <div className="h-full bg-green-500 rounded-3xl w-1/12"></div>
                 </div>
+                {errorMessage && <div className="text-red-500">{errorMessage}</div>}
                 <div className="mt-12 text-3xl text-center">
                   Quale servizio offri?
                 </div>
+                <br />
+                {formData.categoria_servizi.length > 3 && (
+                  <p className="text-red-500">
+                    Puoi selezionare solo fino a tre servizi.
+                  </p>
+                )}
                 <br />
                 <div>
                   <fieldset>
@@ -175,9 +210,8 @@ function Stepper() {
                         <label
                           key={index}
                           htmlFor={`Option${index + 1}`}
-                          className={`flex cursor-pointer items-start gap-4 rounded-lg border border-gray-200 p-4 transition hover:bg-gray-50 ${
-                            categoria.includes(service) ? "bg-green-100" : ""
-                          }`}
+                          className={`flex cursor-pointer items-start gap-4 rounded-lg border border-gray-200 p-4 transition hover:bg-gray-50 ${formData.categoria_servizi.includes(service) ? "bg-green-100" : ""
+                            }`}
                         >
                           <div className="flex items-center">
                             <input
@@ -186,11 +220,11 @@ function Stepper() {
                               id={`Option${index + 1}`}
                               name="categoria"
                               value={service}
-                              checked={categoria.includes(service)}
+                              checked={formData.categoria_servizi.includes(service)}
                               onChange={handleChange}
                               disabled={
-                                !categoria.includes(service) &&
-                                categoria.length >= 3
+                                !formData.categoria_servizi.includes(service) &&
+                                formData.categoria_servizi.length >= 3
                               }
                             />
                           </div>
@@ -224,7 +258,9 @@ function Stepper() {
                 transition={{ duration: 0.3 }}
                 className="md:w-3/5 mx-auto py-12"
               >
-                <div className="text-base font-light text-center">Step 2/12</div>
+                <div className="text-base font-light text-center">
+                  Step 2/12
+                </div>
                 <div
                   className="mt-4 w-full h-2"
                   style={{ backgroundColor: "#0F5DA6" }}
@@ -248,7 +284,7 @@ function Stepper() {
                           id="liberoProfessionista"
                           name="tipo"
                           value="liberoProfessionista"
-                          checked={tipo === "liberoProfessionista"}
+                          checked={formData.tipo === "liberoProfessionista"}
                           onChange={handleChange}
                         />
                       </div>
@@ -271,7 +307,7 @@ function Stepper() {
                           id="azienda"
                           name="tipo"
                           value="azienda"
-                          checked={tipo === "azienda"}
+                          checked={formData.tipo === "azienda"}
                           onChange={handleChange}
                         />
                       </div>
@@ -295,13 +331,14 @@ function Stepper() {
                     type="button"
                     onClick={nextStep}
                     className=" bg-customGreen text-white font-bold py-2 px-4 rounded"
+                    disabled={!formData.tipo}
                   >
                     Avanti
                   </button>
                 </div>
               </motion.div>
             )}
-            {step === 3 && tipo === "liberoProfessionista" && (
+            {step === 3 && formData.tipo === "liberoProfessionista" && (
               <motion.div
                 key={step} // Add this line
                 initial={{ opacity: 0, y: 20 }}
@@ -335,7 +372,7 @@ function Stepper() {
                     name="nome" // This should match your formData property
                     className="mt-4 w-full border border-gray-300 rounded p-2 focus:outline-none"
                     style={{ backgroundColor: "white" }}
-                    value={nome} // This correctly points to formData.name
+                    value={formData.nome} // This correctly points to formData.name
                     onChange={handleChange}
                   />
                 </div>
@@ -347,7 +384,7 @@ function Stepper() {
                     name="cognome" // This should match your formData property
                     className="mt-4 w-full border border-gray-300 rounded p-2 focus:outline-none"
                     style={{ backgroundColor: "white" }}
-                    value={cognome} // This correctly points to formData.name
+                    value={formData.cognome} // This correctly points to formData.name
                     onChange={handleChange}
                   />
                 </div>
@@ -371,7 +408,7 @@ function Stepper() {
               </motion.div>
             )}
 
-            {step === 3 && tipo === "azienda" && (
+            {step === 3 && formData.tipo === "azienda" && (
               <motion.div
                 key={step}
                 initial={{ opacity: 0, y: 20 }}
@@ -380,7 +417,9 @@ function Stepper() {
                 transition={{ duration: 0.3 }}
                 className="md:w-3/5 mx-auto py-12"
               >
-                <div className="text-base font-light text-center">Step 3/12</div>
+                <div className="text-base font-light text-center">
+                  Step 3/12
+                </div>
                 <div
                   className="mt-4 w-full h-2"
                   style={{ backgroundColor: "#0F5DA6" }}
@@ -399,10 +438,10 @@ function Stepper() {
                   <input
                     type="text"
                     placeholder="Nome Azienda"
-                    name="nomeAzienda"
+                    name="nome_azienda"
                     className="mt-4 w-full border border-gray-300 rounded p-2 focus:outline-none"
                     style={{ backgroundColor: "white" }}
-                    value={nome_azienda}
+                    value={formData.nome_azienda}
                     onChange={handleChange}
                   />
                 </div>
@@ -424,68 +463,73 @@ function Stepper() {
                 </div>
               </motion.div>
             )}
-             {step === 4 && (
+            {step === 4 && (
               <motion.div
-              key={step}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3 }}
-              className="md:w-3/5 mx-auto py-12"
-            >
-              <div className="text-base font-light text-center">Step 4/12</div>
-              <div className="mt-4 w-full h-2" style={{ backgroundColor: "#0F5DA6" }}>
-                <div className="h-full bg-green-500 rounded-3xl w-4/12"></div>
-              </div>
-              <div className="mt-12 text-3xl text-center">
-                Inserisci la tua Partita IVA e Codice Fiscale
-                <br />
-                <p className="text-sm">
-                  Questi dati sono necessari per la registrazione.
-                </p>
-              </div>
-    
-              <div className="mt-4">
-                <input
-                  type="text"
-                  placeholder="Partita IVA"
-                  name="partitaIVA"
-                  className="w-full border border-gray-300 rounded p-2 focus:outline-none"
-                  style={{ backgroundColor: "white" }}
-                  value={partitaIVA}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="mt-4">
-                <input
-                  type="text"
-                  placeholder="Codice Fiscale"
-                  name="codiceFiscale"
-                  className="w-full border border-gray-300 rounded p-2 focus:outline-none"
-                  style={{ backgroundColor: "white" }}
-                  value={codiceFiscale}
-                  onChange={handleChange}
-                />
-              </div>
-    
-              <div className="flex justify-center mt-12">
-                <button
-                  type="button"
-                  onClick={prevStep}
-                  className="mr-4 bg-gray-400 text-white font-bold py-2 px-4 rounded"
+                key={step}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.3 }}
+                className="md:w-3/5 mx-auto py-12"
+              >
+                <div className="text-base font-light text-center">
+                  Step 4/12
+                </div>
+                <div
+                  className="mt-4 w-full h-2"
+                  style={{ backgroundColor: "#0F5DA6" }}
                 >
-                  Indietro
-                </button>
-                <button
-                  type="button"
-                  onClick={nextStep}
-                  className="bg-customGreen text-white font-bold py-2 px-4 rounded"
-                >
-                  Avanti
-                </button>
-              </div>
-            </motion.div>
-             )}
+                  <div className="h-full bg-green-500 rounded-3xl w-4/12"></div>
+                </div>
+                <div className="mt-12 text-3xl text-center">
+                  Inserisci la tua Partita IVA e Codice Fiscale
+                  <br />
+                  <p className="text-sm">
+                    Questi dati sono necessari per la registrazione.
+                  </p>
+                </div>
+
+                <div className="mt-4">
+                  <input
+                    type="text"
+                    placeholder="Partita IVA"
+                    name="p_iva"
+                    className="w-full border border-gray-300 rounded p-2 focus:outline-none"
+                    style={{ backgroundColor: "white" }}
+                    value={formData.p_iva}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="mt-4">
+                  <input
+                    type="text"
+                    placeholder="Codice Fiscale"
+                    name="codiceFiscale"
+                    className="w-full border border-gray-300 rounded p-2 focus:outline-none"
+                    style={{ backgroundColor: "white" }}
+                    value={formData.codiceFiscale}
+                    onChange={handleChange}
+                  />
+                </div>
+
+                <div className="flex justify-center mt-12">
+                  <button
+                    type="button"
+                    onClick={prevStep}
+                    className="mr-4 bg-gray-400 text-white font-bold py-2 px-4 rounded"
+                  >
+                    Indietro
+                  </button>
+                  <button
+                    type="button"
+                    onClick={nextStep}
+                    className="bg-customGreen text-white font-bold py-2 px-4 rounded"
+                  >
+                    Avanti
+                  </button>
+                </div>
+              </motion.div>
+            )}
             {step === 5 && (
               <motion.div
                 key={step} // Add this line
@@ -521,7 +565,7 @@ function Stepper() {
                     name="provincia" // This should match your formData property
                     className="mt-4 w-full border border-gray-300 rounded p-2 focus:outline-none"
                     style={{ backgroundColor: "white" }}
-                    value={provincia}
+                    value={formData.provincia}
                     onChange={handleChange}
                   />
                 </div>
@@ -530,10 +574,10 @@ function Stepper() {
                   <input
                     type="text"
                     placeholder="Città"
-                    name="città" // This should match your formData property
+                    name="citta" // This should match your formData property
                     className="mt-4 w-full border border-gray-300 rounded p-2 focus:outline-none"
                     style={{ backgroundColor: "white" }}
-                    value={città} // This correctly points to formData.name
+                    value={formData.citta} // This correctly points to formData.name
                     onChange={handleChange}
                   />
                 </div>
@@ -591,7 +635,7 @@ function Stepper() {
                     name="telefono" // This should match your formData property
                     className="mt-4 w-full border border-gray-300 rounded p-2 focus:outline-none"
                     style={{ backgroundColor: "white" }}
-                    value={telefono} // This correctly points to formData.name
+                    value={formData.telefono} // This correctly points to formData.name
                     onChange={handleChange}
                     pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
                   />
@@ -650,7 +694,7 @@ function Stepper() {
                     name="email" // This should match your formData property
                     className="mt-4 w-full border border-gray-300 rounded p-2 focus:outline-none"
                     style={{ backgroundColor: "white" }}
-                    value={email}
+                    value={formData.email}
                     onChange={handleChange}
                   />
                 </div>
@@ -681,7 +725,9 @@ function Stepper() {
                 transition={{ duration: 0.3 }}
                 className="md:w-3/5 mx-auto py-12"
               >
-                <div className="text-base font-light text-center">Step 8/12</div>
+                <div className="text-base font-light text-center">
+                  Step 8/12
+                </div>
                 <div
                   className="mt-4 w-full h-2"
                   style={{ backgroundColor: "#0F5DA6" }}
@@ -705,7 +751,7 @@ function Stepper() {
                     name="password"
                     className="mt-4 w-full border border-gray-300 rounded p-2 pr-10 focus:outline-none"
                     style={{ backgroundColor: "white" }}
-                    value={password}
+                    value={formData.password}
                     onChange={handleChange}
                   />
                   {/* Icona per mostrare/nascondere la password */}
@@ -732,7 +778,7 @@ function Stepper() {
                     name="confermaPassword"
                     className="w-full border border-gray-300 rounded p-2 pr-10 focus:outline-none"
                     style={{ backgroundColor: "white" }}
-                    value={confermaPassword}
+                    value={formData.confermaPassword}
                     onChange={handleChange}
                   />
                   {/* Icona per mostrare/nascondere la password di conferma */}
@@ -774,122 +820,137 @@ function Stepper() {
               </motion.div>
             )}
             {step === 9 && (
-            <motion.div
-            key={step}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
-            className="md:w-3/5 mx-auto py-12"
-          >
-            <div className="text-base font-light text-center">Step 9/12</div>
-            <div className="mt-4 w-full h-2" style={{ backgroundColor: "#0F5DA6" }}>
-              <div className="h-full bg-green-500 rounded-3xl w-9/12"></div>
-            </div>
-            <div className="mt-12 text-3xl text-center">
-              Carica una foto di profilo
-              <br />
-              <p className="text-sm">
-                Una foto aiuta a rendere il tuo profilo più riconoscibile.
-              </p>
-            </div>
-  
-            <div className="mt-4">
-              <label className="w-full flex flex-col items-center px-4 py-6 bg-white text-blue rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:bg-blue-400 hover:text-white">
-                <FaUpload className="h-8 w-8" />
-                <span className="mt-2 text-base leading-normal">Scegli un file</span>
-                <input
-                  type="file"
-                  accept="image/*"
-                  name="profilePhoto"
-                  onChange={handleChange}
-                  className="hidden"
-                />
-              </label>
-              {profilePhoto && (
-                <div className="mt-2 text-center">
-                  <span className="text-sm text-gray-600">{profilePhoto.name}</span>
+              <motion.div
+                key={step}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.3 }}
+                className="md:w-3/5 mx-auto py-12"
+              >
+                <div className="text-base font-light text-center">
+                  Step 9/12
                 </div>
-              )}
-            </div>
-  
-            {profilePhoto && (
-              <div className="mt-4 text-center">
-                <img
-                  src={URL.createObjectURL(profilePhoto)}
-                  alt="Foto di profilo"
-                  className="mx-auto rounded-full h-24 w-24 object-cover"
-                />
-              </div>
-            )}
-  
-            <div className="flex justify-center mt-12">
-              <button
-                type="button"
-                onClick={prevStep}
-                className="mr-4 bg-gray-400 text-white font-bold py-2 px-4 rounded"
-              >
-                Indietro
-              </button>
-              <button
-                type="button"
-                onClick={nextStep}
-                className="bg-customGreen text-white font-bold py-2 px-4 rounded"
-              >
-                Avanti
-              </button>
-            </div>
-          </motion.div>
+                <div
+                  className="mt-4 w-full h-2"
+                  style={{ backgroundColor: "#0F5DA6" }}
+                >
+                  <div className="h-full bg-green-500 rounded-3xl w-9/12"></div>
+                </div>
+                <div className="mt-12 text-3xl text-center">
+                  Carica una foto di profilo
+                  <br />
+                  <p className="text-sm">
+                    Una foto aiuta a rendere il tuo profilo più riconoscibile.
+                  </p>
+                </div>
+
+                <div className="mt-4">
+                  <label className="w-full flex flex-col items-center px-4 py-6 bg-white text-blue rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:bg-blue-400 hover:text-white">
+                    <FaUpload className="h-8 w-8" />
+                    <span className="mt-2 text-base leading-normal">
+                      Scegli un file
+                    </span>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      name="profilePhoto"
+                      onChange={handleChange}
+                      className="hidden"
+                    />
+                  </label>
+                  {formData.profilePhotoName && (
+                    <div className="mt-2 text-center">
+                      <span className="text-sm text-gray-600">
+                        {formData.profilePhotoName}
+                      </span>
+                    </div>
+                  )}
+                </div>
+
+                {formData.profilePhotoPath && (
+                  <div className="mt-4 text-center">
+                    <img
+                      src={formData.profilePhotoPath}
+                      alt="Foto di profilo"
+                      className="mx-auto rounded-full h-24 w-24 object-cover"
+                    />
+                  </div>
+                )}
+
+                <div className="flex justify-center mt-12">
+                  <button
+                    type="button"
+                    onClick={prevStep}
+                    className="mr-4 bg-gray-400 text-white font-bold py-2 px-4 rounded"
+                  >
+                    Indietro
+                  </button>
+                  <button
+                    type="button"
+                    onClick={nextStep}
+                    className="bg-customGreen text-white font-bold py-2 px-4 rounded"
+                  >
+                    Avanti
+                  </button>
+                </div>
+              </motion.div>
             )}
             {step === 10 && (
-               <motion.div
-               key={step}
-               initial={{ opacity: 0, y: 20 }}
-               animate={{ opacity: 1, y: 0 }}
-               exit={{ opacity: 0, y: -20 }}
-               transition={{ duration: 0.3 }}
-               className="md:w-3/5 mx-auto py-12"
-             >
-               <div className="text-base font-light text-center">Step 10/12</div>
-               <div className="mt-4 w-full h-2" style={{ backgroundColor: "#0F5DA6" }}>
-                 <div className="h-full bg-green-500 rounded-3xl w-10/12"></div>
-               </div>
-               <div className="mt-12 text-3xl text-center">
-                 Parlaci di te
-                 <br />
-                 <p className="text-sm">
-                   Spiega agli utenti perché dovrebbero scegliere te rispetto agli altri.
-                 </p>
-               </div>
-     
-               <div>
-                 <textarea
-                   name="descrizioneProfessionista"
-                   placeholder="Scrivi qui..."
-                   className="mt-4 w-full border border-gray-300 rounded p-2 focus:outline-none"
-                   style={{ backgroundColor: "white", minHeight: "150px" }}
-                   value={descrizioneProfessionista}
-                   onChange={handleChange}
-                 />
-               </div>
-     
-               <div className="flex justify-center mt-12">
-                 <button
-                   type="button"
-                   onClick={prevStep}
-                   className="mr-4 bg-gray-400 text-white font-bold py-2 px-4 rounded"
-                 >
-                   Indietro
-                 </button>
-                 <button
-                   type="button"
-                   onClick={nextStep}
-                   className="bg-customGreen text-white font-bold py-2 px-4 rounded"
-                 >
-                   Avanti
-                 </button>
-               </div>
-             </motion.div>
+              <motion.div
+                key={step}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.3 }}
+                className="md:w-3/5 mx-auto py-12"
+              >
+                <div className="text-base font-light text-center">
+                  Step 10/12
+                </div>
+                <div
+                  className="mt-4 w-full h-2"
+                  style={{ backgroundColor: "#0F5DA6" }}
+                >
+                  <div className="h-full bg-green-500 rounded-3xl w-10/12"></div>
+                </div>
+                <div className="mt-12 text-3xl text-center">
+                  Parlaci di te
+                  <br />
+                  <p className="text-sm">
+                    Spiega agli utenti perché dovrebbero scegliere te rispetto
+                    agli altri.
+                  </p>
+                </div>
+
+                <div>
+                  <textarea
+                    name="descrizioneProfessionista"
+                    placeholder="Scrivi qui..."
+                    className="mt-4 w-full border border-gray-300 rounded p-2 focus:outline-none"
+                    style={{ backgroundColor: "white", minHeight: "150px" }}
+                    value={formData.descrizioneProfessionista}
+                    onChange={handleChange}
+                  />
+                </div>
+
+                <div className="flex justify-center mt-12">
+                  <button
+                    type="button"
+                    onClick={prevStep}
+                    className="mr-4 bg-gray-400 text-white font-bold py-2 px-4 rounded"
+                  >
+                    Indietro
+                  </button>
+                  <button
+                    type="button"
+                    onClick={nextStep}
+                    className="bg-customGreen text-white font-bold py-2 px-4 rounded"
+                  >
+                    Avanti
+                  </button>
+                </div>
+              </motion.div>
             )}
             {step === 11 && (
               <motion.div
@@ -907,7 +968,7 @@ function Stepper() {
                   className="mt-4 w-full h-2"
                   style={{ backgroundColor: "#0F5DA6" }}
                 >
-                  <div className="h-full bg-green-500  rounded-3xl w-10/12"></div>
+                  <div className="h-full bg-green-500  rounded-3xl w-11/12"></div>
                 </div>
                 <div className="bg-white py-24 sm:py-16">
                   <div className="mx-auto  px-6 lg:px-8">
@@ -948,9 +1009,7 @@ function Stepper() {
                         >
                           {" "}
                           <button
-                            onClick={() => {
-                            handleMonthlySubscription
-                            }}
+                            onClick={() => handleMonthlySubscription()}
                           >
                             ACQUISTA ORA{" "}
                           </button>
@@ -1046,9 +1105,7 @@ function Stepper() {
                         >
                           {" "}
                           <button
-                            onClick={() => {
-                             handleAnnualSubscription
-                            }}
+                            onClick={() => handleAnnualSubscription()}
                           >
                             ACQUISTA ORA
                           </button>
@@ -1208,39 +1265,39 @@ function Stepper() {
                             </label>
                           </div>
                         </div>
-                        <form className="mt-8">
-                          <div className="grid gap-6">
-                            <div className="grid sm:grid-cols-3 gap-6">
-                              <input
-                                type="number"
-                                placeholder="N° carta"
-                                className="px-4 py-3.5 bg-white text-[#333] w-full text-sm border rounded-md focus:border-[#007bff] outline-none"
-                              />
-                              <input
-                                type="number"
-                                placeholder="Scadenza"
-                                className="px-4 py-3.5 bg-white text-[#333] w-full text-sm border rounded-md focus:border-[#007bff] outline-none"
-                              />
-                              <input
-                                type="number"
-                                placeholder="CVV"
-                                className="px-4 py-3.5 bg-white text-[#333] w-full text-sm border rounded-md focus:border-[#007bff] outline-none"
-                              />
-                            </div>
-                            <div className="sm:col-span-2 grid sm:grid-cols-2 gap-6">
-                              <input
-                                type="text"
-                                placeholder="Nome del titolare"
-                                className="px-4 py-3.5 bg-white text-[#333] w-full text-sm border rounded-md focus:border-[#007bff] outline-none"
-                              />
-                              <input
-                                type="number"
-                                placeholder="Codice Postale"
-                                className="px-4 py-3.5 bg-white text-[#333] w-full text-sm border rounded-md focus:border-[#007bff] outline-none"
-                              />
-                            </div>
+
+                        <div className="grid gap-6">
+                          <div className="grid sm:grid-cols-3 gap-6">
+                            <input
+                              type="number"
+                              placeholder="N° carta"
+                              className="px-4 py-3.5 bg-white text-[#333] w-full text-sm border rounded-md focus:border-[#007bff] outline-none"
+                            />
+                            <input
+                              type="number"
+                              placeholder="Scadenza"
+                              className="px-4 py-3.5 bg-white text-[#333] w-full text-sm border rounded-md focus:border-[#007bff] outline-none"
+                            />
+                            <input
+                              type="number"
+                              placeholder="CVV"
+                              className="px-4 py-3.5 bg-white text-[#333] w-full text-sm border rounded-md focus:border-[#007bff] outline-none"
+                            />
                           </div>
-                        </form>
+                          <div className="sm:col-span-2 grid sm:grid-cols-2 gap-6">
+                            <input
+                              type="text"
+                              placeholder="Nome del titolare"
+                              className="px-4 py-3.5 bg-white text-[#333] w-full text-sm border rounded-md focus:border-[#007bff] outline-none"
+                            />
+                            <input
+                              type="number"
+                              placeholder="Codice Postale"
+                              className="px-4 py-3.5 bg-white text-[#333] w-full text-sm border rounded-md focus:border-[#007bff] outline-none"
+                            />
+                          </div>
+                        </div>
+
                       </div>
                       <div className="lg:border-l lg:pl-8">
                         <h3 className="text-xl font-bold text-[#333]">
@@ -1248,22 +1305,36 @@ function Stepper() {
                         </h3>
                         <ul className="text-[#333] mt-6 space-y-4">
                           <li className="flex flex-wrap gap-4 text-sm">
-                            Abbonamento mensile{" "}
-                            <span className="ml-auto font-bold">€50.00</span>
+                            Abbonamento {formData.tipo_abbonamento}{" "}
+                            <span className="ml-auto font-bold">{formData.costo}.00</span>
                           </li>
                           <li className="flex flex-wrap gap-4 text-base font-bold border-t pt-4">
-                            Totale <span className="ml-auto">€50.00</span>
+                            Totale {" "} <span className="ml-auto">{formData.costo}.00</span>
                           </li>
                         </ul>
                       </div>
                     </div>
+                    <div className="flex justify-center mt-12">
+                      <button
+                        type="button"
+                        onClick={handleSubmit}
+
+                        className="px-6 py-3.5 text-sm bg-blue-600 text-white rounded-md hover:bg-blue-700"
+
+                      >
+                        Paga Ora
+                      </button>
+                    </div>
+                    <br />
+                    <br />
+                    <br />
                     <div className="flex flex-wrap gap-4 mt-10">
                       <button
-                        onClick={handleSubmit}
+                        onClick={prevStep}
                         type="button"
-                        className="px-6 py-3.5 text-sm bg-blue-600 text-white rounded-md hover:bg-blue-700"
+                        className=" mr-4 bg-gray-400 text-white font-bold py-2 px-4 rounded"
                       >
-                        Paga ora
+                        Indietro
                       </button>
                     </div>
                   </div>
@@ -1276,5 +1347,6 @@ function Stepper() {
     </>
   );
 }
+
 
 export default Stepper;

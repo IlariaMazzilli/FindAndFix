@@ -3,7 +3,12 @@ import { useParams, useNavigate, Link} from 'react-router-dom'
 
 
 function ViewClientProfilePro() {
-    const { name, description } = useParams()
+    const { name, description, imageName } = useParams();
+
+    const getImagePath = (imageName) => {
+        // Supponiamo che le immagini siano presenti nella directory 'images' all'interno della tua directory dei componenti
+        return `/images/${imageName}.jpg`;
+    };
    
     return (
 

@@ -1,26 +1,45 @@
 import logoNoBg from '../images/logoNoBg.svg'
-import { useState, useEffect, useContext} from 'react';
+import { useState, useEffect } from 'react';
 import { Fade } from 'react-awesome-reveal';
 import { Link, useNavigate } from 'react-router-dom';
 import { Link as ScrollLink } from 'react-scroll'
 import { useToken } from '../auth/useToken';
 import { useUser } from '../auth/useUser';
-
+import axiosInstance from '../components/AxiosInstance';
 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [username, setUserName] = useState('')
   const navigate = useNavigate()
+  // token
   const [token, setToken] = useToken()
   const user = useUser()
+  // dati utente pro del fetch dal database
+  const [userProData, setProUserData] = useState('');
+  // dati utente cliente del fetch dal database
+  const [userClientData, setUserClientData] = useState('');
+  const [error, setError] = useState('');
 
-  console.log('user:', user)
-
-
-
-
-
-
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        // faccio il fetch dal database del profilo del pro
+        const resPro = await axiosInstance.get('/profile/professionista');
+        // faccio il fetch dal database del profilo del pro
+        const resCliente = await axiosInstance.get('/profile/cliente');
+        // se il json del professionista è stato fetchato, passalo a userProData
+        if(resPro){
+          setProUserData(resPro)
+          // se il json del cliente è stato fetchato, passalo a userClientData
+        } else if(resCliente){
+          setUserClientData(resCliente)
+        }
+      } catch (error) {
+        setError('Errore durante il fetch');
+        console.error('Fetch Error:', error); // Log degli errori
+      }
+    };
+    fetchUserData();
+  }, [token]);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -29,14 +48,23 @@ function Navbar() {
   const logout = () => {
     localStorage.removeItem('token')
     localStorage.removeItem('email')
-
+    setProUserData('')
+    setUserClientData('')
     navigate('/')
   }
 
-
-  function goToProfile() {
-    navigate('/Userwewe')
+  function redirect() {
+    // se i dati del profilo del pro sono stati fetchati reindirizzami al suo profilo
+    if (userProData) {
+      console.log(userProData)
+      navigate(`/profile/${userProData.nome}`)
+    } else{
+      // altrimenti reindirizzami al profilo del cliente
+      navigate(`/clientProfile/:${userClientData.nome}`)
+    }
   }
+
+
 
   return (
 
@@ -44,17 +72,17 @@ function Navbar() {
       <div className='fixed z-10 bg-white w-full flex  items-center justify-around '>
         <nav className='flex p-2 box-border w-2/4 max-[768px]:overflow-hidden max-[768px]:w-full'>
           <ul className="flex justify-around items-center gap-6 max-[768px]:whitespace-nowrap w-full max-[768px]:gap-4">
-            <Link to="/" className="block text-teal-600" href="#" >
+            <Link to="/" className="block text-teal-600" >
               <img src={logoNoBg} className='w-16 h-12 max-[768px]:w-10 max-[768px]:h-8 logo' alt='Find & Fix' />
             </Link>
             <li>
-              
-              <Link to="/chiSiamo" className=" text-customBlue transition hover:text-customGreen whitespace-nowrap text-xl max-[768px]:text-xs" href="#"> CHI SIAMO </Link>
-              
+
+              <Link to="/chiSiamo" className=" text-customBlue transition hover:text-customGreen whitespace-nowrap text-xl max-[768px]:text-xs"> CHI SIAMO </Link>
+
             </li>
 
             <li>
-              <Link className="text-customBlue cursor-pointer transition hover:text-customGreen text-xl max-[768px]:text-xs"  to="/servizi" > SERVIZI </Link>
+              <Link className="text-customBlue cursor-pointer transition hover:text-customGreen text-xl max-[768px]:text-xs" to="/servizi" > PROFESSIONISTI </Link>
             </li>
 
             <li>
@@ -69,16 +97,17 @@ function Navbar() {
           </Link>
 
           {user ?
-            <Link to="/clientProfile/:name" className="button rounded-md  p-4 flex items-center text-mobile font-medium text-customBlue hover:text-customGreen box-border " >
+            <button onClick={redirect} className="button rounded-md  p-4 flex items-center text-mobile font-medium text-customBlue hover:text-customGreen box-border " >
               Ciao, {user.email}
-            </Link>
+            </button>
             : <Link to="/registrati" className="button rounded-md bg-customBlue transition duration-300 p-4 flex items-center text-xs font-medium text-white hover:bg-customGreen box-border " >
               REGISTRATI
-            </Link>}
+            </Link>
+          }
 
 
-          {user ? null 
-          :
+          {user ? null
+            :
             <Link to="/proRegistrati" className="button rounded-md ml-4 transition duration-300 bg-customBlue text-xs font-medium text-white hover:bg-customGreen flex items-center p-4 box-border" >
               LAVORA CON NOI
             </Link>}
@@ -117,7 +146,7 @@ function Navbar() {
 
               {user
                 ?
-                <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 24 24" onClick={goToProfile}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 24 24" onClick={redirect}>
                   <path fill="#0F5DA6" fillRule="evenodd" d="M8 7a4 4 0 1 1 8 0a4 4 0 0 1-8 0m0 6a5 5 0 0 0-5 5a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3a5 5 0 0 0-5-5z" clipRule="evenodd" />
                 </svg>
                 :

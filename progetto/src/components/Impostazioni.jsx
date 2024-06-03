@@ -1,7 +1,10 @@
 import React, {useState} from 'react'
 import {Link, useNavigate} from 'react-router-dom'
+import { useOutletContext } from 'react-router-dom';
+
 
 function Impostazioni() {
+  const { userData } = useOutletContext();
   const [type, setType] = useState('password')
   const navigate = useNavigate()
 
@@ -27,7 +30,7 @@ function Impostazioni() {
       <hr className="mt-4 mb-8" />
       <p className="py-2 text-xl font-semibold">Email</p>
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
-        <p className="text-gray-600">La tua email è <strong>john.doe@company.com</strong></p>
+        <p className="text-gray-600">La tua email è <strong>{userData.email}</strong></p>
         <button className="inline-flex text-sm font-semibold text-blue-600 underline decoration-2" onClick={goToChangeMail}>Cambia</button>
       </div>
       <hr className="mt-4 mb-8" />

@@ -2,21 +2,22 @@ import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import SidebarCliente from '../components/SidebarCliente';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import axiosInstance from '../components/AxiosInstance';
+import Toolbar from '../components/Toolbar';
 
 const ProfiloCliente = () => {
   const [userData, setUserData] = useState(null);
   const [error, setError] = useState('');
+  const navigate = useNavigate()
 
   useEffect(() => {
     const fetchUserData = async () => {
       try {
+        // Verifica che il token sia presente
         const token = localStorage.getItem('token');
-        console.log('Token:', token); // Verifica che il token sia presente
         const res = await axiosInstance.get('/profile/cliente');
         setUserData(res.data);
-        console.log('Response:', res.data); // Verifica la risposta del server
       } catch (error) {
         setError('Errore durante il fetch');
         console.error('Fetch Error:', error); // Log degli errori
@@ -25,10 +26,12 @@ const ProfiloCliente = () => {
     fetchUserData();
   }, []);
 
+
   return (
     <div>
+      <Toolbar/>
       <Navbar />
-      <br /><br /><br />
+      <br /><br /><br /><br /><br />
       <div className='flex h-fit w-full'>
         <SidebarCliente />
         <div className='flex-1 p-4'>

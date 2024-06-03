@@ -22,7 +22,7 @@ function Footer() {
                             <a href="/" className="block w-56 ">
                                 <img src={logo} alt="Find & Fix" className='h-16 w-22' />
                             </a>
-                            <p className="text-justify max-[768px]:w-64">
+                            <p className=" max-[768px]:w-64">
                                 Find & Fix, il tuo partner per un servizio di qualità.
                             </p>
                         </div>

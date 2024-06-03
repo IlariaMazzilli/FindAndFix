@@ -1,5 +1,5 @@
 import { createBrowserRouter, redirect, Navigate, useNavigate } from "react-router-dom";
-import { useContext } from "react";
+import { Fade } from 'react-awesome-reveal'
 import Home from "../pages/Home";
 import Register from "../pages/Register";
 import Faqs from "../pages/Faqs";
@@ -24,7 +24,6 @@ import ChatAlice from "../components/ChatAlice";
 import ChatMartin from "../components/ChatMartin";
 import ChatCharlie from "../components/ChatCharlie";
 import ChangeEmail from '../pages/ChangeEmail'
-import { AuthContext } from "../auth/AuthContext";
 import CreateReview from "../pages/CreateReview";
 import ViewClientProfilePro from "../pages/ViewClientProfilePro";
 import ContactForm from "../pages/ContactForm";
@@ -32,6 +31,7 @@ import ConfirmationPage from "../pages/ConfirmationPage";
 import PrivateRoute from "../auth/PrivateRoute";
 import ReviewsPage from "../pages/ReviewsPage";
 import ProfileClient from "../components/ProfileClient";
+import Toolbar from "../components/Toolbar";
 
 
 
@@ -39,39 +39,62 @@ export const Rotte = createBrowserRouter([
     {
         path: "/",
         element: (
-            <>
-                <Home />
-                <ChatBotComponent />
-            </>
+            <Fade>
+                <>
+                    <Home />
+                    <ChatBotComponent />
+                </>
+            </Fade>
         )
     },
     {
         path: "/registrati",
-        element: <Register />,
+        element: (
+            <Fade><div><Register /></div></Fade>
+        ),
     },
     {
         path: "/proRegistrati",
-        element: <Stepper />,
+        element: (
+            <Fade>
+                <div>
+                    <Toolbar/>
+                    <Stepper />
+                </div>
+            </Fade>
+
+        ),
     },
     {
         path: "/faqs",
         element: (<div>
-            <Faqs />
-            <ChatBotComponent />
+            <Fade>
+                <Faqs />
+                <ChatBotComponent />
+            </Fade>
         </div>
 
         ),
     },
     {
         path: "/signIn",
-        element: <SignIn />,
+        element: (
+            <Fade>
+                <div>
+                    <SignIn />
+                </div>
+            </Fade>
+
+        )
     },
     {
         path: "/chiSiamo",
         element: (
             <div>
-                <ChiSiamo />
-                <ChatBotComponent />
+                <Fade>
+                    <ChiSiamo />
+                    <ChatBotComponent />
+                </Fade>
             </div>
         ),
     },
@@ -79,12 +102,15 @@ export const Rotte = createBrowserRouter([
         path: "/reviews",
         element: (
             <div>
-                <Navbar />
-                <br /><br /><br />
-                <ReviewsPage />
-                <br /><br />
-                <ChatBotComponent />
-                <Footer />
+                <Fade>
+                    <Toolbar/>
+                    <Navbar />
+                    <br /><br /><br />
+                    <ReviewsPage />
+                    <br /><br />
+                    <ChatBotComponent />
+                    <Footer />
+                </Fade>
             </div>
         ),
     },
@@ -93,8 +119,10 @@ export const Rotte = createBrowserRouter([
         element: (
             <PrivateRoute element={() => (
                 <div>
-                    <Servizi />
-                    <ChatBotComponent />
+                    <Fade>
+                        <Servizi />
+                        <ChatBotComponent />
+                    </Fade>
                 </div>
             )} />
         )
@@ -104,11 +132,14 @@ export const Rotte = createBrowserRouter([
         element: (
             <PrivateRoute element={() => (
                 <div>
-                    <Navbar />
-                    <br /><br /><br /><br />
-                    <ViewClientProfilePro />
-                    <ChatBotComponent />
-                    <Footer />
+                    <Fade>
+                        <Toolbar />
+                        <Navbar />
+                        <br /><br /><br /><br />
+                        <ViewClientProfilePro />
+                        <ChatBotComponent />
+                        <Footer />
+                    </Fade>
                 </div>
             )} />
         ),
@@ -118,10 +149,13 @@ export const Rotte = createBrowserRouter([
         element: (
             <PrivateRoute element={() => (
                 <div>
-                    <Navbar />
-                    <br /><br /><br /><br />
-                    <ContactForm />
-                    <Footer />
+                    <Fade>
+                        <Toolbar />
+                        <Navbar />
+                        <br /><br /><br />
+                        <ContactForm />
+                        <Footer />
+                    </Fade>
                 </div>
             )} />
 
@@ -132,10 +166,12 @@ export const Rotte = createBrowserRouter([
         path: "/formReceived",
         element: (
             <div>
-                <Navbar />
-                <br /><br /><br /><br />
-                <ConfirmationPage />
-                <Footer />
+                <Fade>
+                    <Navbar />
+                    <br /><br /><br /><br />
+                    <ConfirmationPage />
+                    <Footer />
+                </Fade>
             </div>
         ),
     },
@@ -144,8 +180,10 @@ export const Rotte = createBrowserRouter([
         element: (
             <PrivateRoute element={() => (
                 <div>
-                    <ProfiloPro />
-                    <ChatBotComponent />
+                    <Fade>
+                        <ProfiloPro />
+                        <ChatBotComponent />
+                    </Fade>
                 </div>
             )} />
         ),
@@ -187,12 +225,14 @@ export const Rotte = createBrowserRouter([
         ]
     },
     {
-        path: '/clientProfile/:id',
+        path: '/clientProfile/:name',
         element: (
             <PrivateRoute element={() => (
                 <div>
-                    <ProfiloCliente />
-                    <ChatBotComponent />
+                    <Fade>
+                        <ProfiloCliente />
+                        <ChatBotComponent />
+                    </Fade>
                 </div>
             )} />
 
@@ -216,10 +256,12 @@ export const Rotte = createBrowserRouter([
         path: '/recuperaPassword',
         element: (
             <div>
-                <Navbar />
-                <br />
-                <ForgotPassword />
-                <Footer />
+                <Fade>
+                    <Navbar />
+                    <br />
+                    <ForgotPassword />
+                    <Footer />
+                </Fade>
             </div>
         )
     },
@@ -228,10 +270,12 @@ export const Rotte = createBrowserRouter([
         element: (
             <PrivateRoute element={() => (
                 <div>
-                    <Navbar />
-                    <br />
-                    <ChangeEmail />
-                    <Footer />
+                    <Fade>
+                        <Navbar />
+                        <br />
+                        <ChangeEmail />
+                        <Footer />
+                    </Fade>
                 </div>
             )} />
 
@@ -242,10 +286,12 @@ export const Rotte = createBrowserRouter([
         element: (
             <PrivateRoute element={() => (
                 <div>
-                    <Navbar />
-                    <br />
-                    <CreateReview />
-                    <Footer />
+                    <Fade>
+                        <Navbar />
+                        <br />
+                        <CreateReview />
+                        <Footer />
+                    </Fade>
                 </div>
             )} />
 

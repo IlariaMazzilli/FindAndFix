@@ -24,7 +24,7 @@ function Notifiche() {
                         </p>
                     </div>
                     <p className="mt-1 text-sm">
-                        Promemoria: tenere i dati aggiornati è importante per farti trovare dai clienti giusti!
+                        Promemoria: tenere i dati aggiornati è importante !
                     </p>
                 </div>
 
@@ -44,7 +44,7 @@ function Notifiche() {
                         </p>
                     </div>
                     <p className="mt-1 text-sm">
-                        Hai ricevuto una nuova offerta di lavoro. Sei interessato ? Contatta il cliente !
+                        Hai ricevuto un nuovo messaggio !
                     </p>
                 </div>
                 <div className="mt-2 px-6 py-4 bg-white rounded-lg shadow w-full">
