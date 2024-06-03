@@ -27,10 +27,10 @@ function Navbar() {
         // faccio il fetch dal database del profilo del pro
         const resCliente = await axiosInstance.get('/profile/cliente');
         // se il json del professionista è stato fetchato, passalo a userProData
-        if(resPro){
+        if (resPro) {
           setProUserData(resPro)
           // se il json del cliente è stato fetchato, passalo a userClientData
-        } else if(resCliente){
+        } else if (resCliente) {
           setUserClientData(resCliente)
         }
       } catch (error) {
@@ -58,7 +58,7 @@ function Navbar() {
     if (userProData) {
       console.log(userProData)
       navigate(`/profile/${userProData.nome}`)
-    } else{
+    } else {
       // altrimenti reindirizzami al profilo del cliente
       navigate(`/clientProfile/:${userClientData.nome}`)
     }
@@ -77,16 +77,16 @@ function Navbar() {
             </Link>
             <li>
 
-              <Link to="/chiSiamo" className=" text-customBlue transition hover:text-customGreen whitespace-nowrap text-xl max-[768px]:text-xs"> CHI SIAMO </Link>
+              <Link to="/chiSiamo" className=" text-customBlue transition hover:text-customGreen whitespace-nowrap text-xl max-[768px]:text-xs max-[768px]:hidden"> CHI SIAMO </Link>
 
             </li>
 
             <li>
-              <Link className="text-customBlue cursor-pointer transition hover:text-customGreen text-xl max-[768px]:text-xs" to="/servizi" > PROFESSIONISTI </Link>
+              <Link className="text-customBlue cursor-pointer transition hover:text-customGreen text-xl max-[768px]:text-xs max-[768px]:hidden" to="/servizi" > PROFESSIONISTI </Link>
             </li>
 
             <li>
-              <ScrollLink className=" text-customBlue transition hover:text-customGreen text-xl max-[768px]:text-xs hover:cursor-pointer" smooth={true} to="footer" duration={1500}> CONTATTI </ScrollLink>
+              <ScrollLink className=" text-customBlue transition hover:text-customGreen text-xl max-[768px]:text-xs hover:cursor-pointer max-[768px]:hidden" smooth={true} to="footer" duration={1500}> CONTATTI </ScrollLink>
             </li>
           </ul>
         </nav>
@@ -111,6 +111,8 @@ function Navbar() {
             <Link to="/proRegistrati" className="button rounded-md ml-4 transition duration-300 bg-customBlue text-xs font-medium text-white hover:bg-customGreen flex items-center p-4 box-border" >
               LAVORA CON NOI
             </Link>}
+
+
 
         </div>
 
@@ -160,11 +162,15 @@ function Navbar() {
               {user ? null
                 :
                 <Link to="/proRegistrati"
-                  className=" py-2.5 text-mobile text-sm font-medium text-customBlue hover:bg-customGreen w-fit whitespace-nowrap"
+                  className=" py-2.5 text-mobile text-base font-medium text-customBlue hover:bg-customGreen w-fit whitespace-nowrap"
                 >
                   LAVORA CON NOI
                 </Link>
               }
+
+              <Link to="/chiSiamo" className=" text-customBlue transition hover:text-customGreen whitespace-nowrap text-xl max-[768px]:text-base mt-2"> CHI SIAMO </Link>
+              <Link className="text-customBlue cursor-pointer transition hover:text-customGreen text-xl max-[768px]:text-base mt-4 " to="/servizi" > PROFESSIONISTI </Link>
+              <ScrollLink className=" text-customBlue transition hover:text-customGreen text-xl  hover:cursor-pointer mt-2 max-[768px]:text-base" smooth={true} to="footer" duration={1500}> CONTATTI </ScrollLink>
             </div>
           </Fade>
         )}
