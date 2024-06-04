@@ -7,8 +7,7 @@ import Nadia from '../images/Nadia.jpg';
 import Enzo from '../images/Enzo.png';
 import sylvia from '../images/sylvia.jpg';
 import '../myStyles.css';
-import { Link } from 'react-router-dom';
-
+// import UserPage from '../pages/UserPage';
 
 
 const ProfileList = () => {
@@ -24,27 +23,18 @@ const ProfileList = () => {
 
 
   return (
-    <div>
-      <h1 className='mt-8 px-6 text-customBlue text-2xl font-extrabold max-[768px]:text-xl'>Scegli il professionista adatto a te!</h1>
-      <div className="containerwewe">
-        {profiles.map((profile) => (
-          <Link
-            key={profile.id}
-            to={`/clientViewPro/${profile.name}/${profile.description}`}
-            
-          >
-            <ProfileCard
-              key={profile.id}
-              id={profile.id}
-              name={profile.name}
-              image={profile.image}
-              description={profile.description}
-              rating={profile.rating}
-              pricing={profile.price}
-            />
-          </Link>
-        ))}
-      </div>
+    <div className="containerwewe">
+      {profiles.map((profile) => (
+      <ProfileCard
+        key={profile.id}
+        id={profile.id}
+        name={profile.name}
+        image={profile.image}
+        description={profile.description}
+        rating={profile.rating}
+        pricing={profile.price}
+      />
+      ))}
     </div>
   );
 };
