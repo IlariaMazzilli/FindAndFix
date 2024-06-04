@@ -287,6 +287,7 @@ export const Rotte = createBrowserRouter([
             <PrivateRoute element={() => (
                 <div>
                     <Fade>
+                        <Toolbar/>
                         <Navbar />
                         <br />
                         <CreateReview />
