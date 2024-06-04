@@ -10,8 +10,6 @@ import {loadStripe} from '@stripe/stripe-js';
 function Stepper() {
   const [token, setToken] = useToken();
   const [errorMessage, setErrorMessage] = useState('');
-  const [token, setToken] = useToken();
-  const [errorMessage, setErrorMessage] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [step, setStep] = useState(1);
