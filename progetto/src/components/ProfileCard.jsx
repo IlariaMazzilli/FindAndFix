@@ -39,6 +39,9 @@ const ProfileCard = ({ id, name, image, description, rating, pricing, onContact 
   };
 
   const handleContact = () => {
+    const imageName = image.split('/').pop().split('.')[0]; // Split on '/', get last element, split on '.', get first element
+
+    localStorage.setItem('ProfessionistaImmagine', imageName)
     navigate(`/clientViewPro/${name}/${description}`, {
       state: {
         name,

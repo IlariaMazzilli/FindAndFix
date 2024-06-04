@@ -1,14 +1,28 @@
 import React, {useContext} from 'react';
 import { useParams, useNavigate, Link} from 'react-router-dom'
+import Michele from '../images/Michele.jpg';
+import Giuseppe from '../images/Giuseppe.jpg';
+import francesco from '../images/francesco.jpg';
+import Nadia from '../images/Nadia.jpg';
+import Enzo from '../images/Enzo.png';
+import sylvia from '../images/sylvia.jpg';
 
 
 function ViewClientProfilePro() {
-    const { name, description, imageName } = useParams();
+    const { name, description } = useParams()
+    const proImage = localStorage.getItem('ProfessionistaImmagine')
 
-    const getImagePath = (imageName) => {
-        // Supponiamo che le immagini siano presenti nella directory 'images' all'interno della tua directory dei componenti
-        return `/images/${imageName}.jpg`;
-    };
+    const imageMap = {
+        Michele: Michele,
+        Giuseppe: Giuseppe,
+        francesco: francesco,
+        Nadia: Nadia,
+        Enzo: Enzo,
+        sylvia: sylvia,
+      };
+
+      const imageSrc = imageMap[proImage] || '';
+    
    
     return (
 
@@ -19,8 +33,8 @@ function ViewClientProfilePro() {
                         <div className="bg-white shadow rounded-lg p-6">
                             <div className="flex flex-col items-center">
                                 <img
-                                    src=""
-                                    className="w-32 h-32 bg-gray-300 rounded-full mb-4 shrink-0"
+                                    src={imageSrc}
+                                    className="w-32 h-32 bg-gray-300 rounded-full mb-4 shrink-0 object-cover"
                                     alt={name}
                                 />
                                 <h1 className="text-xl font-bold">{name}</h1>

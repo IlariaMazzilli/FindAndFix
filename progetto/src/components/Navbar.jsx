@@ -6,6 +6,7 @@ import { Link as ScrollLink } from 'react-scroll'
 import { useToken } from '../auth/useToken';
 import { useUser } from '../auth/useUser';
 import axiosInstance from '../components/AxiosInstance';
+import logoScritta from '../images/logoScrittaNav.svg'
 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -73,7 +74,10 @@ function Navbar() {
         <nav className='flex p-2 box-border w-2/4 max-[768px]:overflow-hidden max-[768px]:w-full'>
           <ul className="flex justify-around items-center gap-6 max-[768px]:whitespace-nowrap w-full max-[768px]:gap-4">
             <Link to="/" className="block text-teal-600" >
-              <img src={logoNoBg} className='w-16 h-12 max-[768px]:w-10 max-[768px]:h-8 logo' alt='Find & Fix' />
+              <img src={logoNoBg} className='w-16 h-12 max-[768px]:w-10 max-[768px]:h-8 logo max-[768px]:hidden' alt='Find & Fix' />
+            </Link>
+            <Link to="/" className="block text-teal-600 min-[769px]:hidden" >
+              <img src={logoScritta} className='w-22 h-12  logo ' alt='Find & Fix' />
             </Link>
             <li>
 
@@ -120,7 +124,7 @@ function Navbar() {
         <button className=" min-[769px]:hidden rounded bg-white p-2 text-gray-600 transition hover:text-gray-600/75 ml-20 sticky " onClick={toggleMenu}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5"
+            className="h-7 w-7"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -132,9 +136,9 @@ function Navbar() {
 
         {isMenuOpen && (
           <Fade triggerOnce={false} duration={1500}>
-            <div className="absolute right-0 mt-2 bg-white rounded-md shadow-lg flex flex-col items-center p-4 w-fit hamburgerNavbar">
+            <div className="absolute right-0 mt-2 bg-white rounded-md shadow-lg flex flex-col items-start p-4 w-fit hamburgerNavbar">
               <Link to="/signIn"
-                className=" mx-4  py-2.5 text-mobile font-medium text-customBlue hover:bg-customGreen w-14   "
+                className="   py-2.5 text-mobile font-medium text-customBlue hover:bg-customGreen w-14   "
                 href="#"
               >
                 {user ?
@@ -153,7 +157,7 @@ function Navbar() {
                 </svg>
                 :
                 <Link to="/registrati"
-                  className="mx-4 py-2.5 text-mobile font-medium text-customBlue hover:bg-customGreen w-14  flex justify-center"
+                  className=" py-2.5 text-mobile font-medium text-customBlue hover:bg-customGreen w-14  "
                 >
                   REGISTRATI
                 </Link>

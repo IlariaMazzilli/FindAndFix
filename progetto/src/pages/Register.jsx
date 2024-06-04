@@ -1,11 +1,15 @@
 import { useState } from "react";
-import RegistrationBanner from "../images/Registrazione-Banner.png";
+import registerbanner from "../images/registerbanner.jpg";
 import { useNavigate } from "react-router-dom";
 import { MdVisibility } from "react-icons/md";
 import Navbar from "../components/Navbar";
 import axios from "axios";
 import {useToken} from '../auth/useToken';
 import Toolbar from "../components/Toolbar";
+import { Link } from 'react-router-dom';
+import { Link as ScrollLink } from 'react-scroll'
+import logoScritta from '../images/logoScrittaNav.svg'
+
 
 function Register() {
   const [token, setToken] = useToken();
@@ -81,21 +85,23 @@ function Register() {
 
   return (
     <>
-    <Toolbar/>
-      <Navbar />
-      <br/><br/><br/><br/>
+    {/* <Toolbar/>
+      <Navbar /> */}
       <section className="bg-white">
         <div className="lg:grid lg:min-h-screen lg:grid-cols-12">
           <aside className="relative block h-16 lg:order-last lg:col-span-5 lg:h-full xl:col-span-6 max-[1024px]:hidden">
             <img
               alt=""
-              src={RegistrationBanner}
+              src={registerbanner}
               className="absolute inset-0 h-full w-full object-cover max-[768px]:hidden"
             />
           </aside>
 
           <main className="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6">
             <div className="max-w-xl lg:max-w-3xl">
+            <Link to="/" className="block text-teal-600 " >
+              <img src={logoScritta} className='w-22 h-12  logo ' alt='Find & Fix' />
+            </Link>
               <h1 className="mt-6 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl">
                 Registrati Come Cliente
               </h1>
