@@ -76,7 +76,7 @@ function Navbar() {
             <Link to="/" className="block text-teal-600" >
               <img src={logoNoBg} className='w-16 h-12 max-[768px]:w-10 max-[768px]:h-8 logo max-[768px]:hidden' alt='Find & Fix' />
             </Link>
-            <Link to="/" className="block text-teal-600" >
+            <Link to="/" className="block text-teal-600 min-[769px]:hidden" >
               <img src={logoScritta} className='w-22 h-12  logo ' alt='Find & Fix' />
             </Link>
             <li>
