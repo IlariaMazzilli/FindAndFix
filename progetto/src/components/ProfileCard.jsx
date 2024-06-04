@@ -8,7 +8,7 @@ import painterImage from '../images/francesco.jpg';
 import interiorDesignerImage from '../images/Nadia.jpg';
 import locksmithImage from '../images/Enzo.png';
 import moverImage from '../images/sylvia.jpg';
-import UserPage from '../pages/UserPage';
+// import UserPage from '../pages/UserPage';
 
 
 const ProfileCard = ({ id, name, image, description, rating, pricing, onContact }) => {
@@ -39,7 +39,7 @@ const ProfileCard = ({ id, name, image, description, rating, pricing, onContact 
   };
 
   const handleContact = () => {
-    navigate(`/Userwewe`, {
+    navigate(`/clientViewPro/${name}/${description}`, {
       state: {
         name,
         image,

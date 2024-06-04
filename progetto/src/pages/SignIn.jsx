@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import { useToken } from '../auth/useToken';
 import axios from "axios";
+import Toolbar from "../components/Toolbar";
 
 function SignIn() {
   const [token, setToken] = useToken();
@@ -64,6 +65,7 @@ function SignIn() {
 
   return (
     <>
+    <Toolbar/>
       <Navbar />
       <section className="flex flex-col md:flex-row h-screen items-center">
         <div className="bg-customBlue hidden lg:block w-full md:w-1/2 xl:w-2/3 h-screen">
@@ -118,8 +120,51 @@ function SignIn() {
                     onChange={handleInput}
                   />
                 </div>
+<<<<<<< HEAD
               </div>
               <div className="text-right mt-2">
+=======
+                <div className="mt-4">
+                  <label htmlFor="password" className="block text-gray-700">
+                    Password:
+                  </label>
+                  <div className="relative">
+                    <div className="inline-flex items-center justify-center absolute right-0 top-0 h-full  pt-4 w-10 text-gray-400">
+                      <span>
+                        {/* aggiustare icon metterlo più in basso */}
+                        <MdVisibility
+                          className="showPassword"
+                          onClick={() =>
+                            setShowPassword((prevState) => !prevState)
+                          }
+                        />
+                      </span>
+                    </div>
+
+                    <input
+                      id="password"
+                      type={showPassword ? "text" : "password"}
+                      name="password"
+                      className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none pr-10"
+                      placeholder="Password"
+                      minLength={8}
+                      required=""
+                      autoComplete=""
+                      value={password}
+                      onChange={handleInput}
+                    />
+                  </div>
+                </div>
+                <div className="text-right mt-2">
+                  <button
+                    /* inserire il nuovo form di forgot password */
+                    onClick={() => navigate("/recuperaPassword")}
+                    className="text-sm font-semibold text-gray-700 hover:text-blue-700 focus:text-blue-700"
+                  >
+                    Hai dimenticato la password?
+                  </button>
+                </div>
+>>>>>>> modificheServizi
                 <button
                   onClick={() => navigate("/forgot-password")}
                   className="text-sm font-semibold text-gray-700 hover:text-blue-700 focus:text-blue-700"

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function NotFound() {
   return (
@@ -17,7 +18,7 @@ function NotFound() {
         ></span>
 
         <span className="relative block px-8 py-3 bg-customBlue border border-current">
-          <router-link to="/">Torna alla Home</router-link>
+          <Link to='/'>Torna alla Home</Link>
         </span>
       </a>
     </button>

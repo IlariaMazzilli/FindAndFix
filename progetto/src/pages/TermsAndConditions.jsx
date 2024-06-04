@@ -1,10 +1,12 @@
 import React from 'react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
+import Toolbar from '../components/Toolbar'
 
 function TermsAndConditions() {
     return (
         <div>
+            <Toolbar/>
             <Navbar />
             <br /><br /><br /><br />
             <div>

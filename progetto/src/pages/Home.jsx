@@ -1,6 +1,7 @@
 import '../index.css'
 import { Fade } from "react-awesome-reveal";
 import { Slide } from "react-awesome-reveal";
+import { useNavigate } from 'react-router-dom';
 import Jumbotron from "../components/Jumbotron"
 import Navbar from "../components/Navbar"
 import Card from "../components/Card"
@@ -23,7 +24,6 @@ import profile1 from '../images/profile1.jpeg'
 import profile2 from '../images/profile2.webp'
 import profile3 from '../images/profile3.webp'
 import profile4 from '../images/profile4.webp'
-import profile5 from '../images/profile5.webp'
 import profile6 from '../images/profile6.webp'
 import profile7 from '../images/profile7.webp'
 import profile8 from '../images/profile8.webp'
@@ -32,12 +32,12 @@ import Select from '../components/Select'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-// import { DarkModeContext } from '../DarkMode'; // Assicurati che l'importazione sia corretta
-// import '../darkModeStyles.css'
+import Toolbar from '../components/Toolbar';
+
 
 
 function Home() {
-  // const { toggleDarkMode } = useContext(DarkModeContext);
+  const navigate = useNavigate()
 
   var settings = {
     dots: false,
@@ -76,66 +76,70 @@ function Home() {
 
   return (
 
-    <div className='dark:bg-black dark:text-white'>
-       <Navbar /> 
+    <div className='dark:bg-black dark:text-white' id='home'>
+      <Toolbar />
+      <Navbar />
       <Fade cascade={true} triggerOnce={true} duration={3500}>
         <Jumbotron />
       </Fade>
-      <Fade  triggerOnce={true} duration={2500}>
-        <h1 className='flex maintitle justify-center text-5xl text-customBlue font-bold my-10 smtext-4xl dark:text-white max-[600px]:text-4xl'>Cerca il tuo pro</h1>
+      <Fade triggerOnce={true} duration={2500}>
+        <h1 className='flex maintitle justify-center text-5xl text-customBlue font-bold my-10 smtext-4xl dark:text-white max-[600px]:text-4xl'>CERCA IL TUO PRO</h1>
       </Fade>
       <Fade triggerOnce={true} duration={2500}>
         <div className="[@media(min-width:768px)]:hidden z-20">
           <Select />
         </div>
         <div className="flex flex-wrap justify-center bg [@media(max-width:767px)]:hidden">
-        <Fade triggerOnce={true}  duration={3500}>
-          <Card image={idraulico} title="Idraulico" description="Affidati alla cura dei tuoi impianti con un servizio idraulico su cui puoi contare." />
-        </Fade>
-        <Fade triggerOnce={true}  duration={3500}>
-          <Card image={elettricista} title="Elettricista" description="Trova l'elettricista adatto a te. Illumina la tua casa con soluzioni affidabili e sicure." />
-        </Fade>
-        <Fade triggerOnce={true}  duration={3500}>
-          <Card image={imbianchino} title="Imbianchino" description="Trova l'imbianchino perfetto per trasformare i tuoi ambienti. Regala alla tua casa un tocco di freschezza e stile." />
-        </Fade>
-        <Fade triggerOnce={true}  duration={3500}>
-          <Card image={giardiniere} title="Giardiniere" description="Trova il giardiniere perfetto per trasformare il tuo spazio verde. Dona nuova vita al tuo giardino e crea un'oasi di tranquillità." />
-        </Fade>
-        <Fade triggerOnce={true}  duration={3500}>
-          <Card image={traslocatore} title="Traslocatore" description="Rendi il tuo trasloco un'esperienza senza stress! Affronta il cambiamento con serenità e affidabilità." />
-        </Fade>
-        <Fade triggerOnce={true}  duration={3500}>
-          <Card image={pavimentista} title="Pavimentista" description="Dai vita al tuo spazio con stile e qualità insuperabili, inizia oggi stesso a realizzare il pavimento dei tuoi sogni." />
-        </Fade>
-        <Fade triggerOnce={true}  duration={3500}>
-          <Card image={serramentista} title="Serramentista" description="Rendi la tua casa un luogo sicuro e confortevole. Proteggi il tuo ambiente con soluzioni affidabili e di alta qualità." />
-        </Fade>
-        <Fade triggerOnce={true}  duration={3500}>
-          <Card image={interiorDesigner} title="Interior Designer" description="Dona personalità e stile unico alla tua casa, inizia oggi stesso a creare un ambiente che rifletta davvero te stesso." />
-        </Fade>
-        <Fade triggerOnce={true}  duration={3500}>
-          <Card image={falegname} title="Falegname" description="Dai vita ai tuoi spazi con mobili su misura e dettagli impeccabili, inizia oggi stesso a creare un ambiente unico e accogliente." />
-        </Fade>
-        <Fade triggerOnce={true}  duration={3500}>
-          <div className=''>
-            <Card image={tuttofare} title="Tuttofare" description="Dalla manutenzione alla riparazione, siamo pronti a darti una mano! Inizia oggi stesso a risolvere ogni problema." />
-          </div>
-        </Fade>
+          <Fade triggerOnce={true} duration={3500}>
+            <Card image={idraulico} title="Idraulico" description="Affidati alla cura dei tuoi impianti con un servizio idraulico su cui puoi contare." />
+          </Fade>
+          <Fade triggerOnce={true} duration={3500}>
+            <Card image={elettricista} title="Elettricista" description="Trova l'elettricista adatto a te. Illumina la tua casa con soluzioni affidabili e sicure." />
+          </Fade>
+          <Fade triggerOnce={true} duration={3500}>
+            <Card image={imbianchino} title="Imbianchino" description="Trova l'imbianchino perfetto per trasformare i tuoi ambienti. Regala alla tua casa un tocco di freschezza e stile." />
+          </Fade>
+          <Fade triggerOnce={true} duration={3500}>
+            <Card image={giardiniere} title="Giardiniere" description="Trova il giardiniere perfetto per trasformare il tuo spazio verde. Dona nuova vita al tuo giardino e crea un'oasi di tranquillità." />
+          </Fade>
+          <Fade triggerOnce={true} duration={3500}>
+            <Card image={traslocatore} title="Traslocatore" description="Rendi il tuo trasloco un'esperienza senza stress! Affronta il cambiamento con serenità e affidabilità." />
+          </Fade>
+          <Fade triggerOnce={true} duration={3500}>
+            <Card image={pavimentista} title="Pavimentista" description="Dai vita al tuo spazio con stile e qualità insuperabili, inizia oggi stesso a realizzare il pavimento dei tuoi sogni." />
+          </Fade>
+          <Fade triggerOnce={true} duration={3500}>
+            <Card image={serramentista} title="Serramentista" description="Rendi la tua casa un luogo sicuro e confortevole. Proteggi il tuo ambiente con soluzioni affidabili e di alta qualità." />
+          </Fade>
+          <Fade triggerOnce={true} duration={3500}>
+            <Card image={interiorDesigner} title="Interior Designer" description="Dona personalità e stile unico alla tua casa, inizia oggi stesso a creare un ambiente che rifletta davvero te stesso." />
+          </Fade>
+          <Fade triggerOnce={true} duration={3500}>
+            <Card image={falegname} title="Falegname" description="Dai vita ai tuoi spazi con mobili su misura e dettagli impeccabili, inizia oggi stesso a creare un ambiente unico e accogliente." />
+          </Fade>
+          <Fade triggerOnce={true} duration={3500}>
+            <div className=''>
+              <Card image={tuttofare} title="Tuttofare" description="Dalla manutenzione alla riparazione, siamo pronti a darti una mano! Inizia oggi stesso a risolvere ogni problema." />
+            </div>
+          </Fade>
         </div>
       </Fade>
       <Fade triggerOnce={true} duration={4500} >
         <div className="[@media(min-width:767px)]:hidden" >
-          <Bottone text={'Cerca pro'}  href={"/servizi"}/>
+          <Bottone text={'Cerca pro'} href={"/servizi"} />
         </div>
       </Fade>
       <div className='[@media(max-width:767px)]:hidden' >
-        <Bottone text={'Vedi altro'}  href={"/servizi"}/>
+        <Bottone text={'Vedi altro'} href={"/servizi"} />
       </div>
       <Fade triggerOnce={true}>
         <h1 className='flex maintitle justify-center text-5xl text-customBlue font-bold mt-20 max-[600px]:text-3xl'>Come funziona</h1>
       </Fade>
       <Fade triggerOnce={true}>
-        <Steps/>
+        <Steps />
+        <div className='my-14 cursor-pointer' onClick={() => navigate('/servizi')}>
+          <Bottone text={'Cerca il pro adatto a te'} />
+        </div>
       </Fade>
       <Fade triggerOnce={true} duration={2500}>
         <h1 className='flex maintitle justify-center text-5xl text-customBlue font-bold mt-20 max-[600px]:text-3xl '>Professionisti vicini a te</h1>
@@ -155,7 +159,7 @@ function Home() {
             <RatingWithComment name="Umberto Del Capo" image={profile4} job="Serramentista" reviewsNumber={45} score={4.80} />
           </div>
           <div className='py-8 w-fit max-[600px]:px-8'>
-            <RatingWithComment name="Sylvia Darqua" image={sylvia} job="Interior Designer" reviewsNumber={89} score={4.00} href={"/Userwewe"}/>
+            <RatingWithComment name="Sylvia Darqua" image={sylvia} job="Interior Designer" reviewsNumber={89} score={4.00} href={"/Userwewe"} />
           </div>
           <div className='py-8 w-fit max-[600px]:px-8'>
             <RatingWithComment name="Michele Dellapiazza" image={profile6} job="Interior Designer" reviewsNumber={140} score={4.75} />
@@ -169,7 +173,7 @@ function Home() {
         </Slider>
       </div>
       <Fade triggerOnce={true} duration={3500}>
-        <div className='my-14'>
+        <div className='my-14 cursor-pointer' onClick={() => navigate('/servizi')}>
           <Bottone text={'Cerca altri pro'} />
         </div>
       </Fade>
@@ -182,7 +186,7 @@ function Home() {
         <Slide direction={'left'} triggerOnce={true} duration={2500}>
           <Reviews />
         </Slide>
-        <div className='mb-12 smmt-0'>
+        <div className='mb-12 smmt-0 cursor-pointer' onClick={() => navigate('/reviews')}>
           <Bottone text='Leggi altre recensioni' />
         </div>
       </Fade>

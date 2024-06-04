@@ -12,10 +12,10 @@ import { Fade } from 'react-awesome-reveal'
 function Steps() {
   return (
     // primo
-    <Fade triggerOnce={true}>
+    <Fade triggerOnce={true} >
 
       <Slide direction='right' duration={1500} triggerOnce={true}>
-        <section className="overflow-hidden sm:grid-cols-2 flex mt-12 px-8 sm:px-4 sm:flex ">
+        <section className="overflow-hidden sm:grid-cols-2 flex mt-12 px-8 sm:px-4 sm:flex " id='comeFunziona' >
 
           <img
             alt=""
@@ -27,7 +27,7 @@ function Steps() {
           <div className="flex flex-col pl-4 sm:flex-row items-center">
             <img src={firstNumber} alt="primo passo" className='h-20 mb-8 sm:mb-0 sm:pl-12 min-[768px]:hidden' />
             <p className="  text-customBlue  md:block text-2xl sm:text-4xl sm:pl-4">
-              Paga il professionista con il metodo di pagamento che preferisci.
+              Cerca il tuo professionista.
             </p>
           </div>
         </section>

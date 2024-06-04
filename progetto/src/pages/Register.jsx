@@ -4,7 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { MdVisibility } from "react-icons/md";
 import Navbar from "../components/Navbar";
 import axios from "axios";
-import { useToken } from '../auth/useToken';
+import {useToken} from '../auth/useToken';
+import Toolbar from "../components/Toolbar";
 
 function Register() {
   const [token, setToken] = useToken();
@@ -80,6 +81,7 @@ function Register() {
 
   return (
     <>
+    <Toolbar/>
       <Navbar />
       <br/><br/><br/><br/>
       <section className="bg-white">

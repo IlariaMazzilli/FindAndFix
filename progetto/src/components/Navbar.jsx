@@ -3,85 +3,121 @@ import { useState, useEffect } from 'react';
 import { Fade } from 'react-awesome-reveal';
 import { Link, useNavigate } from 'react-router-dom';
 import { Link as ScrollLink } from 'react-scroll'
-// import DarkModeButton from '../DarkMode.jsx';
-// import { DarkModeContext } from '../DarkMode';
-// import '../darkModeStyles.css'
+import { useToken } from '../auth/useToken';
+import { useUser } from '../auth/useUser';
+import axiosInstance from '../components/AxiosInstance';
 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [userEmail, setUserEmail] = useState('')
-  const [isAuthenticated, setIsAuthenticated] = useState(false)
   const navigate = useNavigate()
-  // const { toggleDarkMode } = useContext(DarkModeContext);
-  // Funzione per gestire il click sul bottone del menu
+  // token
+  const [token, setToken] = useToken()
+  const user = useUser()
+  // dati utente pro del fetch dal database
+  const [userProData, setProUserData] = useState('');
+  // dati utente cliente del fetch dal database
+  const [userClientData, setUserClientData] = useState('');
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        // faccio il fetch dal database del profilo del pro
+        const resPro = await axiosInstance.get('/profile/professionista');
+        // faccio il fetch dal database del profilo del pro
+        const resCliente = await axiosInstance.get('/profile/cliente');
+        // se il json del professionista è stato fetchato, passalo a userProData
+        if (resPro) {
+          setProUserData(resPro)
+          // se il json del cliente è stato fetchato, passalo a userClientData
+        } else if (resCliente) {
+          setUserClientData(resCliente)
+        }
+      } catch (error) {
+        setError('Errore durante il fetch');
+        console.error('Fetch Error:', error); // Log degli errori
+      }
+    };
+    fetchUserData();
+  }, [token]);
+
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  function handleAuthentication() {
-    setIsAuthenticated(!isAuthenticated)
-    if (userEmail) {
-      localStorage.removeItem('email')
+  const logout = () => {
+    localStorage.removeItem('token')
+    localStorage.removeItem('email')
+    setProUserData('')
+    setUserClientData('')
+    navigate('/')
+  }
+
+  function redirect() {
+    // se i dati del profilo del pro sono stati fetchati reindirizzami al suo profilo
+    if (userProData) {
+      console.log(userProData)
+      navigate(`/profile/${userProData.nome}`)
+    } else {
+      // altrimenti reindirizzami al profilo del cliente
+      navigate(`/clientProfile/:${userClientData.nome}`)
     }
   }
 
-  useEffect(() => {
-    function getEmail() {
-      setUserEmail(localStorage.getItem('email'));
-    }
 
-    getEmail();
-  }, []);
-
-  function goToProfile(){
-    navigate('/Userwewe')
-  }
 
   return (
-    <div className='fixed z-10 bg-white w-full'>
-      <div className='fixed z-10 bg-white w-full flex justify-between items-center'>
-        <nav className='flex w-full p-4 box-border'>
-          <ul className="flex justify-around items-center gap-6 max-[768px]:whitespace-nowrap w-full">
-            <Link to="/" className="block text-teal-600" href="#">
-              <img src={logoNoBg} className='w-20 h-16 max-[768px]:w-10 max-[768px]:h-8 logo' alt='Find & Fix' />
+
+    <div className='fixed z-10 bg-white w-full mt-10'>
+      <div className='fixed z-10 bg-white w-full flex  items-center justify-around '>
+        <nav className='flex p-2 box-border w-2/4 max-[768px]:overflow-hidden max-[768px]:w-full'>
+          <ul className="flex justify-around items-center gap-6 max-[768px]:whitespace-nowrap w-full max-[768px]:gap-4">
+            <Link to="/" className="block text-teal-600" >
+              <img src={logoNoBg} className='w-16 h-12 max-[768px]:w-10 max-[768px]:h-8 logo' alt='Find & Fix' />
             </Link>
             <li>
-              <Link to="/chiSiamo" className=" text-customBlue transition hover:text-customGreen whitespace-nowrap text-xl max-[768px]:text-base" href="#"> Chi siamo </Link>
+
+              <Link to="/chiSiamo" className=" text-customBlue transition hover:text-customGreen whitespace-nowrap text-xl max-[768px]:text-xs max-[768px]:hidden"> CHI SIAMO </Link>
+
             </li>
 
             <li>
-              <Link to="/servizi" className="text-customBlue transition hover:text-customGreen text-xl max-[768px]:text-base" href="#"> Servizi </Link>
+              <Link className="text-customBlue cursor-pointer transition hover:text-customGreen text-xl max-[768px]:text-xs max-[768px]:hidden" to="/servizi" > PROFESSIONISTI </Link>
             </li>
 
             <li>
-              <ScrollLink className=" text-customBlue transition hover:text-customGreen text-xl max-[768px]:text-base hover:cursor-pointer" smooth={true} to="footer" duration={1500}> Contatti </ScrollLink>
+              <ScrollLink className=" text-customBlue transition hover:text-customGreen text-xl max-[768px]:text-xs hover:cursor-pointer max-[768px]:hidden" smooth={true} to="footer" duration={1500}> CONTATTI </ScrollLink>
             </li>
           </ul>
         </nav>
 
-        <div className='flex px-4 max-[768px]:hidden h-12'>
-          <Link to="/signIn" className="button rounded-md mx-4 bg-customBlue  text-mobile font-medium text-white shadow hover:bg-customGreen p-4 flex items-center box-border whitespace-nowrap" onClick={handleAuthentication}>
-            {userEmail ? 'LOG OUT' : 'LOGIN'}
+        <div className='flex px-4 max-[768px]:hidden h-8 w-2/4 justify-end'>
+          <Link to="/signIn" className="button rounded-md mx-4 bg-customBlue transition duration-300 text-xs font-medium text-white shadow hover:bg-customGreen p-4 flex items-center box-border whitespace-nowrap" onClick={logout}>
+            {user ? 'LOGOUT' : 'LOGIN'}
           </Link>
 
-          {userEmail ?
-            <Link to="/Userwewe" className="button rounded-md  p-4 flex items-center text-mobile font-medium text-customBlue hover:text-customGreen box-border " >
-              Ciao, {userEmail}
-            </Link>
-            : <Link to="/registrati" className="button rounded-md bg-customBlue p-4 flex items-center text-mobile font-medium text-white hover:bg-customGreen box-border " >
+          {user ?
+            <button onClick={redirect} className="button rounded-md  p-4 flex items-center text-mobile font-medium text-customBlue hover:text-customGreen box-border " >
+              Ciao, {user.email}
+            </button>
+            : <Link to="/registrati" className="button rounded-md bg-customBlue transition duration-300 p-4 flex items-center text-xs font-medium text-white hover:bg-customGreen box-border " >
               REGISTRATI
+            </Link>
+          }
+
+
+          {user ? null
+            :
+            <Link to="/proRegistrati" className="button rounded-md ml-4 transition duration-300 bg-customBlue text-xs font-medium text-white hover:bg-customGreen flex items-center p-4 box-border" >
+              LAVORA CON NOI
             </Link>}
 
 
-          {userEmail ? null :
-            <Link to="/proRegistrati" className="button rounded-md ml-4 bg-customBlue text-mobile font-medium text-white hover:bg-customGreen flex items-center p-4 box-border" >
-              REGISTRATI COME PRO
-            </Link>}
 
         </div>
 
 
-        <button className=" min-[769px]:hidden rounded mx-4 bg-gray-100 p-2 text-gray-600 transition hover:text-gray-600/75" onClick={toggleMenu}>
+        <button className=" min-[769px]:hidden rounded bg-white p-2 text-gray-600 transition hover:text-gray-600/75 ml-20 sticky " onClick={toggleMenu}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5"
@@ -98,21 +134,21 @@ function Navbar() {
           <Fade triggerOnce={false} duration={1500}>
             <div className="absolute right-0 mt-2 bg-white rounded-md shadow-lg flex flex-col items-center p-4 w-fit hamburgerNavbar">
               <Link to="/signIn"
-                className=" mx-4  py-2.5 text-mobile font-medium text-customBlue hover:bg-customGreen w-14  flex justify-center whitespace-nowrap"
+                className=" mx-4  py-2.5 text-mobile font-medium text-customBlue hover:bg-customGreen w-14   "
                 href="#"
               >
-                {userEmail ? 
-                <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 16 16" onClick={handleAuthentication}>
-                  <path fill="#0F5DA6" d="M9 4V1H0v14h9v-3H8v2H1V2h7v2z"/>
-                  <path fill="#0F5DA6" d="m16 8l-5-4v2H6v4h5v2z"/>
-                  </svg> 
-                : 
-                'LOGIN'}
+                {user ?
+                  <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 16 16" onClick={logout}>
+                    <path fill="#0F5DA6" d="M9 4V1H0v14h9v-3H8v2H1V2h7v2z" />
+                    <path fill="#0F5DA6" d="m16 8l-5-4v2H6v4h5v2z" />
+                  </svg>
+                  :
+                  'LOGIN'}
               </Link>
 
-              {userEmail
+              {user
                 ?
-                <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 24 24" onClick={goToProfile}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 24 24" onClick={redirect}>
                   <path fill="#0F5DA6" fillRule="evenodd" d="M8 7a4 4 0 1 1 8 0a4 4 0 0 1-8 0m0 6a5 5 0 0 0-5 5a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3a5 5 0 0 0-5-5z" clipRule="evenodd" />
                 </svg>
                 :
@@ -123,27 +159,23 @@ function Navbar() {
                 </Link>
               }
 
-              {userEmail ? null
+              {user ? null
                 :
                 <Link to="/proRegistrati"
-                  className="mx-4 py-2.5 text-mobile font-medium text-customBlue hover:bg-customGreen w-14  flex justify-center"
+                  className=" py-2.5 text-mobile text-base font-medium text-customBlue hover:bg-customGreen w-fit whitespace-nowrap"
                 >
-                  REGISTRATI COME PRO
+                  LAVORA CON NOI
                 </Link>
               }
 
-
-
+              <Link to="/chiSiamo" className=" text-customBlue transition hover:text-customGreen whitespace-nowrap text-xl max-[768px]:text-base mt-2"> CHI SIAMO </Link>
+              <Link className="text-customBlue cursor-pointer transition hover:text-customGreen text-xl max-[768px]:text-base mt-4 " to="/servizi" > PROFESSIONISTI </Link>
+              <ScrollLink className=" text-customBlue transition hover:text-customGreen text-xl  hover:cursor-pointer mt-2 max-[768px]:text-base" smooth={true} to="footer" duration={1500}> CONTATTI </ScrollLink>
             </div>
           </Fade>
         )}
-
       </div>
     </div>
-
-
-
-
 
   )
 }
