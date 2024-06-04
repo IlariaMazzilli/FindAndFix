@@ -5,6 +5,7 @@ import Navbar from "../components/Navbar";
 import { FaEye, FaEyeSlash, FaUpload } from "react-icons/fa";
 import axios from "axios";
 import { useToken } from '../auth/useToken';
+import {loadStripe} from '@stripe/stripe-js';
 
 function Stepper() {
   const [token, setToken] = useToken();
@@ -101,13 +102,14 @@ function Stepper() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrorMessage('');
-
+    // se le password non corrispondono mandami l'errore
     if (formData.password !== formData.confermaPassword) {
       setErrorMessage("Le password non corrispondono.");
       return;
     }
-
+    // creo l'oggetto che prenderà i dati del form
     const formDataToSend = new FormData();
+    // lo trasformo in array
     Object.keys(formData).forEach((key) => {
       if (key === 'categoria_servizi') {
         formDataToSend.append(key, formData[key].join(', '));
@@ -115,12 +117,10 @@ function Stepper() {
         formDataToSend.append(key, formData[key]);
       }
     });
-
     // Log the FormData entries
     for (let pair of formDataToSend.entries()) {
       console.log(pair[0] + ': ' + pair[1]);
     }
-
     try {
       const response = await axios.post(
         'http://localhost:3000/api/registratazione/professionale',
@@ -131,7 +131,6 @@ function Stepper() {
           },
         }
       );
-
       const { token } = response.data;
       setToken(token);
       navigate("/servizi");
@@ -142,6 +141,30 @@ function Stepper() {
       } else {
         setErrorMessage('Errore durante la registrazione.');
       }
+    }
+
+// stripe, fa sempre parte di handleSubmit
+    try {
+      // chiave di stripe
+      const stripe = await loadStripe('pk_test_51PKKQ0Rum1R94PPDT6wzppGm2C2n08eVWEWsojeMcQMGgiGPLAOFmEAfZbGaulwdmvPl3lduAREf9EXOZ4bMtPDM00sz7gV83Y');
+      const body={
+        price: formData.costo
+      }
+      const headers = {
+        'Content-Type':'application-json'
+      }
+      // qui ci va l'url del backend
+      const response = await fetch(`${backendStripe}/`, {
+        method:'POST',
+        headers: headers,
+        body: JSON.stringify(body)
+      })
+      const session = await response.json()
+      const result = stripe.redirectToCheckout({
+        sessionId: session.id
+      })
+    } catch (error) {
+      console.log('errore nel processo di pagamento: ' , error)
     }
   };
 
