@@ -197,9 +197,6 @@ function Stepper() {
                 <div className="text-base font-light text-center">
                   Step 1/12
                 </div>
-                <div className="text-base font-light text-center">
-                  Step 1/12
-                </div>
                 <div
                   className="mt-4 w-full h-2"
                   style={{ backgroundColor: "#0F5DA6" }}
@@ -207,16 +204,9 @@ function Stepper() {
                   <div className="h-full bg-green-500 rounded-3xl w-1/12"></div>
                 </div>
                 {errorMessage && <div className="text-red-500">{errorMessage}</div>}
-                {errorMessage && <div className="text-red-500">{errorMessage}</div>}
                 <div className="mt-12 text-3xl text-center">
                   Quale servizio offri?
                 </div>
-                <br />
-                {formData.categoria_servizi.length > 3 && (
-                  <p className="text-red-500">
-                    Puoi selezionare solo fino a tre servizi.
-                  </p>
-                )}
                 <br />
                 {formData.categoria_servizi.length > 3 && (
                   <p className="text-red-500">
@@ -243,9 +233,8 @@ function Stepper() {
                         <label
                           key={index}
                           htmlFor={`Option${index + 1}`}
-                          className={`flex cursor-pointer items-start gap-4 rounded-lg border border-gray-200 p-4 transition hover:bg-gray-50 ${
-                          formData.categoria_servizi.includes(service) ? "bg-green-100" : ""
-                          }`}
+                          className={`flex cursor-pointer items-start gap-4 rounded-lg border border-gray-200 p-4 transition hover:bg-gray-50 ${formData.categoria_servizi.includes(service) ? "bg-green-100" : ""
+                            }`}
                         >
                           <div className="flex items-center">
                             <input
@@ -255,11 +244,10 @@ function Stepper() {
                               name="categoria"
                               value={service}
                               checked={formData.categoria_servizi.includes(service)}
-                              checked={formData.categoria_servizi.includes(service)}
                               onChange={handleChange}
                               disabled={
                                 !formData.categoria_servizi.includes(service) &&
-                               formData.categoria_servizi.length >= 3
+                                formData.categoria_servizi.length >= 3
                               }
                             />
                           </div>
@@ -296,9 +284,6 @@ function Stepper() {
                 <div className="text-base font-light text-center">
                   Step 2/12
                 </div>
-                <div className="text-base font-light text-center">
-                  Step 2/12
-                </div>
                 <div
                   className="mt-4 w-full h-2"
                   style={{ backgroundColor: "#0F5DA6" }}
@@ -323,7 +308,6 @@ function Stepper() {
                           name="tipo"
                           value="liberoProfessionista"
                           checked={formData.tipo === "liberoProfessionista"}
-                          checked={formData.tipo === "liberoProfessionista"}
                           onChange={handleChange}
                         />
                       </div>
@@ -346,7 +330,6 @@ function Stepper() {
                           id="azienda"
                           name="tipo"
                           value="azienda"
-                          checked={formData.tipo === "azienda"}
                           checked={formData.tipo === "azienda"}
                           onChange={handleChange}
                         />
@@ -372,14 +355,12 @@ function Stepper() {
                     onClick={nextStep}
                     className=" bg-customGreen text-white font-bold py-2 px-4 rounded"
                     disabled={!formData.tipo}
-                    disabled={!formData.tipo}
                   >
                     Avanti
                   </button>
                 </div>
               </motion.div>
             )}
-            {step === 3 && formData.tipo === "liberoProfessionista" && (
             {step === 3 && formData.tipo === "liberoProfessionista" && (
               <motion.div
                 key={step} // Add this line
@@ -415,7 +396,6 @@ function Stepper() {
                     className="mt-4 w-full border border-gray-300 rounded p-2 focus:outline-none"
                     style={{ backgroundColor: "white" }}
                     value={formData.nome} // This correctly points to formData.name
-                    value={formData.nome} // This correctly points to formData.name
                     onChange={handleChange}
                   />
                 </div>
@@ -427,7 +407,6 @@ function Stepper() {
                     name="cognome" // This should match your formData property
                     className="mt-4 w-full border border-gray-300 rounded p-2 focus:outline-none"
                     style={{ backgroundColor: "white" }}
-                    value={formData.cognome} // This correctly points to formData.name
                     value={formData.cognome} // This correctly points to formData.name
                     onChange={handleChange}
                   />
@@ -453,7 +432,6 @@ function Stepper() {
             )}
 
             {step === 3 && formData.tipo === "azienda" && (
-            {step === 3 && formData.tipo === "azienda" && (
               <motion.div
                 key={step}
                 initial={{ opacity: 0, y: 20 }}
@@ -462,9 +440,6 @@ function Stepper() {
                 transition={{ duration: 0.3 }}
                 className="md:w-3/5 mx-auto py-12"
               >
-                <div className="text-base font-light text-center">
-                  Step 3/12
-                </div>
                 <div className="text-base font-light text-center">
                   Step 3/12
                 </div>
@@ -487,11 +462,9 @@ function Stepper() {
                     type="text"
                     placeholder="Nome Azienda"
                     name="nome_azienda"
-                    name="nome_azienda"
                     className="mt-4 w-full border border-gray-300 rounded p-2 focus:outline-none"
                     style={{ backgroundColor: "white" }}
                     value={formData.nome_azienda}
-                    value={formData.nome_azienda}
                     onChange={handleChange}
                   />
                 </div>
@@ -513,74 +486,8 @@ function Stepper() {
                 </div>
               </motion.div>
             )}
-            {step === 4 && (
             {step === 4 && (
               <motion.div
-                key={step}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.3 }}
-                className="md:w-3/5 mx-auto py-12"
-              >
-                <div className="text-base font-light text-center">
-                  Step 4/12
-                </div>
-                <div
-                  className="mt-4 w-full h-2"
-                  style={{ backgroundColor: "#0F5DA6" }}
-                >
-                  <div className="h-full bg-green-500 rounded-3xl w-4/12"></div>
-                </div>
-                <div className="mt-12 text-3xl text-center">
-                  Inserisci la tua Partita IVA e Codice Fiscale
-                  <br />
-                  <p className="text-sm">
-                    Questi dati sono necessari per la registrazione.
-                  </p>
-                </div>
-
-                <div className="mt-4">
-                  <input
-                    type="text"
-                    placeholder="Partita IVA"
-                    name="p_iva"
-                    className="w-full border border-gray-300 rounded p-2 focus:outline-none"
-                    style={{ backgroundColor: "white" }}
-                    value={formData.p_iva}
-                    onChange={handleChange}
-                  />
-                </div>
-                <div className="mt-4">
-                  <input
-                    type="text"
-                    placeholder="Codice Fiscale"
-                    name="codiceFiscale"
-                    className="w-full border border-gray-300 rounded p-2 focus:outline-none"
-                    style={{ backgroundColor: "white" }}
-                    value={formData.codiceFiscale}
-                    onChange={handleChange}
-                  />
-                </div>
-
-                <div className="flex justify-center mt-12">
-                  <button
-                    type="button"
-                    onClick={prevStep}
-                    className="mr-4 bg-gray-400 text-white font-bold py-2 px-4 rounded"
-                  >
-                    Indietro
-                  </button>
-                  <button
-                    type="button"
-                    onClick={nextStep}
-                    className="bg-customGreen text-white font-bold py-2 px-4 rounded"
-                  >
-                    Avanti
-                  </button>
-                </div>
-              </motion.div>
-            )}
                 key={step}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -682,7 +589,6 @@ function Stepper() {
                     className="mt-4 w-full border border-gray-300 rounded p-2 focus:outline-none"
                     style={{ backgroundColor: "white" }}
                     value={formData.provincia}
-                    value={formData.provincia}
                     onChange={handleChange}
                   />
                 </div>
@@ -692,10 +598,8 @@ function Stepper() {
                     type="text"
                     placeholder="Città"
                     name="citta" // This should match your formData property
-                    name="citta" // This should match your formData property
                     className="mt-4 w-full border border-gray-300 rounded p-2 focus:outline-none"
                     style={{ backgroundColor: "white" }}
-                    value={formData.citta} // This correctly points to formData.name
                     value={formData.citta} // This correctly points to formData.name
                     onChange={handleChange}
                   />
@@ -754,7 +658,6 @@ function Stepper() {
                     name="telefono" // This should match your formData property
                     className="mt-4 w-full border border-gray-300 rounded p-2 focus:outline-none"
                     style={{ backgroundColor: "white" }}
-                    value={formData.telefono} // This correctly points to formData.name
                     value={formData.telefono} // This correctly points to formData.name
                     onChange={handleChange}
                     pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
@@ -815,7 +718,6 @@ function Stepper() {
                     className="mt-4 w-full border border-gray-300 rounded p-2 focus:outline-none"
                     style={{ backgroundColor: "white" }}
                     value={formData.email}
-                    value={formData.email}
                     onChange={handleChange}
                   />
                 </div>
@@ -849,9 +751,6 @@ function Stepper() {
                 <div className="text-base font-light text-center">
                   Step 8/12
                 </div>
-                <div className="text-base font-light text-center">
-                  Step 8/12
-                </div>
                 <div
                   className="mt-4 w-full h-2"
                   style={{ backgroundColor: "#0F5DA6" }}
@@ -875,7 +774,6 @@ function Stepper() {
                     name="password"
                     className="mt-4 w-full border border-gray-300 rounded p-2 pr-10 focus:outline-none"
                     style={{ backgroundColor: "white" }}
-                    value={formData.password}
                     value={formData.password}
                     onChange={handleChange}
                   />
@@ -903,7 +801,6 @@ function Stepper() {
                     name="confermaPassword"
                     className="w-full border border-gray-300 rounded p-2 pr-10 focus:outline-none"
                     style={{ backgroundColor: "white" }}
-                    value={formData.confermaPassword}
                     value={formData.confermaPassword}
                     onChange={handleChange}
                   />
@@ -994,10 +891,10 @@ function Stepper() {
                   )}
                 </div>
 
-                {formData.profilePhotoPath  && (
+                {formData.profilePhotoPath && (
                   <div className="mt-4 text-center">
                     <img
-                      src={formData.profilePhotoPath }
+                      src={formData.profilePhotoPath}
                       alt="Foto di profilo"
                       className="mx-auto rounded-full h-24 w-24 object-cover"
                     />
@@ -1077,60 +974,6 @@ function Stepper() {
                   </button>
                 </div>
               </motion.div>
-              <motion.div
-                key={step}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.3 }}
-                className="md:w-3/5 mx-auto py-12"
-              >
-                <div className="text-base font-light text-center">
-                  Step 10/12
-                </div>
-                <div
-                  className="mt-4 w-full h-2"
-                  style={{ backgroundColor: "#0F5DA6" }}
-                >
-                  <div className="h-full bg-green-500 rounded-3xl w-10/12"></div>
-                </div>
-                <div className="mt-12 text-3xl text-center">
-                  Parlaci di te
-                  <br />
-                  <p className="text-sm">
-                    Spiega agli utenti perché dovrebbero scegliere te rispetto
-                    agli altri.
-                  </p>
-                </div>
-
-                <div>
-                  <textarea
-                    name="descrizioneProfessionista"
-                    placeholder="Scrivi qui..."
-                    className="mt-4 w-full border border-gray-300 rounded p-2 focus:outline-none"
-                    style={{ backgroundColor: "white", minHeight: "150px" }}
-                    value={formData.descrizioneProfessionista}
-                    onChange={handleChange}
-                  />
-                </div>
-
-                <div className="flex justify-center mt-12">
-                  <button
-                    type="button"
-                    onClick={prevStep}
-                    className="mr-4 bg-gray-400 text-white font-bold py-2 px-4 rounded"
-                  >
-                    Indietro
-                  </button>
-                  <button
-                    type="button"
-                    onClick={nextStep}
-                    className="bg-customGreen text-white font-bold py-2 px-4 rounded"
-                  >
-                    Avanti
-                  </button>
-                </div>
-              </motion.div>
             )}
             {step === 11 && (
               <motion.div
@@ -1148,7 +991,6 @@ function Stepper() {
                   className="mt-4 w-full h-2"
                   style={{ backgroundColor: "#0F5DA6" }}
                 >
-                  <div className="h-full bg-green-500  rounded-3xl w-11/12"></div>
                   <div className="h-full bg-green-500  rounded-3xl w-11/12"></div>
                 </div>
                 <div className="bg-white py-24 sm:py-16">
@@ -1190,7 +1032,6 @@ function Stepper() {
                         >
                           {" "}
                           <button
-                            onClick={() => handleMonthlySubscription()}
                             onClick={() => handleMonthlySubscription()}
                           >
                             ACQUISTA ORA{" "}
@@ -1287,7 +1128,6 @@ function Stepper() {
                         >
                           {" "}
                           <button
-                            onClick={() => handleAnnualSubscription()}
                             onClick={() => handleAnnualSubscription()}
                           >
                             ACQUISTA ORA
@@ -1448,39 +1288,39 @@ function Stepper() {
                             </label>
                           </div>
                         </div>
-                        
-                          <div className="grid gap-6">
-                            <div className="grid sm:grid-cols-3 gap-6">
-                              <input
-                                type="number"
-                                placeholder="N° carta"
-                                className="px-4 py-3.5 bg-white text-[#333] w-full text-sm border rounded-md focus:border-[#007bff] outline-none"
-                              />
-                              <input
-                                type="number"
-                                placeholder="Scadenza"
-                                className="px-4 py-3.5 bg-white text-[#333] w-full text-sm border rounded-md focus:border-[#007bff] outline-none"
-                              />
-                              <input
-                                type="number"
-                                placeholder="CVV"
-                                className="px-4 py-3.5 bg-white text-[#333] w-full text-sm border rounded-md focus:border-[#007bff] outline-none"
-                              />
-                            </div>
-                            <div className="sm:col-span-2 grid sm:grid-cols-2 gap-6">
-                              <input
-                                type="text"
-                                placeholder="Nome del titolare"
-                                className="px-4 py-3.5 bg-white text-[#333] w-full text-sm border rounded-md focus:border-[#007bff] outline-none"
-                              />
-                              <input
-                                type="number"
-                                placeholder="Codice Postale"
-                                className="px-4 py-3.5 bg-white text-[#333] w-full text-sm border rounded-md focus:border-[#007bff] outline-none"
-                              />
-                            </div>
+
+                        <div className="grid gap-6">
+                          <div className="grid sm:grid-cols-3 gap-6">
+                            <input
+                              type="number"
+                              placeholder="N° carta"
+                              className="px-4 py-3.5 bg-white text-[#333] w-full text-sm border rounded-md focus:border-[#007bff] outline-none"
+                            />
+                            <input
+                              type="number"
+                              placeholder="Scadenza"
+                              className="px-4 py-3.5 bg-white text-[#333] w-full text-sm border rounded-md focus:border-[#007bff] outline-none"
+                            />
+                            <input
+                              type="number"
+                              placeholder="CVV"
+                              className="px-4 py-3.5 bg-white text-[#333] w-full text-sm border rounded-md focus:border-[#007bff] outline-none"
+                            />
                           </div>
-                       
+                          <div className="sm:col-span-2 grid sm:grid-cols-2 gap-6">
+                            <input
+                              type="text"
+                              placeholder="Nome del titolare"
+                              className="px-4 py-3.5 bg-white text-[#333] w-full text-sm border rounded-md focus:border-[#007bff] outline-none"
+                            />
+                            <input
+                              type="number"
+                              placeholder="Codice Postale"
+                              className="px-4 py-3.5 bg-white text-[#333] w-full text-sm border rounded-md focus:border-[#007bff] outline-none"
+                            />
+                          </div>
+                        </div>
+
                       </div>
                       <div className="lg:border-l lg:pl-8">
                         <h3 className="text-xl font-bold text-[#333]">
@@ -1488,8 +1328,6 @@ function Stepper() {
                         </h3>
                         <ul className="text-[#333] mt-6 space-y-4">
                           <li className="flex flex-wrap gap-4 text-sm">
-                            Abbonamento {formData.tipo_abbonamento}{" "}
-                            <span className="ml-auto font-bold">{formData.costo}.00</span>
                             Abbonamento {formData.tipo_abbonamento}{" "}
                             <span className="ml-auto font-bold">{formData.costo}.00</span>
                           </li>
@@ -1500,22 +1338,22 @@ function Stepper() {
                       </div>
                     </div>
                     <div className="flex justify-center mt-12">
-                  <button
-                    type="button"
-                    onClick={handleSubmit}
-                    
-                    className="px-6 py-3.5 text-sm bg-blue-600 text-white rounded-md hover:bg-blue-700"
-                    
-                  >
-                    Paga Ora
-                  </button>
-                </div>
-                <br />
-                <br />
-                <br />
+                      <button
+                        type="button"
+                        onClick={handleSubmit}
+
+                        className="px-6 py-3.5 text-sm bg-blue-600 text-white rounded-md hover:bg-blue-700"
+
+                      >
+                        Paga Ora
+                      </button>
+                    </div>
+                    <br />
+                    <br />
+                    <br />
                     <div className="flex flex-wrap gap-4 mt-10">
                       <button
-                       onClick={prevStep}
+                        onClick={prevStep}
                         type="button"
                         className=" mr-4 bg-gray-400 text-white font-bold py-2 px-4 rounded"
                       >
@@ -1533,3 +1371,5 @@ function Stepper() {
   );
 }
 
+
+export default Stepper;
