@@ -4,11 +4,12 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import { FaEye, FaEyeSlash, FaUpload } from "react-icons/fa";
 import axios from "axios";
-import { useToken } from '../auth/useToken';
+import { useAuth } from '../auth/AuthContext'
 import {loadStripe} from '@stripe/stripe-js';
 
 function Stepper() {
-  const [token, setToken] = useToken();
+  const [isUploading, setIsUploading] = useState(false); 
+  const {setToken} = useAuth();
   const [errorMessage, setErrorMessage] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -38,26 +39,27 @@ function Stepper() {
   const navigate = useNavigate();
 
   const handleChange = (e) => {
+   
     const { name, value, type, checked, files } = e.target;
+    //console.log(`Changed field: ${name}, Value: ${value}, Type: ${type}`);
     if (type === "checkbox") {
       if (checked) {
-        if (formData.categoria_servizi.length < 3) { // aggiornato
+        if (formData.categoria_servizi.length < 3) { 
           setFormData((prevState) => ({
             ...prevState,
-            categoria_servizi: [...prevState.categoria_servizi, value], // aggiornato
-          }));
-        } else {
-          alert("Puoi selezionare solo fino a tre servizi.");
-        }
+            categoria_servizi: [...prevState.categoria_servizi, value],
+          }))
+        } 
       } else {
         setFormData((prevState) => ({
           ...prevState,
-          categoria_servizi: prevState.categoria_servizi.filter((cat) => cat !== value), // aggiornato
+          categoria_servizi: prevState.categoria_servizi.filter((cat) => cat !== value), 
         }));
       }
     } else if (type === "file") {
       const file = files[0];
       const fileName = file.name;
+      //stiamo creando un URL temporaneo che rappresenta il file caricato. molto utile per anteprime nel browser. ma non per il salvataggio permanente delle immagini
       const fileUrl = URL.createObjectURL(file);
       setFormData((prevState) => ({
         ...prevState,
@@ -84,8 +86,8 @@ function Stepper() {
   const handleSubscriptionSelect = (selectedSubscription, cost) => {
     setFormData((prevState) => ({
       ...prevState,
-      tipo_abbonamento: selectedSubscription, // aggiornato
-      costo: cost, // aggiornato
+      tipo_abbonamento: selectedSubscription, 
+      costo: cost, 
     }));
   };
 
@@ -107,33 +109,39 @@ function Stepper() {
       setErrorMessage("Le password non corrispondono.");
       return;
     }
+    // Destruttura formData per escludere confermaPassword
+    const { confermaPassword, ...formDataToSend } = formData;
+
     // creo l'oggetto che prenderà i dati del form
-    const formDataToSend = new FormData();
+    const formDataFormatted  = new FormData();
+
     // lo trasformo in array
     Object.keys(formData).forEach((key) => {
       if (key === 'categoria_servizi') {
-        formDataToSend.append(key, formData[key].join(', '));
+        formDataToSend[key].forEach(item => {
+          formDataFormatted.append(`${key}[]`, item);
+        });
       } else {
-        formDataToSend.append(key, formData[key]);
+        formDataFormatted.append(key, formDataToSend[key]);
       }
     });
     // Log the FormData entries
-    for (let pair of formDataToSend.entries()) {
+    for (let pair of formDataFormatted.entries()) {
       console.log(pair[0] + ': ' + pair[1]);
     }
     try {
       const response = await axios.post(
         'http://localhost:3000/api/registratazione/professionale',
-        formDataToSend,
+        formDataFormatted,
         {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
         }
       );
-      const { token } = response.data;
-      setToken(token);
+      setToken(response.data.token);
       navigate("/servizi");
+
     } catch (error) {
       console.error(error);
       if (error.response && error.response.status === 409) {
@@ -143,29 +151,7 @@ function Stepper() {
       }
     }
 
-// stripe, fa sempre parte di handleSubmit
-    try {
-      // chiave di stripe
-      const stripe = await loadStripe('pk_test_51PKKQ0Rum1R94PPDT6wzppGm2C2n08eVWEWsojeMcQMGgiGPLAOFmEAfZbGaulwdmvPl3lduAREf9EXOZ4bMtPDM00sz7gV83Y');
-      const body={
-        price: formData.costo
-      }
-      const headers = {
-        'Content-Type':'application-json'
-      }
-      // qui ci va l'url del backend
-      const response = await fetch(`${backendStripe}/`, {
-        method:'POST',
-        headers: headers,
-        body: JSON.stringify(body)
-      })
-      const session = await response.json()
-      const result = stripe.redirectToCheckout({
-        sessionId: session.id
-      })
-    } catch (error) {
-      console.log('errore nel processo di pagamento: ' , error)
-    }
+
   };
 
   return (
@@ -208,7 +194,7 @@ function Stepper() {
                   Quale servizio offri?
                 </div>
                 <br />
-                {formData.categoria_servizi.length > 3 && (
+                {formData.categoria_servizi.length >= 3 && (
                   <p className="text-red-500">
                     Puoi selezionare solo fino a tre servizi.
                   </p>
@@ -872,7 +858,7 @@ function Stepper() {
                   <label className="w-full flex flex-col items-center px-4 py-6 bg-white text-blue rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:bg-blue-400 hover:text-white">
                     <FaUpload className="h-8 w-8" />
                     <span className="mt-2 text-base leading-normal">
-                      Scegli un file
+                    Scegli foto profilo
                     </span>
                     <input
                       type="file"
@@ -882,6 +868,7 @@ function Stepper() {
                       className="hidden"
                     />
                   </label>
+                  {isUploading && <span className="mt-2">Caricamento in corso...</span>}
                   {formData.profilePhotoName && (
                     <div className="mt-2 text-center">
                       <span className="text-sm text-gray-600">
@@ -896,7 +883,7 @@ function Stepper() {
                     <img
                       src={formData.profilePhotoPath}
                       alt="Foto di profilo"
-                      className="mx-auto rounded-full h-24 w-24 object-cover"
+                      className="mt-4 mx-auto rounded-full h-24 w-24 object-cover"
                     />
                   </div>
                 )}

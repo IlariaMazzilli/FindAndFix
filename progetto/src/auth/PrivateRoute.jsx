@@ -1,23 +1,32 @@
-import { Navigate } from "react-router-dom";
-import { useEffect, useState } from "react";
-import {useUser} from './useUser'
+import { Link, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useAuth } from '../auth/AuthContext';
 
 const PrivateRoute = ({ element: Component, ...rest }) => {
-  const user = useUser();
-  const [isLoading, setIsLoading] = useState(true); // Add loading state
+  const { user, token } = useAuth();
+  const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    // Logic to fetch user data (if not already done)
-    setIsLoading(false);
-  }, []);
+    if (!token) {
+      navigate('/signIn', { replace: true });
+    } else {
+      setIsLoading(false);
+    }
+  }, [token, navigate]);
 
-  return isLoading ? (
-    <div>Loading...</div> // Show loading state while fetching user
-  ) : user ? (
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  return user && user.isAuthenticated ? (
     <Component {...rest} />
   ) : (
-    <Navigate to="/signIn" />
+    <div>
+      <p>Access denied. You are not logged in.</p>
+      <Link to="/signIn">Click here to log in</Link>
+    </div>
   );
 };
 
-export default PrivateRoute
+export default PrivateRoute;

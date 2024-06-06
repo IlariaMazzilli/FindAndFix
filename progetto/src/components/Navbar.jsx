@@ -1,70 +1,45 @@
 import logoNoBg from '../images/logoNoBg.svg'
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Fade } from 'react-awesome-reveal';
 import { Link, useNavigate } from 'react-router-dom';
-import { Link as ScrollLink } from 'react-scroll'
-import { useToken } from '../auth/useToken';
-import { useUser } from '../auth/useUser';
-import axiosInstance from '../components/AxiosInstance';
+import { Link as ScrollLink } from 'react-scroll';
+import {useAuth} from '../auth/AuthContext';
+
 import logoScritta from '../images/logoScrittaNav.svg'
 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const navigate = useNavigate()
-  // token
-  const [token, setToken] = useToken()
-  const user = useUser()
-  // dati utente pro del fetch dal database
-  const [userProData, setProUserData] = useState('');
-  // dati utente cliente del fetch dal database
-  const [userClientData, setUserClientData] = useState('');
-  const [error, setError] = useState('');
+  const navigate = useNavigate();
+  const { user, logout } = useAuth(); // Dati utente e funzioni dal contesto
 
-  useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        // faccio il fetch dal database del profilo del pro
-        const resPro = await axiosInstance.get('/profile/professionista');
-        // faccio il fetch dal database del profilo del pro
-        const resCliente = await axiosInstance.get('/profile/cliente');
-        // se il json del professionista è stato fetchato, passalo a userProData
-        if (resPro) {
-          setProUserData(resPro)
-          // se il json del cliente è stato fetchato, passalo a userClientData
-        } else if (resCliente) {
-          setUserClientData(resCliente)
-        }
-      } catch (error) {
-        setError('Errore durante il fetch');
-        console.error('Fetch Error:', error); // Log degli errori
-      }
-    };
-    fetchUserData();
-  }, [token]);
 
+  // Funzione per gestire il logout
+  const handleLogout = () => {
+    logout(); // Chiama la funzione di logout di useAuth
+    navigate('/'); // Reindirizza alla homepage
+  };
+
+
+ 
+// Funzione per il toggle del menu hamburger
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  const logout = () => {
-    localStorage.removeItem('token')
-    localStorage.removeItem('email')
-    setProUserData('')
-    setUserClientData('')
-    navigate('/')
-  }
 
-  function redirect() {
-    // se i dati del profilo del pro sono stati fetchati reindirizzami al suo profilo
-    if (userProData) {
-      console.log(userProData)
-      navigate(`/profile/${userProData.nome}`)
-    } else {
-      // altrimenti reindirizzami al profilo del cliente
-      navigate(`/clientProfile/:${userClientData.nome}`)
+  const redirectToProfile = () => {
+    // Controllo del tipo di utente e reindirizzamento al profilo appropriato
+    if (user && user.isAuthenticated) {
+      console.log('Redirecting to profile with user data:', user);
+        if (user.user_type === "professionista") {
+          console.log(`Navigating to /profile/professionista/${user.id}`);
+            navigate(`/profile/${user.id}`);  // Assumi che l'ID sia parte del payload
+        } else if (user.user_type === "cliente") {
+          console.log(`Navigating to /profile/cliente/${user.id}`);
+            navigate(`/clientProfile/${user.id}`);
+        }
     }
-  }
-
+};
 
 
   return (
@@ -96,12 +71,12 @@ function Navbar() {
         </nav>
 
         <div className='flex px-4 max-[768px]:hidden h-8 w-2/4 justify-end'>
-          <Link to="/signIn" className="button rounded-md mx-4 bg-customBlue transition duration-300 text-xs font-medium text-white shadow hover:bg-customGreen p-4 flex items-center box-border whitespace-nowrap" onClick={logout}>
-            {user ? 'LOGOUT' : 'LOGIN'}
+          <Link to="/signIn" className="button rounded-md mx-4 bg-customBlue transition duration-300 text-xs font-medium text-white shadow hover:bg-customGreen p-4 flex items-center box-border whitespace-nowrap" onClick={handleLogout}>
+            {user && user.isAuthenticated ? 'LOGOUT' : 'LOGIN'}
           </Link>
 
-          {user ?
-            <button onClick={redirect} className="button rounded-md  p-4 flex items-center text-mobile font-medium text-customBlue hover:text-customGreen box-border " >
+          {user && user.isAuthenticated ?
+            <button onClick={redirectToProfile} className="button rounded-md  p-4 flex items-center text-mobile font-medium text-customBlue hover:text-customGreen box-border " >
               Ciao, {user.email}
             </button>
             : <Link to="/registrati" className="button rounded-md bg-customBlue transition duration-300 p-4 flex items-center text-xs font-medium text-white hover:bg-customGreen box-border " >
@@ -110,7 +85,7 @@ function Navbar() {
           }
 
 
-          {user ? null
+          {user && user.isAuthenticated ? null
             :
             <Link to="/proRegistrati" className="button rounded-md ml-4 transition duration-300 bg-customBlue text-xs font-medium text-white hover:bg-customGreen flex items-center p-4 box-border" >
               LAVORA CON NOI
@@ -141,8 +116,8 @@ function Navbar() {
                 className="   py-2.5 text-mobile font-medium text-customBlue hover:bg-customGreen w-14   "
                 href="#"
               >
-                {user ?
-                  <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 16 16" onClick={logout}>
+                {user && user.isAuthenticated ?
+                  <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 16 16" onClick={handleLogout}>
                     <path fill="#0F5DA6" d="M9 4V1H0v14h9v-3H8v2H1V2h7v2z" />
                     <path fill="#0F5DA6" d="m16 8l-5-4v2H6v4h5v2z" />
                   </svg>
@@ -150,9 +125,9 @@ function Navbar() {
                   'LOGIN'}
               </Link>
 
-              {user
+              {user && user.isAuthenticated
                 ?
-                <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 24 24" onClick={redirect}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 24 24" onClick={redirectToProfile}>
                   <path fill="#0F5DA6" fillRule="evenodd" d="M8 7a4 4 0 1 1 8 0a4 4 0 0 1-8 0m0 6a5 5 0 0 0-5 5a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3a5 5 0 0 0-5-5z" clipRule="evenodd" />
                 </svg>
                 :
