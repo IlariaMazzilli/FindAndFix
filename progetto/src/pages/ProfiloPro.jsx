@@ -5,7 +5,7 @@ import Sidebar from "../components/Sidebar";
 import { Outlet } from "react-router-dom";
 import Toolbar from "../components/Toolbar";
 import { useAuth } from "../auth/AuthContext";
-import axiosInstance from "../components/axiosInstance";
+import axiosInstance from "../components/AxiosInstance";
 import { useParams } from "react-router-dom";
 
 function ProfiloProEUtente() {
