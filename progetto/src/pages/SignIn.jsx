@@ -4,12 +4,12 @@ import { MdVisibility } from "react-icons/md";
 import { FcGoogle } from "react-icons/fc";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
-import { useToken } from '../auth/useToken';
+import { useAuth } from '../auth/AuthContext';
 import axios from "axios";
 import Toolbar from "../components/Toolbar";
 
 function SignIn() {
-  const [token, setToken] = useToken();
+  const { setToken, setUser } = useAuth();
   const [errorMessage, setErrorMessage] = useState('')
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
@@ -35,11 +35,34 @@ function SignIn() {
         email,
         password
       });
-      const { token } = response.data;
-      setToken(token);
-      console.log(token);
-      navigate("/");
+      const { token, user } = response.data;
+
+      console.log('Response data:', response.data); // Log della risposta
+      console.log('Token:', token);
+      console.log('User:', user);
+
+      if (!token || !user) {
+        throw new Error('Invalid response from server');
+      }
+
+      setToken(token); //salva il token nel contensto
+      setUser(user); // Aggiorna lo stato dell'utente nel contesto
+
+         // Logga l'ID e il tipo di utente
+    console.log('User ID:', user.id);
+    console.log('User Type:', user.user_type);
+    
+      // Reindirizza in base al tipo di utente
+      if(user.user_type === 'cliente') {
+        console.log('Navigating to client profile:', `/clientProfile/${user.id}`);
+        navigate(`/clientProfile/${user.id}`);
+      } else if(user.user_type === 'professionista') {
+        console.log('Navigating to professional profile:', `/profile/${user.id}`);
+        navigate(`/profile/${user.id}`);
+      } 
+
     } catch (error) {
+      console.error('Login error:', error);
       setErrorMessage(errorMessage || 'Login failed. Please try again');
     }
     // metto in local storage la mail

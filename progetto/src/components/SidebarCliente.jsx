@@ -1,16 +1,16 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-
+import {useAuth} from '../auth/AuthContext';
 
 function Sidebar() {
   const navigate = useNavigate()
 
-  function logOut() {
-    localStorage.removeItem('token')
-    localStorage.removeItem('email')
-    navigate('/')
-  }
+  const { logout } = useAuth();
 
+  const handleLogout = () => {
+    logout(); // Chiama la funzione di logout di useAuth
+    navigate('/'); // Reindirizza alla homepage
+  };
 
 
   return (
@@ -66,7 +66,7 @@ function Sidebar() {
             </li>
 
             <li>
-              <Link className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6" onClick={logOut}>
+              <Link className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6" onClick={handleLogout}>
                 <span className="inline-flex justify-center items-center ml-4">
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
                 </span>

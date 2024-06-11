@@ -7,7 +7,7 @@ const axiosInstance = axios.create({
 
 // Aggiungi un'intercettazione per includere automaticamente il token di autenticazione
 axiosInstance.interceptors.request.use((config) => {
-  const token = localStorage.getItem('token'); // Assumi che il token JWT sia memorizzato in localStorage
+  const token = localStorage.getItem('token'); // Ottieni il token direttamente da localStorage
   if (token) {
     config.headers.Authorization = `Bearer ${token}`; // Qui "Bearer" è una parola chiave standard, non una libreria
   }

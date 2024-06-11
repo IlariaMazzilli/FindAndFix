@@ -176,7 +176,7 @@ export const Rotte = createBrowserRouter([
         ),
     },
     {
-        path: '/profile/:name',
+        path: '/profile/:id',
         element: (
             <PrivateRoute element={() => (
                 <div>
@@ -225,7 +225,7 @@ export const Rotte = createBrowserRouter([
         ]
     },
     {
-        path: '/clientProfile/:name',
+        path: '/clientProfile/:id',
         element: (
             <PrivateRoute element={() => (
                 <div>

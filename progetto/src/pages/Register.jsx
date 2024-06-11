@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { MdVisibility } from "react-icons/md";
 import Navbar from "../components/Navbar";
 import axios from "axios";
-import {useToken} from '../auth/useToken';
+import {useAuth} from '../auth/AuthContext';
 import Toolbar from "../components/Toolbar";
 import { Link } from 'react-router-dom';
 import { Link as ScrollLink } from 'react-scroll'
@@ -12,7 +12,7 @@ import logoScritta from '../images/logoScrittaNav.svg'
 
 
 function Register() {
-  const [token, setToken] = useToken();
+  const {setToken} = useAuth();
   const [errorMessage, setErrorMessage] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -68,9 +68,9 @@ function Register() {
         password,
         email_marketing
       });
-      const { token } = response.data;
-      setToken(token);
-      console.log(token);
+      
+      setToken(response.data.token);
+      console.log(response.data.token);
       alert("Registrazione effettuata con successo");
       navigate("/"); // Reindirizza alla pagina di accesso dopo la registrazione
     } catch (error) {

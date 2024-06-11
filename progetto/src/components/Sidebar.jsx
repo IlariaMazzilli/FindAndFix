@@ -1,24 +1,20 @@
-import React, {useContext, useEffect} from 'react'
-import { Link } from 'react-router-dom'
-import { AuthContext } from '../auth/AuthContext';
+
+import { Link, useNavigate } from 'react-router-dom'
+import {useAuth} from '../auth/AuthContext'
 
 function Sidebar() {
-  const {isAuthenticated, setIsAuthenticated, userEmail, setUserEmail} = useContext(AuthContext)
 
-  function logOut(){
-    setIsAuthenticated(!isAuthenticated)
-    if (userEmail) {
-      localStorage.removeItem('email')
-    }
-  }
+ const navigate = useNavigate()
+ const { logout } = useAuth();
 
-  useEffect(() => {
-    function getEmail() {
-      setUserEmail(localStorage.getItem('email'));
-    }
+ const handleLogout = () => {
+  logout(); // Chiama la funzione di logout di useAuth
+  navigate('/'); // Reindirizza alla homepage
+};
+ 
+ 
 
-    getEmail();
-  }, [userEmail, isAuthenticated]);
+ 
 
   return (
 <div className="min-h-fit flex w-fit flex-shrink-0 antialiased  text-gray-800 ">
@@ -87,7 +83,7 @@ function Sidebar() {
           </Link>
         </li>
         <li>
-          <Link to="/" className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6" onClick={logOut}>
+          <Link to="/" className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6" onClick={handleLogout}>
             <span className="inline-flex justify-center items-center ml-4">
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
             </span>
